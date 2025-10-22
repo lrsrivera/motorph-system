@@ -142,12 +142,14 @@ The system is built with modularity in mind:
 
 ## 📊 Sample Data
 
-The system includes comprehensive sample data for testing:
-- **Employee Profiles**: Multiple employee records with different roles
-- **Attendance Records**: Sample attendance data with various statuses
-- **Leave Requests**: Examples of different leave types and statuses
-- **Payroll Data**: Sample payslips and payroll calculations
-- **Tax Information**: Sample tax deductions and calculations
+The system includes comprehensive sample data **for user testing and demonstration purposes only**:
+- **Employee Profiles**: Multiple employee records with different roles (test accounts)
+- **Attendance Records**: Sample attendance data with various statuses for testing
+- **Leave Requests**: Examples of different leave types and statuses for demonstration
+- **Payroll Data**: Sample payslips and payroll calculations for testing functionality
+- **Tax Information**: Sample tax deductions and calculations for demonstration
+
+**Note**: All data is simulated and used solely for testing the system's functionality. No real employee information is stored or processed.
 
 ## 🤝 Contributing
 
