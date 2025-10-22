@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MotorPH - Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="icon" href="data:,">
+</head>
+<body class="theme-login">
+    <main class="login-layout">
+        <div class="watermark"></div>
+        <img src="assets/images/motorph_logo.png" alt="MotorPH Watermark" class="watermark-img">
+        <section class="login-card" aria-labelledby="loginTitle">
+            <img src="assets/images/motorph_logo.png" alt="MotorPH" class="login-logo" onerror="this.style.display='none'">
+            <div class="login-header">
+                <h1 id="loginTitle" class="login-title sr-only">Login</h1>
+            </div>
+            <form id="loginForm" class="login-form" autocomplete="on">
+                <div class="error-message" id="errorMessage" style="display: none;"></div>
+                
+                <label class="form-label" for="empno">Employee No.</label>
+                <input class="form-input" id="empno" name="empno" type="text" placeholder="Enter employee number" autocomplete="on">
+
+                <label class="form-label" for="username">Username</label>
+                <input class="form-input" id="username" name="username" type="text" placeholder="Enter username" autocomplete="username">
+
+                <label class="form-label" for="password">Password</label>
+                <input class="form-input" id="password" name="password" type="password" placeholder="Enter password" autocomplete="current-password">
+
+                <button type="submit" class="login-button">Login</button>
+            </form>
+            <a class="forgot-link" href="#" id="forgotLink">Forgot password?</a>
+        </section>
+    </main>
+    <div class="page-tooltip">
+        <button class="tooltip-trigger" aria-label="Show test credentials" title="Test credentials">🅘</button>
+        <div class="tooltip-panel" role="dialog" aria-modal="false" aria-live="polite">
+            <div class="tooltip-sections-container">
+                <div class="tooltip-section">
+                    <strong>Employee Dashboard</strong>
+                    <div>Emp No: <code>10001</code></div>
+                    <div>Username: <code>employee</code></div>
+                    <div>Password: <code>password</code></div>
+                </div>
+                <div class="tooltip-section">
+                    <strong>Managerial Dashboard</strong>
+                    <div>Emp No: <code>10006</code></div>
+                    <div>Username: <code>manager</code></div>
+                    <div>Password: <code>password</code></div>
+                </div>
+                <div class="tooltip-section">
+                    <strong>Payroll Dashboard</strong>
+                    <div>Emp No: <code>10111</code></div>
+                    <div>Username: <code>payroll</code></div>
+                    <div>Password: <code>password</code></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            window.__ENTRY__ = 'login';
+            window.__INIT__ && window.__INIT__();
+        });
+    </script>
+    <noscript>This prototype requires JavaScript enabled for navigation.</noscript>
+    </body>
+</html>
+
+

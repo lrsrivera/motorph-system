@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Payslip - MotorPH</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="icon" href="data:,">
+</head>
+<body class="dashboard-body">
+    <!-- Header -->
+    <header class="dashboard-header">
+        <div class="header-left">
+            <img src="assets/images/motorph_logo_with _white_outline.png" alt="MotorPH" class="header-logo">
+        </div>
+        <div class="header-right">
+            <div class="employee-profile">
+                <div class="profile-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12Z" fill="white"/>
+                        <path d="M12 14C7.58172 14 4 17.5817 4 22H20C20 17.5817 16.4183 14 12 14Z" fill="white"/>
+                    </svg>
+                </div>
+                <div class="employee-info">
+                    <span class="employee-name">Andrea Mae Villanueva</span>
+                    <div class="badges">
+                        <span class="badge badge-role">HR Manager</span>
+                        <span class="badge badge-empno">10006</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2 class="sidebar-title">Managerial Dashboard</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="manager_dashboard.html" class="nav-item">
+                    <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>My Attendance</span>
+                </a>
+                <a href="manager_requests.html" class="nav-item">
+                    <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 12H16M12 8V16M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>My Requests</span>
+                </a>
+                <a href="manager_payslip.html" class="nav-item active">
+                    <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M9 9H15M9 13H15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>My Payslip</span>
+                </a>
+                <a href="team_attendance.html" class="nav-item">
+                    <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Team Attendance</span>
+                </a>
+                <a href="team_requests.html" class="nav-item">
+                    <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Team Requests</span>
+                </a>
+                <a href="employee_details.html" class="nav-item">
+                    <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Employee Details</span>
+                </a>
+                <a href="manager_about.html" class="nav-item">
+                    <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>About Me</span>
+                </a>
+            </nav>
+            <button class="logout-btn" onclick="window.location.href='index.html'">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H9M16 17L21 12L16 7M21 12H9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Log Out
+            </button>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Date Range Dropdown -->
+            <div class="payslip-header">
+                <div class="date-range-section">
+                    <label class="date-range-label">Pay Period</label>
+                    <select class="date-range-dropdown date-month-select" id="payMonth">
+                        <option value="01">January</option>
+                        <option value="02">February</option>
+                        <option value="03">March</option>
+                        <option value="04">April</option>
+                        <option value="05">May</option>
+                        <option value="06">June</option>
+                        <option value="07" selected>July</option>
+                        <option value="08">August</option>
+                        <option value="09">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+                    </select>
+                    <select class="date-range-dropdown date-year-select" id="payYear">
+                        <option>2025</option>
+                        <option selected>2024</option>
+                        <option>2023</option>
+                        <option>2022</option>
+                        <option>2021</option>
+                        <option>2020</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Payslip Status Section -->
+            <div class="payslip-status-section">
+                <h3 class="status-title">Payslip for this Month Status</h3>
+                <div class="status-cards">
+                    <div class="status-card current-month">
+                        <div class="status-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="status-content">
+                            <div class="status-label">Current Month</div>
+                            <div class="status-value">July 2024</div>
+                            <div class="status-detail">Payslip Available</div>
+                        </div>
+                    </div>
+                    <div class="status-card net-pay">
+                        <div class="status-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M2 17L12 22L22 17" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M2 12L12 17L22 12" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="status-content">
+                            <div class="status-label">Net Pay</div>
+                            <div class="status-value">₱85,200.00</div>
+                            <div class="status-detail">After deductions</div>
+                        </div>
+                    </div>
+                    <div class="status-card pay-date">
+                        <div class="status-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 2V5M16 2V5M3.5 9.09H20.5M21 8.5V17C21 18.1046 20.1046 19 19 19H5C3.89543 19 3 18.1046 3 17V8.5C3 7.39543 3.89543 6.5 5 6.5H19C20.1046 6.5 21 7.39543 21 8.5Z" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="status-content">
+                            <div class="status-label">Pay Date</div>
+                            <div class="status-value">Jul 31, 2024</div>
+                            <div class="status-detail">Expected payment</div>
+                        </div>
+                    </div>
+                    <div class="status-card status-badge">
+                        <div class="status-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="status-content">
+                            <div class="status-label">Status</div>
+                            <div class="status-value">
+                                <span class="status-indicator completed">Completed</span>
+                            </div>
+                            <div class="status-detail">Ready for download</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payslip Content -->
+            <div class="payslip-content">
+                <!-- Left Side - Earnings and Deductions Cards -->
+                <div class="payslip-cards">
+                    <!-- Earnings Card -->
+                    <div class="payslip-card earnings-card">
+                        <h3 class="card-title">Earnings</h3>
+                        <div class="payslip-fields">
+                            <div class="payslip-field">
+                                <label class="field-label">Total Hours Worked</label>
+                                <input type="text" class="field-input" value="180 hours" readonly>
+                            </div>
+                            <div class="payslip-field">
+                                <label class="field-label">Hourly Rate</label>
+                                <input type="text" class="field-input" value="₱292.61" readonly>
+                            </div>
+                            <div class="payslip-field">
+                                <label class="field-label">Basic Pay</label>
+                                <input type="text" class="field-input" value="₱52,670.00" readonly>
+                            </div>
+                            <div class="payslip-field">
+                                <label class="field-label">Overtime Pay</label>
+                                <input type="text" class="field-input" value="₱1,000.00" readonly>
+                            </div>
+                            <div class="payslip-field">
+                                <label class="field-label">Night Differential</label>
+                                <input type="text" class="field-input" value="₱500.00" readonly>
+                            </div>
+                            <div class="payslip-field">
+                                <label class="field-label">Leave Credits</label>
+                                <input type="text" class="field-input" value="₱1,500.00" readonly>
+                            </div>
+                            <div class="payslip-field">
+                                <label class="field-label">Benefits</label>
+                                <input type="text" class="field-input" value="₱3,000.00" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Deductions Card -->
+                    <div class="payslip-card deductions-card">
+                        <h3 class="card-title">Deductions</h3>
+                        <div class="deductions-sections">
+                            <!-- Withholding Tax -->
+                            <div class="deduction-section">
+                                <h4 class="section-title">Withholding Tax</h4>
+                                <div class="payslip-field">
+                                    <label class="field-label">Withholding Tax</label>
+                                    <input type="text" class="field-input" value="₱5,500.00" readonly>
+                                </div>
+                            </div>
+
+                            <!-- Monthly Contributions -->
+                            <div class="deduction-section">
+                                <h4 class="section-title">Monthly Contributions</h4>
+                                <div class="payslip-field">
+                                    <label class="field-label">SSS</label>
+                                    <input type="text" class="field-input" value="₱800.00" readonly>
+                                </div>
+                                <div class="payslip-field">
+                                    <label class="field-label">PhilHealth</label>
+                                    <input type="text" class="field-input" value="₱800.00" readonly>
+                                </div>
+                                <div class="payslip-field">
+                                    <label class="field-label">Pag-IBIG</label>
+                                    <input type="text" class="field-input" value="₱800.00" readonly>
+                                </div>
+                            </div>
+
+                            <!-- Loan Deductions -->
+                            <div class="deduction-section">
+                                <h4 class="section-title">Loan Deductions</h4>
+                                <div class="payslip-field">
+                                    <label class="field-label">SSS</label>
+                                    <input type="text" class="field-input" value="₱0.00" readonly>
+                                </div>
+                                <div class="payslip-field">
+                                    <label class="field-label">PhilHealth</label>
+                                    <input type="text" class="field-input" value="₱0.00" readonly>
+                                </div>
+                                <div class="payslip-field">
+                                    <label class="field-label">Pag-IBIG</label>
+                                    <input type="text" class="field-input" value="₱0.00" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side - Summary Section -->
+                <div class="summary-section">
+                    <div class="summary-card">
+                        <h3 class="card-title">Summary</h3>
+                        <div class="summary-fields">
+                            <div class="summary-field">
+                                <label class="field-label">Total Earnings</label>
+                                <input type="text" class="field-input summary-input" value="₱58,670.00" readonly>
+                            </div>
+                            <div class="summary-field">
+                                <label class="field-label">Total Contributions</label>
+                                <input type="text" class="field-input summary-input" value="₱2,400.00" readonly>
+                            </div>
+                            <div class="summary-field">
+                                <label class="field-label">Total Loan Deductions</label>
+                                <input type="text" class="field-input summary-input" value="₱0.00" readonly>
+                            </div>
+                            <div class="summary-field">
+                                <label class="field-label">Withholding Tax</label>
+                                <input type="text" class="field-input summary-input" value="₱5,500.00" readonly>
+                            </div>
+                            <div class="summary-field net-pay">
+                                <label class="field-label">Net Pay</label>
+                                <input type="text" class="field-input summary-input net-pay-input" value="₱50,770.00" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Download Button -->
+                    <button class="download-payslip-btn" onclick="downloadPayslip()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15M17 9L12 14L7 9M12 14V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Download Payslip
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Payslip Modal -->
+    <div id="payslipModal" class="payslip-modal" style="display: none;">
+        <div class="payslip-modal-content">
+            <div class="payslip-modal-header">
+                <h2>Employee Payslip</h2>
+                <button class="close-modal" onclick="closePayslipModal()">&times;</button>
+            </div>
+            <div class="payslip-modal-body">
+                <img src="assets/images/Sample Payslip.jpg" alt="Sample Payslip" class="payslip-image">
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/app.js"></script>
+    <script>
+        // Initialize payslip status functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            initializePayslipStatus();
+            initializePayPeriodUpdates();
+        });
+
+        // Initialize payslip status section
+        function initializePayslipStatus() {
+            updatePayslipStatus();
+        }
+
+        // Initialize pay period updates
+        function initializePayPeriodUpdates() {
+            const monthSelect = document.getElementById('payMonth');
+            const yearSelect = document.getElementById('payYear');
+            
+            if (monthSelect && yearSelect) {
+                monthSelect.addEventListener('change', updatePayslipStatus);
+                yearSelect.addEventListener('change', updatePayslipStatus);
+            }
+        }
+
+        // Update payslip status based on selected period
+        function updatePayslipStatus() {
+            const monthSelect = document.getElementById('payMonth');
+            const yearSelect = document.getElementById('payYear');
+            
+            if (!monthSelect || !yearSelect) return;
+            
+            const selectedMonth = monthSelect.value;
+            const selectedYear = yearSelect.value;
+            const monthNames = {
+                '01': 'January', '02': 'February', '03': 'March', '04': 'April',
+                '05': 'May', '06': 'June', '07': 'July', '08': 'August',
+                '09': 'September', '10': 'October', '11': 'November', '12': 'December'
+            };
+            
+            const currentDate = new Date();
+            const currentMonth = String(currentDate.getMonth() + 1).padStart(2, '0');
+            const currentYear = currentDate.getFullYear().toString();
+            
+            // Determine status based on period
+            let status, statusClass, statusDetail, currentMonthDetail, netPayValue, netPayDetail, payDateValue, payDateDetail;
+            
+            if (selectedYear === currentYear && selectedMonth === currentMonth) {
+                // Current month
+                status = 'Completed';
+                statusClass = 'completed';
+                statusDetail = 'Ready for download';
+                currentMonthDetail = 'Payslip Available';
+                netPayValue = '₱85,200.00';
+                netPayDetail = 'After deductions';
+                const lastDay = new Date(selectedYear, selectedMonth, 0).getDate();
+                payDateValue = `${monthNames[selectedMonth].substring(0, 3)} ${lastDay}, ${selectedYear}`;
+                payDateDetail = 'Expected payment';
+            } else if (selectedYear < currentYear || (selectedYear === currentYear && selectedMonth < currentMonth)) {
+                // Past months
+                status = 'Completed';
+                statusClass = 'completed';
+                statusDetail = 'Archived payslip';
+                currentMonthDetail = 'Payslip Available';
+                netPayValue = '₱85,200.00';
+                netPayDetail = 'After deductions';
+                const lastDay = new Date(selectedYear, selectedMonth, 0).getDate();
+                payDateValue = `${monthNames[selectedMonth].substring(0, 3)} ${lastDay}, ${selectedYear}`;
+                payDateDetail = 'Payment date';
+            } else {
+                // Future months - no payslip available
+                status = 'No Payslip';
+                statusClass = 'pending';
+                statusDetail = 'No available payslip for this month';
+                currentMonthDetail = 'No Payslip Available';
+                netPayValue = 'N/A';
+                netPayDetail = 'Not calculated yet';
+                const lastDay = new Date(selectedYear, selectedMonth, 0).getDate();
+                payDateValue = `${monthNames[selectedMonth].substring(0, 3)} ${lastDay}, ${selectedYear}`;
+                payDateDetail = 'Expected pay date';
+            }
+            
+            // Update all status cards
+            updateStatusCard('current-month', `${monthNames[selectedMonth]} ${selectedYear}`, currentMonthDetail);
+            updateStatusCard('status-badge', status, statusDetail, statusClass);
+            updateStatusCard('net-pay', netPayValue, netPayDetail);
+            updateStatusCard('pay-date', payDateValue, payDateDetail);
+        }
+
+        // Update individual status card
+        function updateStatusCard(cardClass, value, detail, statusClass = null) {
+            const card = document.querySelector(`.status-card.${cardClass}`);
+            if (!card) return;
+            
+            const valueElement = card.querySelector('.status-value');
+            const detailElement = card.querySelector('.status-detail');
+            
+            if (valueElement) {
+                if (statusClass) {
+                    // Update status indicator
+                    const indicator = valueElement.querySelector('.status-indicator');
+                    if (indicator) {
+                        indicator.textContent = value;
+                        indicator.className = `status-indicator ${statusClass}`;
+                    } else {
+                        valueElement.innerHTML = `<span class="status-indicator ${statusClass}">${value}</span>`;
+                    }
+                } else {
+                    valueElement.textContent = value;
+                }
+            }
+            
+            if (detailElement) {
+                detailElement.textContent = detail;
+            }
+        }
+
+        // Make functions globally available
+        window.downloadPayslip = downloadPayslip;
+        window.closePayslipModal = closePayslipModal;
+    </script>
+</body>
+</html>
