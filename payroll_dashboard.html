@@ -577,6 +577,26 @@
         </div>
     </div>
 
+    <!-- Success Modal -->
+    <div id="successModal" class="success-modal" style="display: none;">
+        <div class="success-modal-content">
+            <div class="success-modal-header">
+                <div class="success-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <h3>Success!</h3>
+            </div>
+            <div class="success-modal-body">
+                <p id="successMessage">Payslip generated successfully!</p>
+            </div>
+            <div class="success-modal-footer">
+                <button class="success-btn" onclick="closeSuccessModal()">OK</button>
+            </div>
+        </div>
+    </div>
+
     <script src="assets/app.js"></script>
     <script>
         // Initialize Generate Payslips functionality
@@ -734,7 +754,7 @@
                 showGenerationProgress();
                 
                 setTimeout(() => {
-                    alert(`Payslip generated successfully for ${window.currentEmployeeName}!`);
+                    showSuccessModal(`Payslip generated successfully for ${window.currentEmployeeName}!`);
                     updateKPIs();
                     moveEmployeeToProcessed(window.currentEmployeeId);
                     
@@ -748,6 +768,20 @@
         // Close payslip modal function
         function closePayslipModal() {
             const modal = document.getElementById('payslipModal');
+            modal.style.display = 'none';
+        }
+
+        // Success modal functions
+        function showSuccessModal(message) {
+            const modal = document.getElementById('successModal');
+            const messageElement = document.getElementById('successMessage');
+            
+            messageElement.textContent = message;
+            modal.style.display = 'flex';
+        }
+
+        function closeSuccessModal() {
+            const modal = document.getElementById('successModal');
             modal.style.display = 'none';
         }
 
@@ -782,6 +816,8 @@
         window.viewPayslip = viewPayslip;
         window.closeConfirmationModal = closeConfirmationModal;
         window.closePayslipModal = closePayslipModal;
+        window.showSuccessModal = showSuccessModal;
+        window.closeSuccessModal = closeSuccessModal;
     </script>
 </body>
 </html>
