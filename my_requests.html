@@ -159,6 +159,12 @@
                 <div class="table-card">
                     <div class="card-header">
                         <h3 class="card-title">Leaves Filed</h3>
+                        <span class="overdue-indicator" id="overdueIndicator" style="display: none;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 9V13M12 17H12.01M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>Overdue</span>
+                        </span>
                     </div>
                     <div class="table-container">
                         <table class="leaves-table">
@@ -236,6 +242,19 @@
                                         </button>
                                     </td>
                                 </tr>
+                                <tr data-leave-id="6">
+                                    <td>03/10/2024</td>
+                                    <td>Vacation</td>
+                                    <td><span class="status-badge status-overdue">Overdue</span></td>
+                                    <td>
+                                        <button class="view-details-btn" onclick="viewLeaveDetails(6)">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M1 12S5 4 12 4S23 12 23 12S19 20 12 20S1 12 1 12Z" stroke="currentColor" stroke-width="2"/>
+                                                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                                            </svg>
+                                        </button>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -279,6 +298,10 @@
                 <div class="detail-group">
                     <label class="detail-label">Status:</label>
                     <span class="detail-value" id="modalStatus">-</span>
+                </div>
+                <div class="detail-group" id="overdueReasonGroup" style="display: none;">
+                    <label class="detail-label">Overdue Reason:</label>
+                    <span class="detail-value" id="modalOverdueReason">-</span>
                 </div>
                 <div class="detail-group">
                     <label class="detail-label">Submitted:</label>
@@ -336,6 +359,16 @@
                 attachments: "death_certificate.pdf",
                 status: "Approved",
                 submitted: "02/27/2024"
+            },
+            6: {
+                type: "Vacation",
+                fromDate: "03/10/2024",
+                toDate: "03/15/2024",
+                reason: "Personal vacation - submitted 2 weeks ago",
+                attachments: "None",
+                status: "Overdue",
+                submitted: "02/25/2024",
+                overdueReason: "HR has not processed this request within the standard 5 business days"
             }
         };
 
@@ -344,6 +377,12 @@
             const form = document.querySelector('.leave-form');
             const errorDiv = document.getElementById('formError');
             const errorMessage = document.getElementById('errorMessage');
+
+            // Check for overdue requests and show indicator
+            const hasOverdueRequests = Object.values(leaveData).some(request => request.status === 'Overdue');
+            if (hasOverdueRequests) {
+                document.getElementById('overdueIndicator').style.display = 'flex';
+            }
 
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
@@ -510,6 +549,15 @@
             document.getElementById('modalAttachments').textContent = data.attachments;
             document.getElementById('modalStatus').textContent = data.status;
             document.getElementById('modalSubmitted').textContent = data.submitted;
+            
+            // Handle overdue reason
+            const overdueReasonGroup = document.getElementById('overdueReasonGroup');
+            if (data.status === 'Overdue' && data.overdueReason) {
+                document.getElementById('modalOverdueReason').textContent = data.overdueReason;
+                overdueReasonGroup.style.display = 'block';
+            } else {
+                overdueReasonGroup.style.display = 'none';
+            }
             
             // Show modal
             document.getElementById('leaveDetailsModal').style.display = 'flex';
