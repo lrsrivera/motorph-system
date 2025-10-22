@@ -101,26 +101,57 @@
                     </div>
                     <form class="leave-form">
                         <div class="form-group">
-                            <label class="form-label" for="leaveType">Type of Request</label>
-                            <select class="form-select leave-type-select" id="leaveType" name="leaveType">
+                            <label class="form-label" for="requestType">Type of Request</label>
+                            <select class="form-select request-type-select" id="requestType" name="requestType" onchange="toggleRequestFields()">
                                 <option value="">Select request type...</option>
-                                <option value="sick">🏥 Sick Leave</option>
-                                <option value="vacation">🏖️ Vacation</option>
-                                <option value="bereavement">🕊️ Bereavement</option>
-                                <option value="maternity">👶 Maternity/Paternity</option>
-                                <option value="unpaid">💰 Leave without Pay</option>
-                                <option value="other">📝 Others</option>
+                                <option value="leave">📋 Leave Request</option>
+                                <option value="overtime">⏰ Overtime Request</option>
                             </select>
                         </div>
                         
-                        <div class="form-row">
+                        <!-- Leave Request Fields -->
+                        <div id="leaveFields" class="request-fields" style="display: none;">
                             <div class="form-group">
-                                <label class="form-label" for="fromDate">From</label>
-                                <input type="date" class="form-input" id="fromDate" name="fromDate">
+                                <label class="form-label" for="leaveType">Leave Type</label>
+                                <select class="form-select leave-type-select" id="leaveType" name="leaveType">
+                                    <option value="">Select leave type...</option>
+                                    <option value="sick">🏥 Sick Leave</option>
+                                    <option value="vacation">🏖️ Vacation</option>
+                                    <option value="bereavement">🕊️ Bereavement</option>
+                                    <option value="maternity">👶 Maternity/Paternity</option>
+                                    <option value="unpaid">💰 Leave without Pay</option>
+                                    <option value="other">📝 Others</option>
+                                </select>
                             </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label" for="fromDate">From</label>
+                                    <input type="date" class="form-input" id="fromDate" name="fromDate">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="toDate">To</label>
+                                    <input type="date" class="form-input" id="toDate" name="toDate">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Overtime Request Fields -->
+                        <div id="overtimeFields" class="request-fields" style="display: none;">
                             <div class="form-group">
-                                <label class="form-label" for="toDate">To</label>
-                                <input type="date" class="form-input" id="toDate" name="toDate">
+                                <label class="form-label" for="overtimeDate">Date</label>
+                                <input type="date" class="form-input" id="overtimeDate" name="overtimeDate">
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label" for="startTime">Start Time</label>
+                                    <input type="time" class="form-input" id="startTime" name="startTime">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="endTime">End Time</label>
+                                    <input type="time" class="form-input" id="endTime" name="endTime">
+                                </div>
                             </div>
                         </div>
                         
@@ -165,31 +196,20 @@
                             <thead>
                                 <tr>
                                     <th>Date</th>
+                                    <th>Request Type</th>
                                     <th>Type</th>
                                     <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr data-leave-id="7">
-                                    <td>03/05/2024</td>
-                                    <td>Sick Leave</td>
-                                    <td><span class="status-badge status-overdue">Overdue</span></td>
-                                    <td>
-                                        <button class="view-details-btn" onclick="viewLeaveDetails(7)">
-                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M1 12S5 4 12 4S23 12 23 12S19 20 12 20S1 12 1 12Z" stroke="currentColor" stroke-width="2"/>
-                                                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
-                                            </svg>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr data-leave-id="1">
+                                <tr data-request-id="1">
                                     <td>04/21/2024</td>
+                                    <td><span class="request-type-badge leave">Leave</span></td>
                                     <td>Vacation</td>
                                     <td><span class="status-badge status-pending">Pending</span></td>
                                     <td>
-                                        <button class="view-details-btn" onclick="viewLeaveDetails(1)">
+                                        <button class="view-details-btn" onclick="viewRequestDetails(1)">
                                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M1 12S5 4 12 4S23 12 23 12S19 20 12 20S1 12 1 12Z" stroke="currentColor" stroke-width="2"/>
                                                 <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
@@ -197,12 +217,13 @@
                                         </button>
                                     </td>
                                 </tr>
-                                <tr data-leave-id="2">
+                                <tr data-request-id="2">
                                     <td>04/21/2024</td>
+                                    <td><span class="request-type-badge leave">Leave</span></td>
                                     <td>Leave without Pay</td>
                                     <td><span class="status-badge status-rejected">Rejected</span></td>
                                     <td>
-                                        <button class="view-details-btn" onclick="viewLeaveDetails(2)">
+                                        <button class="view-details-btn" onclick="viewRequestDetails(2)">
                                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M1 12S5 4 12 4S23 12 23 12S19 20 12 20S1 12 1 12Z" stroke="currentColor" stroke-width="2"/>
                                                 <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
@@ -210,12 +231,13 @@
                                         </button>
                                     </td>
                                 </tr>
-                                <tr data-leave-id="3">
+                                <tr data-request-id="3">
                                     <td>04/21/2024</td>
+                                    <td><span class="request-type-badge leave">Leave</span></td>
                                     <td>Sick</td>
                                     <td><span class="status-badge status-approved">Approved</span></td>
                                     <td>
-                                        <button class="view-details-btn" onclick="viewLeaveDetails(3)">
+                                        <button class="view-details-btn" onclick="viewRequestDetails(3)">
                                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M1 12S5 4 12 4S23 12 23 12S19 20 12 20S1 12 1 12Z" stroke="currentColor" stroke-width="2"/>
                                                 <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
@@ -223,12 +245,13 @@
                                         </button>
                                     </td>
                                 </tr>
-                                <tr data-leave-id="4">
+                                <tr data-request-id="4">
                                     <td>03/15/2024</td>
+                                    <td><span class="request-type-badge leave">Leave</span></td>
                                     <td>Vacation</td>
                                     <td><span class="status-badge status-approved">Approved</span></td>
                                     <td>
-                                        <button class="view-details-btn" onclick="viewLeaveDetails(4)">
+                                        <button class="view-details-btn" onclick="viewRequestDetails(4)">
                                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M1 12S5 4 12 4S23 12 23 12S19 20 12 20S1 12 1 12Z" stroke="currentColor" stroke-width="2"/>
                                                 <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
@@ -236,12 +259,13 @@
                                         </button>
                                     </td>
                                 </tr>
-                                <tr data-leave-id="5">
+                                <tr data-request-id="5">
                                     <td>02/28/2024</td>
+                                    <td><span class="request-type-badge leave">Leave</span></td>
                                     <td>Bereavement</td>
                                     <td><span class="status-badge status-approved">Approved</span></td>
                                     <td>
-                                        <button class="view-details-btn" onclick="viewLeaveDetails(5)">
+                                        <button class="view-details-btn" onclick="viewRequestDetails(5)">
                                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M1 12S5 4 12 4S23 12 23 12S19 20 12 20S1 12 1 12Z" stroke="currentColor" stroke-width="2"/>
                                                 <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
@@ -249,12 +273,13 @@
                                         </button>
                                     </td>
                                 </tr>
-                                <tr data-leave-id="6">
-                                    <td>03/10/2024</td>
-                                    <td>Vacation</td>
-                                    <td><span class="status-badge status-overdue">Overdue</span></td>
+                                <tr data-request-id="6">
+                                    <td>04/20/2024</td>
+                                    <td><span class="request-type-badge overtime">Overtime</span></td>
+                                    <td>Regular Overtime</td>
+                                    <td><span class="status-badge status-pending">Pending</span></td>
                                     <td>
-                                        <button class="view-details-btn" onclick="viewLeaveDetails(6)">
+                                        <button class="view-details-btn" onclick="viewRequestDetails(6)">
                                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M1 12S5 4 12 4S23 12 23 12S19 20 12 20S1 12 1 12Z" stroke="currentColor" stroke-width="2"/>
                                                 <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
@@ -279,20 +304,40 @@
                         <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </button>
-                <h3 class="modal-title">Leave Request Details</h3>
+                <h3 class="modal-title">Request Details</h3>
             </div>
             <div class="modal-body">
                 <div class="detail-group">
+                    <label class="detail-label">Request Type:</label>
+                    <span class="detail-value" id="modalRequestType">-</span>
+                </div>
+                <div class="detail-group" id="leaveTypeGroup">
                     <label class="detail-label">Leave Type:</label>
                     <span class="detail-value" id="modalLeaveType">-</span>
                 </div>
-                <div class="detail-group">
+                <div class="detail-group" id="overtimeTypeGroup" style="display: none;">
+                    <label class="detail-label">Overtime Type:</label>
+                    <span class="detail-value" id="modalOvertimeType">-</span>
+                </div>
+                <div class="detail-group" id="dateRangeGroup">
                     <label class="detail-label">Date From:</label>
                     <span class="detail-value" id="modalFromDate">-</span>
                 </div>
-                <div class="detail-group">
+                <div class="detail-group" id="dateToGroup">
                     <label class="detail-label">Date To:</label>
                     <span class="detail-value" id="modalToDate">-</span>
+                </div>
+                <div class="detail-group" id="overtimeDateGroup" style="display: none;">
+                    <label class="detail-label">Date:</label>
+                    <span class="detail-value" id="modalOvertimeDate">-</span>
+                </div>
+                <div class="detail-group" id="timeRangeGroup" style="display: none;">
+                    <label class="detail-label">Start Time:</label>
+                    <span class="detail-value" id="modalStartTime">-</span>
+                </div>
+                <div class="detail-group" id="endTimeGroup" style="display: none;">
+                    <label class="detail-label">End Time:</label>
+                    <span class="detail-value" id="modalEndTime">-</span>
                 </div>
                 <div class="detail-group">
                     <label class="detail-label">Reason:</label>
@@ -306,10 +351,6 @@
                     <label class="detail-label">Status:</label>
                     <span class="detail-value" id="modalStatus">-</span>
                 </div>
-                <div class="detail-group" id="overdueReasonGroup" style="display: none;">
-                    <label class="detail-label">Overdue Reason:</label>
-                    <span class="detail-value" id="modalOverdueReason">-</span>
-                </div>
                 <div class="detail-group">
                     <label class="detail-label">Submitted:</label>
                     <span class="detail-value" id="modalSubmitted">-</span>
@@ -320,9 +361,10 @@
 
     <script src="assets/app.js"></script>
     <script>
-        // Sample leave data for demonstration
-        const leaveData = {
+        // Sample request data for demonstration
+        const requestData = {
             1: {
+                requestType: "Leave",
                 type: "Vacation",
                 fromDate: "04/21/2024",
                 toDate: "04/25/2024",
@@ -332,6 +374,7 @@
                 submitted: "04/20/2024"
             },
             2: {
+                requestType: "Leave",
                 type: "Leave without Pay",
                 fromDate: "04/21/2024",
                 toDate: "04/22/2024",
@@ -341,6 +384,7 @@
                 submitted: "04/20/2024"
             },
             3: {
+                requestType: "Leave",
                 type: "Sick",
                 fromDate: "04/21/2024",
                 toDate: "04/21/2024",
@@ -350,6 +394,7 @@
                 submitted: "04/20/2024"
             },
             4: {
+                requestType: "Leave",
                 type: "Vacation",
                 fromDate: "03/15/2024",
                 toDate: "03/20/2024",
@@ -359,6 +404,7 @@
                 submitted: "03/10/2024"
             },
             5: {
+                requestType: "Leave",
                 type: "Bereavement",
                 fromDate: "02/28/2024",
                 toDate: "03/02/2024",
@@ -368,38 +414,41 @@
                 submitted: "02/27/2024"
             },
             6: {
-                type: "Vacation",
-                fromDate: "03/10/2024",
-                toDate: "03/15/2024",
-                reason: "Personal vacation - submitted 2 weeks ago",
+                requestType: "Overtime",
+                type: "Regular Overtime",
+                date: "04/20/2024",
+                startTime: "18:00",
+                endTime: "22:00",
+                reason: "Project deadline completion",
                 attachments: "None",
-                status: "Overdue",
-                submitted: "02/25/2024",
-                overdueReason: "HR has not processed this request within the standard 5 business days"
-            },
-            7: {
-                type: "Sick Leave",
-                fromDate: "03/05/2024",
-                toDate: "03/05/2024",
-                reason: "High fever and flu symptoms - submitted 3 weeks ago",
-                attachments: "medical_certificate.pdf",
-                status: "Overdue",
-                submitted: "02/20/2024",
-                overdueReason: "HR has not processed this request within the standard 5 business days. Request submitted 3 weeks ago."
+                status: "Pending",
+                submitted: "04/19/2024"
             }
         };
+
+        // Toggle request fields based on selection
+        function toggleRequestFields() {
+            const requestType = document.getElementById('requestType').value;
+            const leaveFields = document.getElementById('leaveFields');
+            const overtimeFields = document.getElementById('overtimeFields');
+            
+            // Hide all fields first
+            leaveFields.style.display = 'none';
+            overtimeFields.style.display = 'none';
+            
+            // Show relevant fields based on selection
+            if (requestType === 'leave') {
+                leaveFields.style.display = 'block';
+            } else if (requestType === 'overtime') {
+                overtimeFields.style.display = 'block';
+            }
+        }
 
         // Form validation and submission
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.querySelector('.leave-form');
             const errorDiv = document.getElementById('formError');
             const errorMessage = document.getElementById('errorMessage');
-
-            // Check for overdue requests and show indicator
-            const hasOverdueRequests = Object.values(leaveData).some(request => request.status === 'Overdue');
-            if (hasOverdueRequests) {
-                document.getElementById('overdueIndicator').style.display = 'flex';
-            }
 
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
@@ -408,27 +457,55 @@
                 errorDiv.style.display = 'none';
                 
                 // Get form values
-                const leaveType = document.getElementById('leaveType').value;
-                const fromDate = document.getElementById('fromDate').value;
-                const toDate = document.getElementById('toDate').value;
+                const requestType = document.getElementById('requestType').value;
                 const reason = document.getElementById('reason').value.trim();
                 
-                // Validation
-                if (!leaveType || !fromDate || !toDate || !reason) {
+                // Validation based on request type
+                if (!requestType || !reason) {
                     errorMessage.textContent = 'Please complete all required fields before submitting.';
                     errorDiv.style.display = 'flex';
                     return;
                 }
                 
-                // Date validation
-                if (new Date(fromDate) > new Date(toDate)) {
-                    errorMessage.textContent = 'End date must be after start date.';
-                    errorDiv.style.display = 'flex';
-                    return;
+                if (requestType === 'leave') {
+                    const leaveType = document.getElementById('leaveType').value;
+                    const fromDate = document.getElementById('fromDate').value;
+                    const toDate = document.getElementById('toDate').value;
+                    
+                    if (!leaveType || !fromDate || !toDate) {
+                        errorMessage.textContent = 'Please complete all required fields before submitting.';
+                        errorDiv.style.display = 'flex';
+                        return;
+                    }
+                    
+                    // Date validation
+                    if (new Date(fromDate) > new Date(toDate)) {
+                        errorMessage.textContent = 'End date must be after start date.';
+                        errorDiv.style.display = 'flex';
+                        return;
+                    }
+                    
+                    submitLeaveRequest(leaveType, fromDate, toDate, reason);
+                } else if (requestType === 'overtime') {
+                    const overtimeDate = document.getElementById('overtimeDate').value;
+                    const startTime = document.getElementById('startTime').value;
+                    const endTime = document.getElementById('endTime').value;
+                    
+                    if (!overtimeDate || !startTime || !endTime) {
+                        errorMessage.textContent = 'Please complete all required fields before submitting.';
+                        errorDiv.style.display = 'flex';
+                        return;
+                    }
+                    
+                    // Time validation
+                    if (startTime >= endTime) {
+                        errorMessage.textContent = 'End time must be after start time.';
+                        errorDiv.style.display = 'flex';
+                        return;
+                    }
+                    
+                    submitOvertimeRequest(overtimeDate, startTime, endTime, reason);
                 }
-                
-                // Submit form
-                submitLeaveRequest(leaveType, fromDate, toDate, reason);
             });
         });
 
@@ -441,7 +518,7 @@
             
             setTimeout(() => {
                 // Add new entry to table
-                addLeaveToTable(leaveType, fromDate, toDate, reason);
+                addRequestToTable('Leave', leaveType, fromDate, toDate, null, null, reason);
                 
                 // Show success message
                 showSuccessMessage();
@@ -449,6 +526,8 @@
                 // Reset form
                 document.querySelector('.leave-form').reset();
                 document.getElementById('formError').style.display = 'none';
+                document.getElementById('leaveFields').style.display = 'none';
+                document.getElementById('overtimeFields').style.display = 'none';
                 
                 // Reset button
                 submitBtn.textContent = originalText;
@@ -456,25 +535,64 @@
             }, 1500);
         }
 
-        function addLeaveToTable(leaveType, fromDate, toDate, reason) {
+        function submitOvertimeRequest(overtimeDate, startTime, endTime, reason) {
+            // Simulate API call delay
+            const submitBtn = document.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Submitting...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                // Add new entry to table
+                addRequestToTable('Overtime', 'Regular Overtime', null, null, overtimeDate, startTime + ' - ' + endTime, reason);
+                
+                // Show success message
+                showSuccessMessage();
+                
+                // Reset form
+                document.querySelector('.leave-form').reset();
+                document.getElementById('formError').style.display = 'none';
+                document.getElementById('leaveFields').style.display = 'none';
+                document.getElementById('overtimeFields').style.display = 'none';
+                
+                // Reset button
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }, 1500);
+        }
+
+        function addRequestToTable(requestType, type, fromDate, toDate, overtimeDate, timeRange, reason) {
             const tableBody = document.querySelector('.leaves-table tbody');
             const newRow = document.createElement('tr');
-            const leaveId = Date.now(); // Simple ID generation
+            const requestId = Date.now(); // Simple ID generation
             
             // Format date for display
-            const displayDate = new Date(fromDate).toLocaleDateString('en-US', {
-                month: '2-digit',
-                day: '2-digit',
-                year: 'numeric'
-            });
+            let displayDate;
+            if (requestType === 'Leave') {
+                displayDate = new Date(fromDate).toLocaleDateString('en-US', {
+                    month: '2-digit',
+                    day: '2-digit',
+                    year: 'numeric'
+                });
+            } else {
+                displayDate = new Date(overtimeDate).toLocaleDateString('en-US', {
+                    month: '2-digit',
+                    day: '2-digit',
+                    year: 'numeric'
+                });
+            }
             
-            newRow.setAttribute('data-leave-id', leaveId);
+            const requestTypeClass = requestType.toLowerCase();
+            const requestTypeBadge = requestType === 'Leave' ? 'leave' : 'overtime';
+            
+            newRow.setAttribute('data-request-id', requestId);
             newRow.innerHTML = `
                 <td>${displayDate}</td>
-                <td>${leaveType}</td>
+                <td><span class="request-type-badge ${requestTypeBadge}">${requestType}</span></td>
+                <td>${type}</td>
                 <td><span class="status-badge status-pending">Pending</span></td>
                 <td>
-                    <button class="view-details-btn" onclick="viewLeaveDetails(${leaveId})">
+                    <button class="view-details-btn" onclick="viewRequestDetails(${requestId})">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M1 12S5 4 12 4S23 12 23 12S19 20 12 20S1 12 1 12Z" stroke="currentColor" stroke-width="2"/>
                             <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
@@ -487,10 +605,14 @@
             tableBody.insertBefore(newRow, tableBody.firstChild);
             
             // Store data for modal
-            leaveData[leaveId] = {
-                type: leaveType,
+            requestData[requestId] = {
+                requestType: requestType,
+                type: type,
                 fromDate: fromDate,
                 toDate: toDate,
+                date: overtimeDate,
+                startTime: timeRange ? timeRange.split(' - ')[0] : null,
+                endTime: timeRange ? timeRange.split(' - ')[1] : null,
                 reason: reason,
                 attachments: "None",
                 status: "Pending",
@@ -554,26 +676,43 @@
             }, 3000);
         }
 
-        function viewLeaveDetails(leaveId) {
-            const data = leaveData[leaveId];
+        function viewRequestDetails(requestId) {
+            const data = requestData[requestId];
             if (!data) return;
             
-            // Populate modal
-            document.getElementById('modalLeaveType').textContent = data.type;
-            document.getElementById('modalFromDate').textContent = data.fromDate;
-            document.getElementById('modalToDate').textContent = data.toDate;
+            // Populate modal based on request type
+            document.getElementById('modalRequestType').textContent = data.requestType;
             document.getElementById('modalReason').textContent = data.reason;
             document.getElementById('modalAttachments').textContent = data.attachments;
             document.getElementById('modalStatus').textContent = data.status;
             document.getElementById('modalSubmitted').textContent = data.submitted;
             
-            // Handle overdue reason
-            const overdueReasonGroup = document.getElementById('overdueReasonGroup');
-            if (data.status === 'Overdue' && data.overdueReason) {
-                document.getElementById('modalOverdueReason').textContent = data.overdueReason;
-                overdueReasonGroup.style.display = 'block';
+            // Show/hide fields based on request type
+            if (data.requestType === 'Leave') {
+                document.getElementById('leaveTypeGroup').style.display = 'block';
+                document.getElementById('overtimeTypeGroup').style.display = 'none';
+                document.getElementById('dateRangeGroup').style.display = 'block';
+                document.getElementById('dateToGroup').style.display = 'block';
+                document.getElementById('overtimeDateGroup').style.display = 'none';
+                document.getElementById('timeRangeGroup').style.display = 'none';
+                document.getElementById('endTimeGroup').style.display = 'none';
+                
+                document.getElementById('modalLeaveType').textContent = data.type;
+                document.getElementById('modalFromDate').textContent = data.fromDate;
+                document.getElementById('modalToDate').textContent = data.toDate;
             } else {
-                overdueReasonGroup.style.display = 'none';
+                document.getElementById('leaveTypeGroup').style.display = 'none';
+                document.getElementById('overtimeTypeGroup').style.display = 'block';
+                document.getElementById('dateRangeGroup').style.display = 'none';
+                document.getElementById('dateToGroup').style.display = 'none';
+                document.getElementById('overtimeDateGroup').style.display = 'block';
+                document.getElementById('timeRangeGroup').style.display = 'block';
+                document.getElementById('endTimeGroup').style.display = 'block';
+                
+                document.getElementById('modalOvertimeType').textContent = data.type;
+                document.getElementById('modalOvertimeDate').textContent = data.date;
+                document.getElementById('modalStartTime').textContent = data.startTime;
+                document.getElementById('modalEndTime').textContent = data.endTime;
             }
             
             // Show modal
@@ -616,8 +755,9 @@
         }
 
         // Make functions globally available
-        window.viewLeaveDetails = viewLeaveDetails;
+        window.viewRequestDetails = viewRequestDetails;
         window.closeLeaveDetails = closeLeaveDetails;
+        window.toggleRequestFields = toggleRequestFields;
     </script>
 </body>
 </html>
