@@ -4,7 +4,7 @@ A comprehensive web-based system for HR, Payroll, and all employees to manage pa
 
 ## 🚀 Live Demo
 
-**Access the live application:** [View Live Demo](https://yourusername.github.io/motorph-system/)
+**Access the live application:** [View Live Demo](https://lrsrivera.github.io/motorph-system/)
 
 ## 📋 Features
 
@@ -114,7 +114,7 @@ A comprehensive web-based system for HR, Payroll, and all employees to manage pa
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/motorph-system.git
+   git clone https://github.com/lrsrivera/motorph-system.git
    ```
 
 2. **Open in browser**
