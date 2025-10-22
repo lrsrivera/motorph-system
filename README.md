@@ -40,7 +40,7 @@ A comprehensive web-based system for HR, Payroll, and all employees to manage pa
 - **Password:** `password`
 
 ### Payroll Access
-- **Employee No:** `10111`
+- **Employee No:** `10011`
 - **Username:** `payroll`
 - **Password:** `password`
 
@@ -155,12 +155,7 @@ A comprehensive web-based system for HR, Payroll, and all employees to manage pa
 - Edge
 - Mobile browsers
 
-## 🔧 Customization
 
-The system is built with modularity in mind:
-- Easy to modify CSS variables for theming
-- JavaScript functions are well-documented
-- HTML structure is semantic and accessible
 
 ## 📊 Sample Data
 
