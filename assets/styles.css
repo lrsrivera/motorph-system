@@ -3586,6 +3586,7 @@ body.modal-open .modal-body {
     color: #065f46;
 }
 
+.status-badge.status-overdue,
 .status-overdue {
     background: #fef2f2 !important;
     color: #ef4444 !important;
@@ -4529,12 +4530,15 @@ body.modal-open .modal-body {
     color: #f59e0b;
 }
 
-.status-badge.overdue {
+.status-badge.overdue,
+.status-badge.status-overdue {
     background: #fef2f2 !important;
     color: #ef4444 !important;
     border: 1px solid #fecaca !important;
     animation: pulse-overdue 2s infinite;
     font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .status-badge.completed {
@@ -4595,6 +4599,104 @@ body.modal-open .modal-body {
     align-items: center;
     justify-content: center;
     z-index: 1000;
+}
+
+/* Success Modal */
+.success-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.success-modal-content {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 90%;
+    overflow: hidden;
+    animation: successModalSlideIn 0.3s ease-out;
+}
+
+@keyframes successModalSlideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.success-modal-header {
+    padding: 32px 24px 16px 24px;
+    text-align: center;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+}
+
+.success-icon {
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: center;
+}
+
+.success-icon svg {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    padding: 12px;
+}
+
+.success-modal-header h3 {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0;
+    color: white;
+}
+
+.success-modal-body {
+    padding: 24px;
+    text-align: center;
+}
+
+.success-modal-body p {
+    font-size: 16px;
+    color: #374151;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.success-modal-footer {
+    padding: 0 24px 24px 24px;
+    display: flex;
+    justify-content: center;
+}
+
+.success-btn {
+    padding: 12px 32px;
+    background: #10b981;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    min-width: 120px;
+}
+
+.success-btn:hover {
+    background: #059669;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
 }
 
 .confirmation-modal-content {
@@ -4732,6 +4834,412 @@ body.modal-open .modal-body {
         padding: 4px 8px;
         font-size: 11px;
     }
+}
+
+/* Comprehensive Responsive Design */
+@media (max-width: 1024px) {
+    .dashboard-container {
+        gap: 16px;
+    }
+    
+    .sidebar {
+        width: 200px;
+        padding: 16px;
+    }
+    
+    .main-content {
+        padding: 16px 16px 16px 0;
+    }
+    
+    .kpi-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+    
+    .requests-section {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+    
+    .attendance-section {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-container {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .sidebar {
+        width: 100%;
+        padding: 16px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        order: 2;
+    }
+    
+    .main-content {
+        padding: 16px;
+        order: 1;
+    }
+    
+    .dashboard-header {
+        padding: 0 16px;
+    }
+    
+    .header-right {
+        gap: 16px;
+    }
+    
+    .employee-profile {
+        gap: 8px;
+    }
+    
+    .profile-icon {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .header-right .employee-name {
+        font-size: 14px;
+    }
+    
+    .badges {
+        flex-direction: column;
+        gap: 4px;
+    }
+    
+    .badge {
+        font-size: 10px;
+        padding: 2px 6px;
+    }
+    
+    .sidebar-nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .nav-item {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+    
+    .logout-btn {
+        margin-top: 16px;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .kpi-cards-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .kpi-card {
+        padding: 16px;
+    }
+    
+    .kpi-value {
+        font-size: 24px;
+    }
+    
+    .status-section {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .status-box {
+        max-width: 100%;
+        padding: 16px;
+    }
+    
+    .form-card, .table-card {
+        padding: 16px;
+    }
+    
+    .card-title {
+        font-size: 16px;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .leaves-table {
+        font-size: 12px;
+    }
+    
+    .leaves-table th,
+    .leaves-table td {
+        padding: 8px;
+    }
+    
+    .modal-content {
+        margin: 16px;
+        max-width: calc(100vw - 32px);
+    }
+    
+    .modal-header {
+        padding: 16px;
+    }
+    
+    .modal-body {
+        padding: 16px;
+    }
+    
+    .confirmation-modal-content,
+    .success-modal-content {
+        margin: 16px;
+        max-width: calc(100vw - 32px);
+    }
+}
+
+@media (max-width: 480px) {
+    .dashboard-header {
+        height: 60px;
+        padding: 0 12px;
+    }
+    
+    .header-logo {
+        height: 60px;
+    }
+    
+    .main-content {
+        padding: 12px;
+    }
+    
+    .sidebar {
+        padding: 12px;
+    }
+    
+    .sidebar-title {
+        font-size: 14px;
+    }
+    
+    .nav-item {
+        padding: 6px 8px;
+        font-size: 12px;
+    }
+    
+    .nav-item span {
+        display: none;
+    }
+    
+    .nav-item {
+        justify-content: center;
+    }
+    
+    .kpi-card {
+        padding: 12px;
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+    }
+    
+    .kpi-icon {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .kpi-value {
+        font-size: 20px;
+    }
+    
+    .kpi-label {
+        font-size: 12px;
+    }
+    
+    .form-card, .table-card {
+        padding: 12px;
+    }
+    
+    .card-title {
+        font-size: 14px;
+    }
+    
+    .form-label {
+        font-size: 12px;
+    }
+    
+    .form-input, .form-select, .form-textarea {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+    
+    .submit-btn {
+        padding: 10px 20px;
+        font-size: 12px;
+    }
+    
+    .leaves-table {
+        font-size: 11px;
+    }
+    
+    .leaves-table th,
+    .leaves-table td {
+        padding: 6px;
+    }
+    
+    .status-badge {
+        font-size: 10px;
+        padding: 2px 6px;
+    }
+    
+    .view-details-btn {
+        padding: 4px;
+    }
+    
+    .modal-content {
+        margin: 8px;
+        max-width: calc(100vw - 16px);
+    }
+    
+    .modal-header {
+        padding: 12px;
+    }
+    
+    .modal-body {
+        padding: 12px;
+    }
+    
+    .modal-title {
+        font-size: 16px;
+    }
+    
+    .detail-label {
+        font-size: 12px;
+    }
+    
+    .detail-value {
+        font-size: 12px;
+        padding: 6px 8px;
+    }
+}
+
+/* Table Responsiveness */
+.table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.table-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.table-container::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 4px;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* Ensure tables are responsive */
+@media (max-width: 768px) {
+    .table-container {
+        border-radius: 8px;
+        border: 1px solid #e5e7eb;
+    }
+    
+    .leaves-table,
+    .payslips-table,
+    .employee-table,
+    .attendance-table {
+        min-width: 600px;
+    }
+    
+    .leaves-table th,
+    .leaves-table td,
+    .payslips-table th,
+    .payslips-table td,
+    .employee-table th,
+    .employee-table td,
+    .attendance-table th,
+    .attendance-table td {
+        white-space: nowrap;
+    }
+    
+    /* Allow some columns to wrap on very small screens */
+    .leaves-table td:nth-child(3),
+    .payslips-table td:nth-child(3),
+    .employee-table td:nth-child(2),
+    .attendance-table td:nth-child(2) {
+        white-space: normal;
+        word-break: break-word;
+        max-width: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    .leaves-table,
+    .payslips-table,
+    .employee-table,
+    .attendance-table {
+        min-width: 500px;
+    }
+    
+    .leaves-table th,
+    .leaves-table td,
+    .payslips-table th,
+    .payslips-table td,
+    .employee-table th,
+    .employee-table td,
+    .attendance-table th,
+    .attendance-table td {
+        padding: 4px 6px;
+    }
+}
+
+/* Request Type Badges */
+.request-type-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.request-type-badge.leave {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.request-type-badge.overtime {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+/* Request Fields Styling */
+.request-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.request-fields .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.request-fields .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
 }
 
 
