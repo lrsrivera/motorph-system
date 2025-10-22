@@ -1,10 +1,10 @@
 # MotorPH Employee Management System
 
-A comprehensive web-based employee management system built with HTML, CSS, and JavaScript. This system provides functionality for employee attendance tracking, payroll management, leave requests, and administrative tasks.
+A comprehensive web-based system for HR, Payroll, and all employees to manage payroll and all sorts of related HR operations. Built with HTML, CSS, and JavaScript, this system provides complete functionality for employee attendance tracking, payroll management, leave requests, tax deductions, and administrative tasks.
 
 ## 🚀 Live Demo
 
-**Access the live application:** [View Live Demo](https://yourusername.github.io/motorph-employee-system/)
+**Access the live application:** [View Live Demo](https://yourusername.github.io/motorph-system/)
 
 ## 📋 Features
 
@@ -23,6 +23,8 @@ A comprehensive web-based employee management system built with HTML, CSS, and J
 - **Payroll Processing**: Generate and manage employee payslips
 - **Tax Management**: Handle tax deductions and calculations
 - **Employee Records**: Manage comprehensive employee data
+- **Payroll History**: Track and view historical payroll data
+- **Bulk Operations**: Process multiple employees simultaneously
 
 ## 🔐 Test Credentials
 
@@ -76,33 +78,29 @@ A comprehensive web-based employee management system built with HTML, CSS, and J
 
 ## 🎯 Key Functionalities
 
-### Authentication System
-- Secure login with employee credentials
-- Role-based access control
-- Session management
+### HR Management System
+- **Employee Records**: Complete employee profile management
+- **Attendance Tracking**: Real-time attendance monitoring and analytics
+- **Leave Management**: Comprehensive leave request and approval system
+- **Team Management**: Manager tools for team oversight and analytics
 
-### Attendance Management
-- Real-time attendance tracking
-- KPI dashboards with visual indicators
-- Attendance history and analytics
+### Payroll Management System
+- **Automated Payroll**: Generate payslips for individual or bulk employees
+- **Tax Calculations**: Handle all tax deductions and calculations
+- **Payroll History**: Complete historical payroll data tracking
+- **Download & Export**: PDF payslip generation and data export
 
-### Leave Management
-- Multiple leave types (sick, vacation, bereavement, etc.)
-- File attachment support
-- Approval workflow
-- Leave balance tracking
+### Employee Self-Service
+- **Personal Dashboard**: Individual employee portal with KPIs
+- **Leave Requests**: Submit and track personal leave requests
+- **Payslip Access**: View and download personal payslips
+- **Profile Updates**: Manage personal information and documents
 
-### Payroll System
-- Automated payslip generation
-- Tax calculation and deductions
-- Download functionality
-- Payroll history tracking
-
-### Employee Management
-- Comprehensive employee profiles
-- Search and filter capabilities
-- Bulk operations
-- Activity logging
+### Administrative Features
+- **Role-Based Access**: Secure login with different permission levels
+- **Activity Logging**: Complete audit trail of all system activities
+- **Search & Filter**: Advanced search capabilities across all modules
+- **Bulk Operations**: Process multiple employees simultaneously
 
 ## 🎨 Design Features
 
@@ -116,7 +114,7 @@ A comprehensive web-based employee management system built with HTML, CSS, and J
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/motorph-employee-system.git
+   git clone https://github.com/yourusername/motorph-system.git
    ```
 
 2. **Open in browser**
@@ -144,11 +142,12 @@ The system is built with modularity in mind:
 
 ## 📊 Sample Data
 
-The system includes sample employee data for testing:
-- Multiple employee profiles
-- Sample attendance records
-- Leave request examples
-- Payroll data
+The system includes comprehensive sample data for testing:
+- **Employee Profiles**: Multiple employee records with different roles
+- **Attendance Records**: Sample attendance data with various statuses
+- **Leave Requests**: Examples of different leave types and statuses
+- **Payroll Data**: Sample payslips and payroll calculations
+- **Tax Information**: Sample tax deductions and calculations
 
 ## 🤝 Contributing
 
