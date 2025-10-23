@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Attendance - MotorPH</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="icon" href="data:,">
+</head>
+<body class="dashboard-body">
+    <!-- Header -->
+    <header class="dashboard-header">
+        <div class="header-left">
+            <img src="assets/images/motorph_logo_with _white_outline.png" alt="MotorPH" class="header-logo">
+        </div>
+        <div class="header-right">
+            <div class="employee-profile">
+                <div class="profile-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12Z" fill="white"/>
+                        <path d="M12 14C7.58172 14 4 17.5817 4 22H20C20 17.5817 16.4183 14 12 14Z" fill="white"/>
+                    </svg>
+                </div>
+                <div class="employee-info">
+                    <span class="employee-name">Andrea Mae Villanueva</span>
+                    <div class="badges">
+                        <span class="badge badge-role">HR Manager</span>
+                        <span class="badge badge-empno">10006</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2 class="sidebar-title">Managerial Dashboard</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="manager_dashboard.html" class="nav-item">
+                    <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>My Attendance</span>
+                </a>
+                <a href="manager_requests.html" class="nav-item">
+                    <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 12H16M12 8V16M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>My Requests</span>
+                </a>
+                <a href="manager_payslip.html" class="nav-item">
+                    <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M9 9H15M9 13H15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>My Payslip</span>
+                </a>
+                <a href="team_attendance.html" class="nav-item active">
+                    <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Team Attendance</span>
+                </a>
+                <a href="team_requests.html" class="nav-item">
+                    <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Team Requests</span>
+                </a>
+                <a href="employee_details.html" class="nav-item">
+                    <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Employee Details</span>
+                </a>
+                <a href="manager_about.html" class="nav-item">
+                    <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>About Me</span>
+                </a>
+            </nav>
+            <button class="logout-btn" onclick="window.location.href='index.html'">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H9M16 17L21 12L16 7M21 12H9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Log Out
+            </button>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- KPI Cards Section -->
+            <div class="kpi-section">
+                <div class="kpi-header">
+                    <div class="kpi-title-with-tooltip">
+                        <h3 class="kpi-section-title">Team Attendance Summary</h3>
+                        <div class="kpi-info-tooltip">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="info-icon">
+                                <path d="M12 16V12M12 8H12.01M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <div class="tooltip-content">
+                                <div class="tooltip-text">Data collected from Apr 21 (Mon) to Apr 25 (Fri)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="kpi-cards-grid">
+                    <div class="kpi-card on-time">
+                        <div class="kpi-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="kpi-content">
+                            <div class="kpi-value">11</div>
+                            <div class="kpi-label">On Time</div>
+                        </div>
+                    </div>
+                    <div class="kpi-card late">
+                        <div class="kpi-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 9V13M12 17H12.01M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="kpi-content">
+                            <div class="kpi-value">9</div>
+                            <div class="kpi-label">Late</div>
+                        </div>
+                    </div>
+                    <div class="kpi-card absent">
+                        <div class="kpi-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18 6L6 18M6 6L18 18" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="kpi-content">
+                            <div class="kpi-value">2</div>
+                            <div class="kpi-label">Absent</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Team Attendance Panels -->
+            <div class="attendance-section">
+                <!-- This Week Panel -->
+                <div class="attendance-panel">
+                    <div class="panel-header">
+                        <h3 class="panel-title">This Week:</h3>
+                        <button class="download-btn download-btn-icon" onclick="downloadAttendance('thisWeek')" title="Download This Week">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15M17 9L12 14M12 14L7 9M12 14V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="status-filter">
+                        <select class="filter-select">
+                            <option selected>All Status</option>
+                            <option>On Time</option>
+                            <option>Late</option>
+                            <option>Absent</option>
+                        </select>
+                    </div>
+                    <div class="this-week-table-container">
+                        <table class="attendance-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Surname</th>
+                                    <th>First Name</th>
+                                    <th>Time In</th>
+                                    <th>Time Out</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>04/21/2024</td>
+                                    <td>Salcedo</td>
+                                    <td>Anthony</td>
+                                    <td>8:00 AM</td>
+                                    <td>5:00 PM</td>
+                                    <td><span class="status-badge on-time">On Time</span></td>
+                                </tr>
+                                <tr>
+                                    <td>04/21/2024</td>
+                                    <td>Garcia</td>
+                                    <td>Manuel</td>
+                                    <td>8:00 AM</td>
+                                    <td>5:00 PM</td>
+                                    <td><span class="status-badge on-time">On Time</span></td>
+                                </tr>
+                                <tr>
+                                    <td>04/21/2024</td>
+                                    <td>Villanueva</td>
+                                    <td>Andrea Mae</td>
+                                    <td>8:00 AM</td>
+                                    <td>5:00 PM</td>
+                                    <td><span class="status-badge on-time">On Time</span></td>
+                                </tr>
+                                <tr>
+                                    <td>04/21/2024</td>
+                                    <td>Manalaysay</td>
+                                    <td>Garfield</td>
+                                    <td>8:00 AM</td>
+                                    <td>5:00 PM</td>
+                                    <td><span class="status-badge on-time">On Time</span></td>
+                                </tr>
+                                <tr>
+                                    <td>04/22/2024</td>
+                                    <td>Salcedo</td>
+                                    <td>Anthony</td>
+                                    <td>8:15 AM</td>
+                                    <td>5:30 PM</td>
+                                    <td><span class="status-badge late">Late</span></td>
+                                </tr>
+                                <tr>
+                                    <td>04/22/2024</td>
+                                    <td>Garcia</td>
+                                    <td>Manuel</td>
+                                    <td>7:45 AM</td>
+                                    <td>5:15 PM</td>
+                                    <td><span class="status-badge on-time">On Time</span></td>
+                                </tr>
+                                <tr>
+                                    <td>04/22/2024</td>
+                                    <td>Villanueva</td>
+                                    <td>Andrea Mae</td>
+                                    <td>8:05 AM</td>
+                                    <td>5:00 PM</td>
+                                    <td><span class="status-badge late">Late</span></td>
+                                </tr>
+                                <tr>
+                                    <td>04/22/2024</td>
+                                    <td>Manalaysay</td>
+                                    <td>Garfield</td>
+                                    <td>8:20 AM</td>
+                                    <td>5:45 PM</td>
+                                    <td><span class="status-badge late">Late</span></td>
+                                </tr>
+                                <tr>
+                                    <td>04/23/2024</td>
+                                    <td>Salcedo</td>
+                                    <td>Anthony</td>
+                                    <td>8:00 AM</td>
+                                    <td>5:00 PM</td>
+                                    <td><span class="status-badge on-time">On Time</span></td>
+                                </tr>
+                                <tr>
+                                    <td>04/23/2024</td>
+                                    <td>Garcia</td>
+                                    <td>Manuel</td>
+                                    <td>8:10 AM</td>
+                                    <td>5:20 PM</td>
+                                    <td><span class="status-badge late">Late</span></td>
+                                </tr>
+                                <tr>
+                                    <td>04/23/2024</td>
+                                    <td>Villanueva</td>
+                                    <td>Andrea Mae</td>
+                                    <td>7:50 AM</td>
+                                    <td>5:10 PM</td>
+                                    <td><span class="status-badge on-time">On Time</span></td>
+                                </tr>
+                                <tr>
+                                    <td>04/23/2024</td>
+                                    <td>Manalaysay</td>
+                                    <td>Garfield</td>
+                                    <td>8:25 AM</td>
+                                    <td>5:35 PM</td>
+                                    <td><span class="status-badge late">Late</span></td>
+                                </tr>
+                                <tr>
+                                    <td>04/24/2024</td>
+                                    <td>Salcedo</td>
+                                    <td>Anthony</td>
+                                    <td>8:00 AM</td>
+                                    <td>5:00 PM</td>
+                                    <td><span class="status-badge on-time">On Time</span></td>
+                                </tr>
+                                <tr>
+                                    <td>04/24/2024</td>
+                                    <td>Garcia</td>
+                                    <td>Manuel</td>
+                                    <td>7:55 AM</td>
+                                    <td>5:05 PM</td>
+                                    <td><span class="status-badge on-time">On Time</span></td>
+                                </tr>
+                                <tr>
+                                    <td>04/24/2024</td>
+                                    <td>Villanueva</td>
+                                    <td>Andrea Mae</td>
+                                    <td>8:30 AM</td>
+                                    <td>5:50 PM</td>
+                                    <td><span class="status-badge late">Late</span></td>
+                                </tr>
+                                <tr>
+                                    <td>04/24/2024</td>
+                                    <td>Manalaysay</td>
+                                    <td>Garfield</td>
+                                    <td>8:00 AM</td>
+                                    <td>5:00 PM</td>
+                                    <td><span class="status-badge on-time">On Time</span></td>
+                                </tr>
+                                <tr>
+                                    <td>04/25/2024</td>
+                                    <td>Salcedo</td>
+                                    <td>Anthony</td>
+                                    <td>8:15 AM</td>
+                                    <td>5:30 PM</td>
+                                    <td><span class="status-badge late">Late</span></td>
+                                </tr>
+                                <tr>
+                                    <td>04/25/2024</td>
+                                    <td>Garcia</td>
+                                    <td>Manuel</td>
+                                    <td>7:45 AM</td>
+                                    <td>5:15 PM</td>
+                                    <td><span class="status-badge on-time">On Time</span></td>
+                                </tr>
+                                <tr>
+                                    <td>04/25/2024</td>
+                                    <td>Villanueva</td>
+                                    <td>Andrea Mae</td>
+                                    <td>8:05 AM</td>
+                                    <td>5:00 PM</td>
+                                    <td><span class="status-badge late">Late</span></td>
+                                </tr>
+                                <tr>
+                                    <td>04/25/2024</td>
+                                    <td>Manalaysay</td>
+                                    <td>Garfield</td>
+                                    <td>8:20 AM</td>
+                                    <td>5:45 PM</td>
+                                    <td><span class="status-badge late">Late</span></td>
+                                </tr>
+                                <tr>
+                                    <td>04/26/2024</td>
+                                    <td>Salcedo</td>
+                                    <td>Anthony</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td><span class="status-badge absent">Absent</span></td>
+                                </tr>
+                                <tr>
+                                    <td>04/26/2024</td>
+                                    <td>Garcia</td>
+                                    <td>Manuel</td>
+                                    <td>8:00 AM</td>
+                                    <td>5:00 PM</td>
+                                    <td><span class="status-badge on-time">On Time</span></td>
+                                </tr>
+                                <tr>
+                                    <td>04/26/2024</td>
+                                    <td>Villanueva</td>
+                                    <td>Andrea Mae</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td><span class="status-badge absent">Absent</span></td>
+                                </tr>
+                                <tr>
+                                    <td>04/26/2024</td>
+                                    <td>Manalaysay</td>
+                                    <td>Garfield</td>
+                                    <td>8:00 AM</td>
+                                    <td>5:00 PM</td>
+                                    <td><span class="status-badge on-time">On Time</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- History Panel -->
+                <div class="attendance-panel">
+                    <h3 class="panel-title">History:</h3>
+                    <div class="filters">
+                        <div class="filter-group-inline">
+                            <span class="filter-label-inline">Select Employee:</span>
+                            <div id="employeeSelectAttendance"></div>
+                        </div>
+                        <div class="filter-group-inline">
+                            <span class="filter-label-inline">Select Date:</span>
+                            <div class="date-range-filters">
+                                <span class="date-range-label">From:</span>
+                                <select class="filter-select">
+                                    <option>January</option>
+                                    <option>February</option>
+                                    <option selected>March</option>
+                                    <option>April</option>
+                                    <option>May</option>
+                                    <option>June</option>
+                                    <option>July</option>
+                                    <option>August</option>
+                                    <option>September</option>
+                                    <option>October</option>
+                                    <option>November</option>
+                                    <option>December</option>
+                                </select>
+                                <select class="filter-select">
+                                    <option selected>2025</option>
+                                    <option>2024</option>
+                                    <option>2023</option>
+                                    <option>2022</option>
+                                </select>
+                                <span class="date-range-label">To:</span>
+                                <select class="filter-select">
+                                    <option>January</option>
+                                    <option>February</option>
+                                    <option>March</option>
+                                    <option selected>April</option>
+                                    <option>May</option>
+                                    <option>June</option>
+                                    <option>July</option>
+                                    <option>August</option>
+                                    <option>September</option>
+                                    <option>October</option>
+                                    <option>November</option>
+                                    <option>December</option>
+                                </select>
+                                <select class="filter-select">
+                                    <option selected>2025</option>
+                                    <option>2024</option>
+                                    <option>2023</option>
+                                    <option>2022</option>
+                                </select>
+                                <button class="download-btn download-btn-icon" onclick="downloadAttendance('history')" title="Download History">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15M17 9L12 14M12 14L7 9M12 14V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="history-table-container">
+                        <table class="attendance-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Time In</th>
+                                    <th>Time Out</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>04/21/2024</td>
+                                    <td>8:00 AM</td>
+                                    <td>5:00 PM</td>
+                                    <td><span class="status-badge on-time">On Time</span></td>
+                                </tr>
+                                <tr>
+                                    <td>04/20/2024</td>
+                                    <td>8:15 AM</td>
+                                    <td>5:30 PM</td>
+                                    <td><span class="status-badge late">Late</span></td>
+                                </tr>
+                                <tr>
+                                    <td>04/19/2024</td>
+                                    <td>7:45 AM</td>
+                                    <td>5:15 PM</td>
+                                    <td><span class="status-badge on-time">On Time</span></td>
+                                </tr>
+                                <tr>
+                                    <td>04/18/2024</td>
+                                    <td>8:05 AM</td>
+                                    <td>5:00 PM</td>
+                                    <td><span class="status-badge on-time">On Time</span></td>
+                                </tr>
+                                <tr>
+                                    <td>04/17/2024</td>
+                                    <td>8:20 AM</td>
+                                    <td>5:45 PM</td>
+                                    <td><span class="status-badge late">Late</span></td>
+                                </tr>
+                                <tr>
+                                    <td>04/16/2024</td>
+                                    <td>7:50 AM</td>
+                                    <td>5:10 PM</td>
+                                    <td><span class="status-badge on-time">On Time</span></td>
+                                </tr>
+                                <tr>
+                                    <td>04/15/2024</td>
+                                    <td>8:10 AM</td>
+                                    <td>5:20 PM</td>
+                                    <td><span class="status-badge late">Late</span></td>
+                                </tr>
+                                <tr>
+                                    <td>04/14/2024</td>
+                                    <td>8:25 AM</td>
+                                    <td>5:35 PM</td>
+                                    <td><span class="status-badge late">Late</span></td>
+                                </tr>
+                                <tr>
+                                    <td>04/13/2024</td>
+                                    <td>7:55 AM</td>
+                                    <td>5:05 PM</td>
+                                    <td><span class="status-badge on-time">On Time</span></td>
+                                </tr>
+                                <tr>
+                                    <td>04/12/2024</td>
+                                    <td>8:30 AM</td>
+                                    <td>5:50 PM</td>
+                                    <td><span class="status-badge late">Late</span></td>
+                                </tr>
+                                <tr>
+                                    <td>04/11/2024</td>
+                                    <td>8:00 AM</td>
+                                    <td>5:00 PM</td>
+                                    <td><span class="status-badge on-time">On Time</span></td>
+                                </tr>
+                                <tr>
+                                    <td>04/10/2024</td>
+                                    <td>8:15 AM</td>
+                                    <td>5:30 PM</td>
+                                    <td><span class="status-badge late">Late</span></td>
+                                </tr>
+                                <tr>
+                                    <td>04/09/2024</td>
+                                    <td>7:45 AM</td>
+                                    <td>5:15 PM</td>
+                                    <td><span class="status-badge on-time">On Time</span></td>
+                                </tr>
+                                <tr>
+                                    <td>04/08/2024</td>
+                                    <td>8:05 AM</td>
+                                    <td>5:00 PM</td>
+                                    <td><span class="status-badge on-time">On Time</span></td>
+                                </tr>
+                                <tr>
+                                    <td>04/07/2024</td>
+                                    <td>8:20 AM</td>
+                                    <td>5:45 PM</td>
+                                    <td><span class="status-badge late">Late</span></td>
+                                </tr>
+                                <tr>
+                                    <td>04/06/2024</td>
+                                    <td>7:50 AM</td>
+                                    <td>5:10 PM</td>
+                                    <td><span class="status-badge on-time">On Time</span></td>
+                                </tr>
+                                <tr>
+                                    <td>04/05/2024</td>
+                                    <td>8:10 AM</td>
+                                    <td>5:20 PM</td>
+                                    <td><span class="status-badge late">Late</span></td>
+                                </tr>
+                                <tr>
+                                    <td>04/04/2024</td>
+                                    <td>8:25 AM</td>
+                                    <td>5:35 PM</td>
+                                    <td><span class="status-badge late">Late</span></td>
+                                </tr>
+                                <tr>
+                                    <td>04/03/2024</td>
+                                    <td>7:55 AM</td>
+                                    <td>5:05 PM</td>
+                                    <td><span class="status-badge on-time">On Time</span></td>
+                                </tr>
+                                <tr>
+                                    <td>04/02/2024</td>
+                                    <td>8:30 AM</td>
+                                    <td>5:50 PM</td>
+                                    <td><span class="status-badge late">Late</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="assets/app.js"></script>
+    <script>
+        // Download Attendance Function with Validation Message
+        function downloadAttendance(type) {
+            let message = '';
+            let fileName = '';
+
+            if (type === 'thisWeek') {
+                message = 'This Week attendance data has been successfully downloaded!';
+                fileName = 'team_attendance_this_week.csv';
+            } else {
+                message = 'History attendance data has been successfully downloaded!';
+                fileName = 'team_attendance_history.csv';
+            }
+
+            // Create success notification
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #10b981;
+                color: white;
+                padding: 16px 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+                z-index: 1000;
+                font-size: 14px;
+                font-weight: 500;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                animation: slideIn 0.3s ease-out;
+            `;
+
+            notification.innerHTML = `
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                ${message}
+            `;
+
+            // Add CSS animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideIn {
+                    from {
+                        transform: translateX(100%);
+                        opacity: 0;
+                    }
+                    to {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+
+            document.body.appendChild(notification);
+
+            // Remove notification after 3 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideIn 0.3s ease-out reverse';
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 3000);
+        }
+
+        // Auto-show tooltip when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize searchable dropdown for employee selection
+            const employeeOptions = [
+                { value: '10001', text: 'Antonio Lim' },
+                { value: '10011', text: 'Anthony Salcedo' },
+                { value: '10001', text: 'Manuel Garcia III' },
+                { value: '10006', text: 'Andrea Mae Villanueva' },
+                { value: '10027', text: 'Garfield Manalaysay' }
+            ];
+
+            const dropdown = window.createSearchableDropdown('employeeSelectAttendance', employeeOptions, 'Select Employee');
+            
+            // Add event listener for employee selection
+            document.getElementById('employeeSelectAttendance').addEventListener('change', function(e) {
+                const selectedEmployee = e.detail.value;
+                console.log('Selected employee:', selectedEmployee);
+                // You can add filtering logic here if needed
+            });
+
+            const tooltip = document.querySelector('.kpi-info-tooltip');
+            if (tooltip) {
+                // Add auto-show class after a short delay
+                setTimeout(() => {
+                    tooltip.classList.add('auto-show');
+                    
+                    // Remove auto-show class after animation completes
+                    setTimeout(() => {
+                        tooltip.classList.remove('auto-show');
+                    }, 5000);
+                }, 500);
+            }
+        });
+    </script>
+</body>
+</html>

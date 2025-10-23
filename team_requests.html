@@ -1,0 +1,1676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Requests - MotorPH</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="icon" href="data:,">
+    <style>
+        /* Team Requests Specific Styles */
+        .team-requests-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 24px;
+            background: #f8f9fa;
+            min-height: calc(100vh - 80px);
+        }
+
+        .page-header {
+            margin-bottom: 32px;
+        }
+
+        .page-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin: 0 0 8px 0;
+        }
+
+        .page-subtitle {
+            color: var(--text-muted);
+            font-size: 16px;
+            margin: 0;
+        }
+
+        /* Tab Navigation */
+        .tab-navigation {
+            display: flex;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+
+        .tab-button {
+            flex: 1;
+            padding: 16px 24px;
+            background: #f8f9fa;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab-button:hover {
+            background: #e9ecef;
+            color: var(--text-dark);
+        }
+
+        .tab-button.active {
+            background: white;
+            color: var(--navy);
+            border-bottom-color: var(--navy);
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .tab-section {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        .requests-table-container {
+            max-height: 700px;
+            overflow-y: auto;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 24px;
+            border-bottom: 1px solid #e5e7eb;
+            background: #f9fafb;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin: 0;
+        }
+
+        /* Filter Controls */
+        .filter-controls {
+            display: flex;
+            gap: 8px;
+        }
+
+        .filter-pill {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: white;
+            border: 1px solid #d1d5db;
+            border-radius: 20px;
+            font-size: 14px;
+            color: var(--text-dark);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-pill:hover {
+            background: #f3f4f6;
+            border-color: var(--navy);
+        }
+
+        .filter-select {
+            background: transparent;
+            border: none;
+            font-size: 14px;
+            color: var(--text-dark);
+            cursor: pointer;
+            outline: none;
+            padding: 0;
+            margin: 0;
+            min-width: 100px;
+        }
+
+        .filter-select:focus {
+            outline: none;
+        }
+
+        .requests-table-container,
+        .history-table-container {
+            overflow-x: auto;
+        }
+
+        .requests-table,
+        .history-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            table-layout: fixed;
+        }
+
+        .requests-table th,
+        .history-table th {
+            background: #f9fafb;
+            padding: 12px 16px;
+            text-align: left;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        /* Column Widths */
+        .requests-table th:nth-child(1),
+        .history-table th:nth-child(1) { width: 10%; } /* Date */
+        .requests-table th:nth-child(2),
+        .history-table th:nth-child(2) { width: 18%; } /* Name */
+        .requests-table th:nth-child(3),
+        .history-table th:nth-child(3) { width: 15%; } /* Leave/Overtime Type */
+        .requests-table th:nth-child(4),
+        .history-table th:nth-child(4) { width: 15%; } /* Duration/Time */
+        .requests-table th:nth-child(5),
+        .history-table th:nth-child(5) { width: 18%; } /* Immediate Supervisor */
+        .requests-table th:nth-child(6),
+        .history-table th:nth-child(6) { width: 18%; } /* Department Head */
+        .requests-table th:nth-child(7),
+        .history-table th:nth-child(7) { width: 6%; } /* Actions */
+
+        .requests-table td,
+        .history-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #f3f4f6;
+            color: var(--text-dark);
+            vertical-align: middle;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        /* Request Rows */
+        .request-row {
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .request-row:hover {
+            background: #f8f9fa;
+        }
+
+        .request-row.expanded {
+            background: #f8fafc;
+            border-left: 3px solid var(--navy);
+        }
+
+        .request-details {
+            background: #f8fafc;
+            border-left: 3px solid var(--navy);
+        }
+
+        .request-details:not(.expanded),
+        .history-details:not(.expanded) {
+            display: none;
+        }
+
+        .details-content {
+            padding: 24px;
+        }
+
+        .detail-group {
+            margin-bottom: 20px;
+        }
+
+        .detail-label {
+            display: block;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .reason-textarea {
+            width: 100%;
+            min-height: 80px;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: inherit;
+            resize: vertical;
+            background: white;
+        }
+
+        .reason-textarea:focus {
+            outline: none;
+            border-color: var(--navy);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        /* Attachment Item */
+        .attachment-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 14px;
+            color: var(--text-dark);
+        }
+
+        .attachment-icon {
+            color: var(--text-muted);
+            flex-shrink: 0;
+        }
+
+        .attachment-name {
+            flex: 1;
+        }
+
+        .view-attachment-btn {
+            background: var(--navy);
+            color: white;
+            border: none;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            margin-left: auto;
+        }
+
+        .view-attachment-btn:hover {
+            background: #1e3a8a;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .action-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .approve-btn {
+            background: #10b981;
+            color: white;
+        }
+
+        .approve-btn:hover {
+            background: #059669;
+        }
+
+        .reject-btn {
+            background: #ef4444;
+            color: white;
+        }
+
+        .reject-btn:hover {
+            background: #dc2626;
+        }
+
+        /* Status Badges */
+        .status-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-badge.pending {
+            background: #fef3c7;
+            color: #d97706;
+        }
+
+        .status-badge.approved {
+            background: #d1fae5;
+            color: #059669;
+        }
+
+        .status-badge.rejected {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        /* Expand Button */
+        .expand-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 4px;
+            transition: background-color 0.2s ease;
+            color: var(--text-muted);
+        }
+
+        .expand-btn:hover {
+            background: #f3f4f6;
+            color: var(--text-dark);
+        }
+
+        .expand-btn.expanded {
+            transform: rotate(180deg);
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 24px 0 24px;
+        }
+
+        .modal-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin: 0;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 6px;
+            color: var(--text-muted);
+            transition: background-color 0.2s ease;
+        }
+
+        .modal-close:hover {
+            background: #f3f4f6;
+        }
+
+        .modal-body {
+            padding: 24px;
+        }
+
+        .modal-textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: inherit;
+            resize: vertical;
+            margin-top: 12px;
+        }
+
+        .modal-textarea:focus {
+            outline: none;
+            border-color: var(--navy);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            padding: 0 24px 24px 24px;
+        }
+
+        .modal-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .modal-btn.secondary {
+            background: #f3f4f6;
+            color: var(--text-dark);
+        }
+
+        .modal-btn.secondary:hover {
+            background: #e5e7eb;
+        }
+
+        .modal-btn.primary {
+            background: var(--navy);
+            color: white;
+        }
+
+        .modal-btn.primary:hover {
+            background: #1e3a8a;
+        }
+    </style>
+</head>
+<body class="dashboard-body">
+    <!-- Header -->
+    <header class="dashboard-header">
+        <div class="header-left">
+            <img src="assets/images/motorph_logo_with _white_outline.png" alt="MotorPH" class="header-logo">
+        </div>
+        <div class="header-right">
+            <div class="employee-profile">
+                <div class="profile-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12Z" fill="white"/>
+                        <path d="M12 14C7.58172 14 4 17.5817 4 22H20C20 17.5817 16.4183 14 12 14Z" fill="white"/>
+                    </svg>
+                </div>
+                <div class="employee-info">
+                    <span class="employee-name">Andrea Mae Villanueva</span>
+                    <div class="badges">
+                        <span class="badge badge-role">HR Manager</span>
+                        <span class="badge badge-empno">10006</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2 class="sidebar-title">Managerial Dashboard</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="manager_dashboard.html" class="nav-item">
+                    <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>My Attendance</span>
+                </a>
+                <a href="manager_requests.html" class="nav-item">
+                    <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 12H16M12 8V16M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>My Requests</span>
+                </a>
+                <a href="manager_payslip.html" class="nav-item">
+                    <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M9 9H15M9 13H15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>My Payslip</span>
+                </a>
+                <a href="team_attendance.html" class="nav-item">
+                    <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Team Attendance</span>
+                </a>
+                <a href="team_requests.html" class="nav-item active">
+                    <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Team Requests</span>
+                </a>
+                <a href="employee_details.html" class="nav-item">
+                    <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Employee Details</span>
+                </a>
+                <a href="manager_about.html" class="nav-item">
+                    <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>About Me</span>
+                </a>
+            </nav>
+            <button class="logout-btn" onclick="window.location.href='index.html'">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H9M16 17L21 12L16 7M21 12H9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Log Out
+            </button>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <div class="team-requests-container">
+                <div class="page-header">
+                    <h1 class="page-title">Team Requests</h1>
+                    <p class="page-subtitle">Manage and approve team member leave requests</p>
+                </div>
+
+                <!-- Tab Navigation -->
+                <div class="tab-navigation">
+                    <button class="tab-button active" onclick="switchTab('pending-leave')">
+                        Pending Leave Requests
+                    </button>
+                    <button class="tab-button" onclick="switchTab('pending-overtime')">
+                        Pending Overtime Requests
+                    </button>
+                    <button class="tab-button" onclick="switchTab('history')">
+                        Request History
+                    </button>
+                </div>
+
+                <!-- Tab Content -->
+                <!-- Pending Leave Requests Tab -->
+                <div id="pending-leave-tab" class="tab-content active">
+                    <div class="tab-section">
+                        <div class="section-header">
+                            <h2 class="section-title">Pending Leave Requests</h2>
+                        </div>
+                        
+                        <div class="requests-table-container">
+                            <table class="requests-table">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Name</th>
+                                        <th>Leave Type</th>
+                                        <th>Duration</th>
+                                        <th>Immediate Supervisor</th>
+                                        <th>Department Head</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Request 1 - Collapsed -->
+                                    <tr class="request-row" data-request-id="1">
+                                        <td>04/21/2024</td>
+                                        <td>Antonio Lim</td>
+                                        <td>Vacation</td>
+                                        <td>04/21/2024 - 04/23/2024</td>
+                                        <td><span class="status-badge pending">Pending</span></td>
+                                        <td><span class="status-badge pending">Pending</span></td>
+                                        <td>
+                                            <button class="expand-btn" onclick="toggleRequest(1)">
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr class="request-details" data-request-id="1">
+                                        <td colspan="7">
+                                            <div class="details-content">
+                                                <div class="detail-group">
+                                                    <label class="detail-label">Reason:</label>
+                                                    <textarea class="reason-textarea" placeholder="Enter reason for leave request..." readonly>Family vacation to Boracay. Need to attend my sister's wedding and spend quality time with family.</textarea>
+                                                </div>
+                                                <div class="detail-group">
+                                                    <label class="detail-label">Attachment/s:</label>
+                                                    <div class="attachment-item">
+                                                        <svg class="attachment-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M21.44 11.05L12.25 20.24C11.1242 21.3658 9.59722 21.9983 8.005 21.9983C6.41278 21.9983 4.88583 21.3658 3.76 20.24C2.63417 19.1142 2.00167 17.5872 2.00167 15.995C2.00167 14.4028 2.63417 12.8758 3.76 11.75L12.95 2.56C13.7006 1.80944 14.7186 1.38778 15.78 1.38778C16.8414 1.38778 17.8594 1.80944 18.61 2.56C19.3606 3.31056 19.7822 4.32856 19.7822 5.39C19.7822 6.45144 19.3606 7.46944 18.61 8.22L9.41 17.41C9.03475 17.7852 8.52808 17.9961 8 17.9961C7.47192 17.9961 6.96525 17.7852 6.59 17.41C6.21475 17.0348 6.00391 16.5281 6.00391 16C6.00391 15.4719 6.21475 14.9652 6.59 14.59L15.07 6.11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        </svg>
+                                                        <span class="attachment-name">screenshot3242_21.....jpg</span>
+                                                        <button class="view-attachment-btn" onclick="viewAttachment('screenshot3242_21.jpg')">
+                                                            View
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="action-buttons">
+                                                    <button class="action-btn reject-btn" onclick="openRejectModal(1)">
+                                                        Reject
+                                                    </button>
+                                                    <button class="action-btn approve-btn" onclick="openApproveModal(1)">
+                                                        Approve
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    
+                                    <!-- Request 2 - Collapsed -->
+                                    <tr class="request-row" data-request-id="2">
+                                        <td>04/22/2024</td>
+                                        <td>Maria Santos</td>
+                                        <td>Sick Leave</td>
+                                        <td>04/22/2024 - 04/24/2024</td>
+                                        <td><span class="status-badge pending">Pending</span></td>
+                                        <td><span class="status-badge pending">Pending</span></td>
+                                        <td>
+                                            <button class="expand-btn" onclick="toggleRequest(2)">
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr class="request-details" data-request-id="2">
+                                        <td colspan="7">
+                                            <div class="details-content">
+                                                <div class="detail-group">
+                                                    <label class="detail-label">Reason:</label>
+                                                    <textarea class="reason-textarea" placeholder="Enter reason for leave request..." readonly>Severe migraine and doctor's recommendation for rest.</textarea>
+                                                </div>
+                                                <div class="detail-group">
+                                                    <label class="detail-label">Attachment/s:</label>
+                                                    <div class="attachment-item">
+                                                        <svg class="attachment-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M21.44 11.05L12.25 20.24C11.1242 21.3658 9.59722 21.9983 8.005 21.9983C6.41278 21.9983 4.88583 21.3658 3.76 20.24C2.63417 19.1142 2.00167 17.5872 2.00167 15.995C2.00167 14.4028 2.63417 12.8758 3.76 11.75L12.95 2.56C13.7006 1.80944 14.7186 1.38778 15.78 1.38778C16.8414 1.38778 17.8594 1.80944 18.61 2.56C19.3606 3.31056 19.7822 4.32856 19.7822 5.39C19.7822 6.45144 19.3606 7.46944 18.61 8.22L9.41 17.41C9.03475 17.7852 8.52808 17.9961 8 17.9961C7.47192 17.9961 6.96525 17.7852 6.59 17.41C6.21475 17.0348 6.00391 16.5281 6.00391 16C6.00391 15.4719 6.21475 14.9652 6.59 14.59L15.07 6.11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        </svg>
+                                                        <span class="attachment-name">medical_certificate.pdf</span>
+                                                        <button class="view-attachment-btn" onclick="viewAttachment('medical_certificate.pdf')">
+                                                            View
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="action-buttons">
+                                                    <button class="action-btn reject-btn" onclick="openRejectModal(2)">
+                                                        Reject
+                                                    </button>
+                                                    <button class="action-btn approve-btn" onclick="openApproveModal(2)">
+                                                        Approve
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    
+                                    <!-- Request 3 - Collapsed -->
+                                    <tr class="request-row" data-request-id="3">
+                                        <td>04/23/2024</td>
+                                        <td>John Dela Cruz</td>
+                                        <td>Emergency Leave</td>
+                                        <td>04/23/2024 - 04/25/2024</td>
+                                        <td><span class="status-badge pending">Pending</span></td>
+                                        <td><span class="status-badge pending">Pending</span></td>
+                                        <td>
+                                            <button class="expand-btn" onclick="toggleRequest(3)">
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr class="request-details" data-request-id="3">
+                                        <td colspan="7">
+                                            <div class="details-content">
+                                                <div class="detail-group">
+                                                    <label class="detail-label">Reason:</label>
+                                                    <textarea class="reason-textarea" placeholder="Enter reason for leave request..." readonly>Family emergency - father hospitalized. Need to attend to medical needs and family support.</textarea>
+                                                </div>
+                                                <div class="detail-group">
+                                                    <label class="detail-label">Attachment/s:</label>
+                                                    <div class="attachment-item">
+                                                        <svg class="attachment-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M21.44 11.05L12.25 20.24C11.1242 21.3658 9.59722 21.9983 8.005 21.9983C6.41278 21.9983 4.88583 21.3658 3.76 20.24C2.63417 19.1142 2.00167 17.5872 2.00167 15.995C2.00167 14.4028 2.63417 12.8758 3.76 11.75L12.95 2.56C13.7006 1.80944 14.7186 1.38778 15.78 1.38778C16.8414 1.38778 17.8594 1.80944 18.61 2.56C19.3606 3.31056 19.7822 4.32856 19.7822 5.39C19.7822 6.45144 19.3606 7.46944 18.61 8.22L9.41 17.41C9.03475 17.7852 8.52808 17.9961 8 17.9961C7.47192 17.9961 6.96525 17.7852 6.59 17.41C6.21475 17.0348 6.00391 16.5281 6.00391 16C6.00391 15.4719 6.21475 14.9652 6.59 14.59L15.07 6.11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        </svg>
+                                                        <span class="attachment-name">hospital_admission.pdf</span>
+                                                        <button class="view-attachment-btn" onclick="viewAttachment('hospital_admission.pdf')">
+                                                            View
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="action-buttons">
+                                                    <button class="action-btn reject-btn" onclick="openRejectModal(3)">
+                                                        Reject
+                                                    </button>
+                                                    <button class="action-btn approve-btn" onclick="openApproveModal(3)">
+                                                        Approve
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    
+                                    <!-- Request 4 - Collapsed -->
+                                    <tr class="request-row" data-request-id="4">
+                                        <td>04/24/2024</td>
+                                        <td>Sarah Johnson</td>
+                                        <td>Personal Leave</td>
+                                        <td>04/24/2024 - 04/26/2024</td>
+                                        <td><span class="status-badge approved">Approved</span></td>
+                                        <td><span class="status-badge pending">Pending</span></td>
+                                        <td>
+                                            <button class="expand-btn" onclick="toggleRequest(4)">
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr class="request-details" data-request-id="4">
+                                        <td colspan="7">
+                                            <div class="details-content">
+                                                <div class="detail-group">
+                                                    <label class="detail-label">Reason:</label>
+                                                    <textarea class="reason-textarea" placeholder="Enter reason for leave request..." readonly>Personal matters - moving to new apartment and settling in.</textarea>
+                                                </div>
+                                                <div class="detail-group">
+                                                    <label class="detail-label">Attachment/s:</label>
+                                                    <div class="attachment-item">
+                                                        <svg class="attachment-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M21.44 11.05L12.25 20.24C11.1242 21.3658 9.59722 21.9983 8.005 21.9983C6.41278 21.9983 4.88583 21.3658 3.76 20.24C2.63417 19.1142 2.00167 17.5872 2.00167 15.995C2.00167 14.4028 2.63417 12.8758 3.76 11.75L12.95 2.56C13.7006 1.80944 14.7186 1.38778 15.78 1.38778C16.8414 1.38778 17.8594 1.80944 18.61 2.56C19.3606 3.31056 19.7822 4.32856 19.7822 5.39C19.7822 6.45144 19.3606 7.46944 18.61 8.22L9.41 17.41C9.03475 17.7852 8.52808 17.9961 8 17.9961C7.47192 17.9961 6.96525 17.7852 6.59 17.41C6.21475 17.0348 6.00391 16.5281 6.00391 16C6.00391 15.4719 6.21475 14.9652 6.59 14.59L15.07 6.11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        </svg>
+                                                        <span class="attachment-name">lease_agreement.pdf</span>
+                                                        <button class="view-attachment-btn" onclick="viewAttachment('lease_agreement.pdf')">
+                                                            View
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="action-buttons">
+                                                    <button class="action-btn reject-btn" onclick="openRejectModal(4)">
+                                                        Reject
+                                                    </button>
+                                                    <button class="action-btn approve-btn" onclick="openApproveModal(4)">
+                                                        Approve
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    
+                                    <!-- Request 5 - Collapsed -->
+                                    <tr class="request-row" data-request-id="5">
+                                        <td>04/25/2024</td>
+                                        <td>Michael Chen</td>
+                                        <td>Vacation</td>
+                                        <td>04/25/2024 - 04/29/2024</td>
+                                        <td><span class="status-badge pending">Pending</span></td>
+                                        <td><span class="status-badge pending">Pending</span></td>
+                                        <td>
+                                            <button class="expand-btn" onclick="toggleRequest(5)">
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr class="request-details" data-request-id="5">
+                                        <td colspan="7">
+                                            <div class="details-content">
+                                                <div class="detail-group">
+                                                    <label class="detail-label">Reason:</label>
+                                                    <textarea class="reason-textarea" placeholder="Enter reason for leave request..." readonly>Annual vacation with family. Planning to visit Singapore and Malaysia.</textarea>
+                                                </div>
+                                                <div class="detail-group">
+                                                    <label class="detail-label">Attachment/s:</label>
+                                                    <div class="attachment-item">
+                                                        <svg class="attachment-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M21.44 11.05L12.25 20.24C11.1242 21.3658 9.59722 21.9983 8.005 21.9983C6.41278 21.9983 4.88583 21.3658 3.76 20.24C2.63417 19.1142 2.00167 17.5872 2.00167 15.995C2.00167 14.4028 2.63417 12.8758 3.76 11.75L12.95 2.56C13.7006 1.80944 14.7186 1.38778 15.78 1.38778C16.8414 1.38778 17.8594 1.80944 18.61 2.56C19.3606 3.31056 19.7822 4.32856 19.7822 5.39C19.7822 6.45144 19.3606 7.46944 18.61 8.22L9.41 17.41C9.03475 17.7852 8.52808 17.9961 8 17.9961C7.47192 17.9961 6.96525 17.7852 6.59 17.41C6.21475 17.0348 6.00391 16.5281 6.00391 16C6.00391 15.4719 6.21475 14.9652 6.59 14.59L15.07 6.11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        </svg>
+                                                        <span class="attachment-name">flight_itinerary.pdf</span>
+                                                        <button class="view-attachment-btn" onclick="viewAttachment('flight_itinerary.pdf')">
+                                                            View
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="action-buttons">
+                                                    <button class="action-btn reject-btn" onclick="openRejectModal(5)">
+                                                        Reject
+                                                    </button>
+                                                    <button class="action-btn approve-btn" onclick="openApproveModal(5)">
+                                                        Approve
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pending Overtime Requests Tab -->
+                <div id="pending-overtime-tab" class="tab-content">
+                    <div class="tab-section">
+                        <div class="section-header">
+                            <h2 class="section-title">Pending Overtime Requests</h2>
+                        </div>
+                        
+                        <div class="requests-table-container">
+                            <table class="requests-table">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Name</th>
+                                        <th>Overtime Type</th>
+                                        <th>Time Range</th>
+                                        <th>Immediate Supervisor</th>
+                                        <th>Department Head</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Overtime Request 1 -->
+                                    <tr class="request-row" data-request-id="6">
+                                        <td>04/25/2024</td>
+                                        <td>Jennifer Martinez</td>
+                                        <td>Regular Overtime</td>
+                                        <td>18:00 - 22:00</td>
+                                        <td><span class="status-badge pending">Pending</span></td>
+                                        <td><span class="status-badge pending">Pending</span></td>
+                                        <td>
+                                            <button class="expand-btn" onclick="toggleRequest(6)">
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr class="request-details" data-request-id="6">
+                                        <td colspan="7">
+                                            <div class="details-content">
+                                                <div class="detail-group">
+                                                    <label class="detail-label">Reason:</label>
+                                                    <textarea class="reason-textarea" placeholder="Enter reason for overtime request..." readonly>Project deadline completion. Need to finish the quarterly report and prepare presentation materials.</textarea>
+                                                </div>
+                                                <div class="detail-group">
+                                                    <label class="detail-label">Attachment/s:</label>
+                                                    <div class="attachment-item">
+                                                        <svg class="attachment-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M21.44 11.05L12.25 20.24C11.1242 21.3658 9.59722 21.9983 8.005 21.9983C6.41278 21.9983 4.88583 21.3658 3.76 20.24C2.63417 19.1142 2.00167 17.5872 2.00167 15.995C2.00167 14.4028 2.63417 12.8758 3.76 11.75L12.95 2.56C13.7006 1.80944 14.7186 1.38778 15.78 1.38778C16.8414 1.38778 17.8594 1.80944 18.61 2.56C19.3606 3.31056 19.7822 4.32856 19.7822 5.39C19.7822 6.45144 19.3606 7.46944 18.61 8.22L9.41 17.41C9.03475 17.7852 8.52808 17.9961 8 17.9961C7.47192 17.9961 6.96525 17.7852 6.59 17.41C6.21475 17.0348 6.00391 16.5281 6.00391 16C6.00391 15.4719 6.21475 14.9652 6.59 14.59L15.07 6.11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        </svg>
+                                                        <span class="attachment-name">project_timeline.pdf</span>
+                                                        <button class="view-attachment-btn" onclick="viewAttachment('project_timeline.pdf')">
+                                                            View
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="action-buttons">
+                                                    <button class="action-btn reject-btn" onclick="openRejectModal(6)">
+                                                        Reject
+                                                    </button>
+                                                    <button class="action-btn approve-btn" onclick="openApproveModal(6)">
+                                                        Approve
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Overtime Request 2 -->
+                                    <tr class="request-row" data-request-id="7">
+                                        <td>04/26/2024</td>
+                                        <td>David Rodriguez</td>
+                                        <td>Weekend Overtime</td>
+                                        <td>09:00 - 17:00</td>
+                                        <td><span class="status-badge pending">Pending</span></td>
+                                        <td><span class="status-badge pending">Pending</span></td>
+                                        <td>
+                                            <button class="expand-btn" onclick="toggleRequest(7)">
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr class="request-details" data-request-id="7">
+                                        <td colspan="7">
+                                            <div class="details-content">
+                                                <div class="detail-group">
+                                                    <label class="detail-label">Reason:</label>
+                                                    <textarea class="reason-textarea" placeholder="Enter reason for overtime request..." readonly>Weekend system maintenance and database migration. Critical infrastructure update required.</textarea>
+                                                </div>
+                                                <div class="detail-group">
+                                                    <label class="detail-label">Attachment/s:</label>
+                                                    <div class="attachment-item">
+                                                        <svg class="attachment-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M21.44 11.05L12.25 20.24C11.1242 21.3658 9.59722 21.9983 8.005 21.9983C6.41278 21.9983 4.88583 21.3658 3.76 20.24C2.63417 19.1142 2.00167 17.5872 2.00167 15.995C2.00167 14.4028 2.63417 12.8758 3.76 11.75L12.95 2.56C13.7006 1.80944 14.7186 1.38778 15.78 1.38778C16.8414 1.38778 17.8594 1.80944 18.61 2.56C19.3606 3.31056 19.7822 4.32856 19.7822 5.39C19.7822 6.45144 19.3606 7.46944 18.61 8.22L9.41 17.41C9.03475 17.7852 8.52808 17.9961 8 17.9961C7.47192 17.9961 6.96525 17.7852 6.59 17.41C6.21475 17.0348 6.00391 16.5281 6.00391 16C6.00391 15.4719 6.21475 14.9652 6.59 14.59L15.07 6.11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        </svg>
+                                                        <span class="attachment-name">maintenance_schedule.pdf</span>
+                                                        <button class="view-attachment-btn" onclick="viewAttachment('maintenance_schedule.pdf')">
+                                                            View
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="action-buttons">
+                                                    <button class="action-btn reject-btn" onclick="openRejectModal(7)">
+                                                        Reject
+                                                    </button>
+                                                    <button class="action-btn approve-btn" onclick="openApproveModal(7)">
+                                                        Approve
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- History Tab -->
+                <div id="history-tab" class="tab-content">
+                    <div class="tab-section">
+                        <div class="section-header">
+                            <h2 class="section-title">History</h2>
+                            <div class="filter-controls">
+                                <div class="filter-pill">
+                                    <label class="filter-label">Select request type:</label>
+                                    <select class="filter-select" id="requestTypeFilter" onchange="filterByRequestType()">
+                                        <option value="leave">Leave Requests</option>
+                                        <option value="overtime">Overtime Requests</option>
+                                    </select>
+                                </div>
+                                <div class="filter-pill">
+                                    <select class="filter-select" id="monthFilter" onchange="filterByMonth()">
+                                        <option value="all">All Months</option>
+                                        <option value="01">January</option>
+                                        <option value="02">February</option>
+                                        <option value="03" selected>March</option>
+                                        <option value="04">April</option>
+                                        <option value="05">May</option>
+                                        <option value="06">June</option>
+                                        <option value="07">July</option>
+                                        <option value="08">August</option>
+                                        <option value="09">September</option>
+                                        <option value="10">October</option>
+                                        <option value="11">November</option>
+                                        <option value="12">December</option>
+                                    </select>
+                                </div>
+                                <div class="filter-pill">
+                                    <select class="filter-select" id="yearFilter" onchange="filterByYear()">
+                                        <option value="all">All Years</option>
+                                        <option value="2023">2023</option>
+                                        <option value="2024">2024</option>
+                                        <option value="2025" selected>2025</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="history-table-container">
+                            <table class="history-table">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Name</th>
+                                        <th>Request Type</th>
+                                        <th>Type</th>
+                                        <th>Duration/Time</th>
+                                        <th>Immediate Supervisor</th>
+                                        <th>Department Head</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- History Request 1 - Collapsed -->
+                                    <tr class="history-row" data-history-id="1">
+                                        <td>04/21/2024</td>
+                                        <td>Antonio Lim</td>
+                                        <td><span class="request-type-badge leave">Leave</span></td>
+                                        <td>Vacation</td>
+                                        <td>04/21/2024 - 04/23/2024</td>
+                                        <td><span class="status-badge approved">Approved</span></td>
+                                        <td><span class="status-badge approved">Approved</span></td>
+                                        <td>
+                                            <button class="expand-btn" onclick="toggleHistory(1)">
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr class="history-details" data-history-id="1">
+                                        <td colspan="8">
+                                            <div class="details-content">
+                                                <div class="detail-group">
+                                                    <label class="detail-label">Reason:</label>
+                                                    <textarea class="reason-textarea" placeholder="Enter reason for leave request..." readonly>Family vacation to Boracay. Need to attend my sister's wedding and spend quality time with family.</textarea>
+                                                </div>
+                                                <div class="detail-group">
+                                                    <label class="detail-label">Attachment/s:</label>
+                                                    <div class="attachment-item">
+                                                        <svg class="attachment-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M21.44 11.05L12.25 20.24C11.1242 21.3658 9.59722 21.9983 8.005 21.9983C6.41278 21.9983 4.88583 21.3658 3.76 20.24C2.63417 19.1142 2.00167 17.5872 2.00167 15.995C2.00167 14.4028 2.63417 12.8758 3.76 11.75L12.95 2.56C13.7006 1.80944 14.7186 1.38778 15.78 1.38778C16.8414 1.38778 17.8594 1.80944 18.61 2.56C19.3606 3.31056 19.7822 4.32856 19.7822 5.39C19.7822 6.45144 19.3606 7.46944 18.61 8.22L9.41 17.41C9.03475 17.7852 8.52808 17.9961 8 17.9961C7.47192 17.9961 6.96525 17.7852 6.59 17.41C6.21475 17.0348 6.00391 16.5281 6.00391 16C6.00391 15.4719 6.21475 14.9652 6.59 14.59L15.07 6.11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        </svg>
+                                                        <span class="attachment-name">screenshot3242_21.....jpg</span>
+                                                        <button class="view-attachment-btn" onclick="viewAttachment('screenshot3242_21.jpg')">
+                                                            View
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    
+                                    <!-- History Request 2 - Collapsed -->
+                                    <tr class="history-row" data-history-id="2">
+                                        <td>04/15/2024</td>
+                                        <td>Jennifer Lopez</td>
+                                        <td>Sick Leave</td>
+                                        <td>04/15/2024 - 04/17/2024</td>
+                                        <td><span class="status-badge approved">Approved</span></td>
+                                        <td><span class="status-badge approved">Approved</span></td>
+                                        <td>
+                                            <button class="expand-btn" onclick="toggleHistory(2)">
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr class="history-details" data-history-id="2">
+                                        <td colspan="7">
+                                            <div class="details-content">
+                                                <div class="detail-group">
+                                                    <label class="detail-label">Reason:</label>
+                                                    <textarea class="reason-textarea" placeholder="Enter reason for leave request..." readonly>High fever and flu symptoms. Doctor recommended bed rest for 3 days.</textarea>
+                                                </div>
+                                                <div class="detail-group">
+                                                    <label class="detail-label">Attachment/s:</label>
+                                                    <div class="attachment-item">
+                                                        <svg class="attachment-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M21.44 11.05L12.25 20.24C11.1242 21.3658 9.59722 21.9983 8.005 21.9983C6.41278 21.9983 4.88583 21.3658 3.76 20.24C2.63417 19.1142 2.00167 17.5872 2.00167 15.995C2.00167 14.4028 2.63417 12.8758 3.76 11.75L12.95 2.56C13.7006 1.80944 14.7186 1.38778 15.78 1.38778C16.8414 1.38778 17.8594 1.80944 18.61 2.56C19.3606 3.31056 19.7822 4.32856 19.7822 5.39C19.7822 6.45144 19.3606 7.46944 18.61 8.22L9.41 17.41C9.03475 17.7852 8.52808 17.9961 8 17.9961C7.47192 17.9961 6.96525 17.7852 6.59 17.41C6.21475 17.0348 6.00391 16.5281 6.00391 16C6.00391 15.4719 6.21475 14.9652 6.59 14.59L15.07 6.11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        </svg>
+                                                        <span class="attachment-name">medical_certificate.pdf</span>
+                                                        <button class="view-attachment-btn" onclick="viewAttachment('medical_certificate.pdf')">
+                                                            View
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    
+                                    <!-- History Request 3 - Collapsed -->
+                                    <tr class="history-row" data-history-id="3">
+                                        <td>04/10/2024</td>
+                                        <td>Robert Kim</td>
+                                        <td>Personal Leave</td>
+                                        <td>04/10/2024 - 04/12/2024</td>
+                                        <td><span class="status-badge rejected">Rejected</span></td>
+                                        <td><span class="status-badge rejected">Rejected</span></td>
+                                        <td>
+                                            <button class="expand-btn" onclick="toggleHistory(3)">
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr class="history-details" data-history-id="3">
+                                        <td colspan="7">
+                                            <div class="details-content">
+                                                <div class="detail-group">
+                                                    <label class="detail-label">Reason:</label>
+                                                    <textarea class="reason-textarea" placeholder="Enter reason for leave request..." readonly>Personal matters - need to attend to family business.</textarea>
+                                                </div>
+                                                <div class="detail-group">
+                                                    <label class="detail-label">Attachment/s:</label>
+                                                    <div class="attachment-item">
+                                                        <svg class="attachment-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M21.44 11.05L12.25 20.24C11.1242 21.3658 9.59722 21.9983 8.005 21.9983C6.41278 21.9983 4.88583 21.3658 3.76 20.24C2.63417 19.1142 2.00167 17.5872 2.00167 15.995C2.00167 14.4028 2.63417 12.8758 3.76 11.75L12.95 2.56C13.7006 1.80944 14.7186 1.38778 15.78 1.38778C16.8414 1.38778 17.8594 1.80944 18.61 2.56C19.3606 3.31056 19.7822 4.32856 19.7822 5.39C19.7822 6.45144 19.3606 7.46944 18.61 8.22L9.41 17.41C9.03475 17.7852 8.52808 17.9961 8 17.9961C7.47192 17.9961 6.96525 17.7852 6.59 17.41C6.21475 17.0348 6.00391 16.5281 6.00391 16C6.00391 15.4719 6.21475 14.9652 6.59 14.59L15.07 6.11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        </svg>
+                                                        <span class="attachment-name">business_document.pdf</span>
+                                                        <button class="view-attachment-btn" onclick="viewAttachment('business_document.pdf')">
+                                                            View
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    
+                                    <!-- History Request 4 - Collapsed -->
+                                    <tr class="history-row" data-history-id="4">
+                                        <td>04/05/2024</td>
+                                        <td>Lisa Wang</td>
+                                        <td><span class="request-type-badge leave">Leave</span></td>
+                                        <td>Vacation</td>
+                                        <td>04/05/2024 - 04/09/2024</td>
+                                        <td><span class="status-badge approved">Approved</span></td>
+                                        <td><span class="status-badge approved">Approved</span></td>
+                                        <td>
+                                            <button class="expand-btn" onclick="toggleHistory(4)">
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr class="history-details" data-history-id="4">
+                                        <td colspan="8">
+                                            <div class="details-content">
+                                                <div class="detail-group">
+                                                    <label class="detail-label">Reason:</label>
+                                                    <textarea class="reason-textarea" placeholder="Enter reason for leave request..." readonly>Spring break vacation with friends. Planning to visit Japan for cherry blossom season.</textarea>
+                                                </div>
+                                                <div class="detail-group">
+                                                    <label class="detail-label">Attachment/s:</label>
+                                                    <div class="attachment-item">
+                                                        <svg class="attachment-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M21.44 11.05L12.25 20.24C11.1242 21.3658 9.59722 21.9983 8.005 21.9983C6.41278 21.9983 4.88583 21.3658 3.76 20.24C2.63417 19.1142 2.00167 17.5872 2.00167 15.995C2.00167 14.4028 2.63417 12.8758 3.76 11.75L12.95 2.56C13.7006 1.80944 14.7186 1.38778 15.78 1.38778C16.8414 1.38778 17.8594 1.80944 18.61 2.56C19.3606 3.31056 19.7822 4.32856 19.7822 5.39C19.7822 6.45144 19.3606 7.46944 18.61 8.22L9.41 17.41C9.03475 17.7852 8.52808 17.9961 8 17.9961C7.47192 17.9961 6.96525 17.7852 6.59 17.41C6.21475 17.0348 6.00391 16.5281 6.00391 16C6.00391 15.4719 6.21475 14.9652 6.59 14.59L15.07 6.11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        </svg>
+                                                        <span class="attachment-name">travel_itinerary.pdf</span>
+                                                        <button class="view-attachment-btn" onclick="viewAttachment('travel_itinerary.pdf')">
+                                                            View
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    
+                                    <!-- History Request 5 - Collapsed -->
+                                    <tr class="history-row" data-history-id="5">
+                                        <td>03/28/2024</td>
+                                        <td>David Rodriguez</td>
+                                        <td><span class="request-type-badge leave">Leave</span></td>
+                                        <td>Emergency Leave</td>
+                                        <td>03/28/2024 - 03/30/2024</td>
+                                        <td><span class="status-badge approved">Approved</span></td>
+                                        <td><span class="status-badge approved">Approved</span></td>
+                                        <td>
+                                            <button class="expand-btn" onclick="toggleHistory(5)">
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr class="history-details" data-history-id="5">
+                                        <td colspan="8">
+                                            <div class="details-content">
+                                                <div class="detail-group">
+                                                    <label class="detail-label">Reason:</label>
+                                                    <textarea class="reason-textarea" placeholder="Enter reason for leave request..." readonly>Family emergency - mother's surgery. Need to provide support and care.</textarea>
+                                                </div>
+                                                <div class="detail-group">
+                                                    <label class="detail-label">Attachment/s:</label>
+                                                    <div class="attachment-item">
+                                                        <svg class="attachment-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M21.44 11.05L12.25 20.24C11.1242 21.3658 9.59722 21.9983 8.005 21.9983C6.41278 21.9983 4.88583 21.3658 3.76 20.24C2.63417 19.1142 2.00167 17.5872 2.00167 15.995C2.00167 14.4028 2.63417 12.8758 3.76 11.75L12.95 2.56C13.7006 1.80944 14.7186 1.38778 15.78 1.38778C16.8414 1.38778 17.8594 1.80944 18.61 2.56C19.3606 3.31056 19.7822 4.32856 19.7822 5.39C19.7822 6.45144 19.3606 7.46944 18.61 8.22L9.41 17.41C9.03475 17.7852 8.52808 17.9961 8 17.9961C7.47192 17.9961 6.96525 17.7852 6.59 17.41C6.21475 17.0348 6.00391 16.5281 6.00391 16C6.00391 15.4719 6.21475 14.9652 6.59 14.59L15.07 6.11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        </svg>
+                                                        <span class="attachment-name">surgery_schedule.pdf</span>
+                                                        <button class="view-attachment-btn" onclick="viewAttachment('surgery_schedule.pdf')">
+                                                            View
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- History Request 6 - Overtime -->
+                                    <tr class="history-row" data-history-id="6">
+                                        <td>03/20/2024</td>
+                                        <td>Sarah Kim</td>
+                                        <td><span class="request-type-badge overtime">Overtime</span></td>
+                                        <td>Regular Overtime</td>
+                                        <td>18:00 - 22:00</td>
+                                        <td><span class="status-badge approved">Approved</span></td>
+                                        <td><span class="status-badge approved">Approved</span></td>
+                                        <td>
+                                            <button class="expand-btn" onclick="toggleHistory(6)">
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr class="history-details" data-history-id="6">
+                                        <td colspan="8">
+                                            <div class="details-content">
+                                                <div class="detail-group">
+                                                    <label class="detail-label">Reason:</label>
+                                                    <textarea class="reason-textarea" placeholder="Enter reason for overtime request..." readonly>Client presentation preparation. Need to finalize quarterly reports and prepare slides for tomorrow's meeting.</textarea>
+                                                </div>
+                                                <div class="detail-group">
+                                                    <label class="detail-label">Attachment/s:</label>
+                                                    <div class="attachment-item">
+                                                        <svg class="attachment-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M21.44 11.05L12.25 20.24C11.1242 21.3658 9.59722 21.9983 8.005 21.9983C6.41278 21.9983 4.88583 21.3658 3.76 20.24C2.63417 19.1142 2.00167 17.5872 2.00167 15.995C2.00167 14.4028 2.63417 12.8758 3.76 11.75L12.95 2.56C13.7006 1.80944 14.7186 1.38778 15.78 1.38778C16.8414 1.38778 17.8594 1.80944 18.61 2.56C19.3606 3.31056 19.7822 4.32856 19.7822 5.39C19.7822 6.45144 19.3606 7.46944 18.61 8.22L9.41 17.41C9.03475 17.7852 8.52808 17.9961 8 17.9961C7.47192 17.9961 6.96525 17.7852 6.59 17.41C6.21475 17.0348 6.00391 16.5281 6.00391 16C6.00391 15.4719 6.21475 14.9652 6.59 14.59L15.07 6.11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        </svg>
+                                                        <span class="attachment-name">presentation_outline.pdf</span>
+                                                        <button class="view-attachment-btn" onclick="viewAttachment('presentation_outline.pdf')">
+                                                            View
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Approval Modal -->
+    <div class="modal-overlay" id="approveModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Approve Request</h3>
+                <button class="modal-close" onclick="closeModal('approveModal')">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to approve this request?</p>
+                <textarea class="modal-textarea" placeholder="Add optional note (e.g., 'Approved - enjoy your vacation!')" id="approveNote"></textarea>
+            </div>
+            <div class="modal-actions">
+                <button class="modal-btn secondary" onclick="closeModal('approveModal')">Cancel</button>
+                <button class="modal-btn primary" onclick="confirmApproval()">Approve Request</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rejection Modal -->
+    <div class="modal-overlay" id="rejectModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Reject Request</h3>
+                <button class="modal-close" onclick="closeModal('rejectModal')">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Please provide a reason for rejecting this request:</p>
+                <textarea class="modal-textarea" placeholder="Enter rejection reason..." id="rejectNote" required></textarea>
+            </div>
+            <div class="modal-actions">
+                <button class="modal-btn secondary" onclick="closeModal('rejectModal')">Cancel</button>
+                <button class="modal-btn primary" onclick="confirmRejection()">Reject Request</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/app.js"></script>
+    <script>
+        // Global variables
+        let currentRequestId = null;
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Team Requests page loaded');
+            
+            // Apply default filter to Request History (show only Leave requests)
+            filterByRequestType();
+        });
+
+        // Toggle request expansion
+        function toggleRequest(requestId) {
+            const requestRow = document.querySelector(`tr.request-row[data-request-id="${requestId}"]`);
+            const detailsRow = document.querySelector(`tr.request-details[data-request-id="${requestId}"]`);
+            const expandBtn = requestRow.querySelector('.expand-btn');
+
+            if (detailsRow.classList.contains('expanded')) {
+                // Collapse
+                requestRow.classList.remove('expanded');
+                detailsRow.classList.remove('expanded');
+                expandBtn.classList.remove('expanded');
+            } else {
+                // Expand
+                requestRow.classList.add('expanded');
+                detailsRow.classList.add('expanded');
+                expandBtn.classList.add('expanded');
+            }
+        }
+
+        // Modal functionality
+        function openApproveModal(requestId) {
+            currentRequestId = requestId;
+            document.getElementById('approveModal').classList.add('show');
+        }
+
+        function openRejectModal(requestId) {
+            currentRequestId = requestId;
+            document.getElementById('rejectModal').classList.add('show');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('show');
+            // Clear form fields
+            if (modalId === 'approveModal') {
+                document.getElementById('approveNote').value = '';
+            } else if (modalId === 'rejectModal') {
+                document.getElementById('rejectNote').value = '';
+            }
+        }
+
+        function confirmApproval() {
+            const note = document.getElementById('approveNote').value;
+            updateRequestStatus(currentRequestId, 'approved', note);
+            closeModal('approveModal');
+            showNotification('Request approved successfully!', 'success');
+        }
+
+        function confirmRejection() {
+            const note = document.getElementById('rejectNote').value;
+            if (!note.trim()) {
+                alert('Please provide a reason for rejection.');
+                return;
+            }
+            updateRequestStatus(currentRequestId, 'rejected', note);
+            closeModal('rejectModal');
+            showNotification('Request rejected.', 'info');
+        }
+
+        function updateRequestStatus(requestId, status, note) {
+            // Update the status badges
+            const requestRow = document.querySelector(`tr.request-row[data-request-id="${requestId}"]`);
+            const supervisorBadge = requestRow.querySelector('td:nth-child(5) .status-badge');
+            const deptHeadBadge = requestRow.querySelector('td:nth-child(6) .status-badge');
+
+            supervisorBadge.textContent = status === 'approved' ? 'Approved' : 'Rejected';
+            supervisorBadge.className = `status-badge ${status === 'approved' ? 'approved' : 'rejected'}`;
+
+            deptHeadBadge.textContent = status === 'approved' ? 'Approved' : 'Rejected';
+            deptHeadBadge.className = `status-badge ${status === 'approved' ? 'approved' : 'rejected'}`;
+
+            // Move to history after approval/rejection
+            if (status === 'approved' || status === 'rejected') {
+                setTimeout(() => {
+                    moveToHistory(requestId, status);
+                }, 2000);
+            }
+        }
+
+        function moveToHistory(requestId, status) {
+            const requestRow = document.querySelector(`tr.request-row[data-request-id="${requestId}"]`);
+            const detailsRow = document.querySelector(`tr.request-details[data-request-id="${requestId}"]`);
+            
+            // Get request data
+            const date = requestRow.cells[0].textContent;
+            const name = requestRow.cells[1].textContent;
+            const type = requestRow.cells[2].textContent;
+            const duration = requestRow.cells[3].textContent;
+
+            // Remove from pending table
+            requestRow.remove();
+            detailsRow.remove();
+
+            // Add to history table
+            addToHistoryTable(date, name, type, duration, status);
+        }
+
+        function addToHistoryTable(date, name, type, duration, status) {
+            const historyTableBody = document.querySelector('.history-table tbody');
+            const newRow = document.createElement('tr');
+            newRow.className = 'history-row';
+            newRow.setAttribute('data-history-id', Date.now());
+
+            const statusClass = status === 'approved' ? 'approved' : 'rejected';
+            const statusText = status === 'approved' ? 'Approved' : 'Rejected';
+
+            newRow.innerHTML = `
+                <td>${date}</td>
+                <td>${name}</td>
+                <td>${type}</td>
+                <td>${duration}</td>
+                <td><span class="status-badge ${statusClass}">${statusText}</span></td>
+                <td><span class="status-badge ${statusClass}">${statusText}</span></td>
+                <td>
+                    <button class="expand-btn" onclick="toggleHistory(${Date.now()})">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </td>
+            `;
+
+            historyTableBody.appendChild(newRow);
+        }
+
+        // Show notification
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${type === 'success' ? '#10b981' : '#3b82f6'};
+                color: white;
+                padding: 16px 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                z-index: 1001;
+                font-size: 14px;
+                font-weight: 500;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                animation: slideIn 0.3s ease-out;
+            `;
+
+            notification.innerHTML = `
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                ${message}
+            `;
+
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.animation = 'slideIn 0.3s ease-out reverse';
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 3000);
+        }
+
+        // Toggle history request expansion
+        function toggleHistory(historyId) {
+            const historyRow = document.querySelector(`tr.history-row[data-history-id="${historyId}"]`);
+            const detailsRow = document.querySelector(`tr.history-details[data-history-id="${historyId}"]`);
+            const expandBtn = historyRow.querySelector('.expand-btn');
+
+            if (detailsRow.classList.contains('expanded')) {
+                // Collapse
+                historyRow.classList.remove('expanded');
+                detailsRow.classList.remove('expanded');
+                expandBtn.classList.remove('expanded');
+            } else {
+                // Expand
+                historyRow.classList.add('expanded');
+                detailsRow.classList.add('expanded');
+                expandBtn.classList.add('expanded');
+            }
+        }
+
+        // View attachment
+        function viewAttachment(filename) {
+            // In a real application, this would open/download the file
+            alert(`Opening attachment: ${filename}\n\nIn a real application, this would open or download the file.`);
+        }
+
+        // Switch tabs
+        function switchTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all tab buttons
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabName + '-tab').classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+
+        // Filter by request type
+        function filterByRequestType() {
+            const selectedType = document.getElementById('requestTypeFilter').value;
+            const historyRows = document.querySelectorAll('.history-row');
+            
+            historyRows.forEach(row => {
+                const requestTypeCell = row.querySelector('td:nth-child(3)');
+                const requestTypeBadge = requestTypeCell.querySelector('.request-type-badge');
+                
+                if (requestTypeBadge) {
+                    const badgeClass = requestTypeBadge.classList.contains('leave') ? 'leave' : 'overtime';
+                    if (badgeClass === selectedType) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        // Filter by month
+        function filterByMonth() {
+            const selectedMonth = document.getElementById('monthFilter').value;
+            const selectedType = document.getElementById('requestTypeFilter').value;
+            const historyRows = document.querySelectorAll('.history-row');
+            
+            historyRows.forEach(row => {
+                const dateCell = row.querySelector('td:first-child');
+                const dateText = dateCell.textContent.trim();
+                const requestTypeCell = row.querySelector('td:nth-child(3)');
+                const requestTypeBadge = requestTypeCell.querySelector('.request-type-badge');
+                
+                let showRow = true;
+                
+                // Check month filter
+                if (selectedMonth !== 'all') {
+                    const month = dateText.split('/')[0].padStart(2, '0');
+                    if (month !== selectedMonth) {
+                        showRow = false;
+                    }
+                }
+                
+                // Check request type filter
+                if (requestTypeBadge) {
+                    const badgeClass = requestTypeBadge.classList.contains('leave') ? 'leave' : 'overtime';
+                    if (badgeClass !== selectedType) {
+                        showRow = false;
+                    }
+                } else {
+                    showRow = false;
+                }
+                
+                row.style.display = showRow ? '' : 'none';
+            });
+        }
+
+        // Filter by year
+        function filterByYear() {
+            const selectedYear = document.getElementById('yearFilter').value;
+            const selectedType = document.getElementById('requestTypeFilter').value;
+            const historyRows = document.querySelectorAll('.history-row');
+            
+            historyRows.forEach(row => {
+                const dateCell = row.querySelector('td:first-child');
+                const dateText = dateCell.textContent.trim();
+                const requestTypeCell = row.querySelector('td:nth-child(3)');
+                const requestTypeBadge = requestTypeCell.querySelector('.request-type-badge');
+                
+                let showRow = true;
+                
+                // Check year filter
+                if (selectedYear !== 'all') {
+                    const year = dateText.split('/')[2];
+                    if (year !== selectedYear) {
+                        showRow = false;
+                    }
+                }
+                
+                // Check request type filter
+                if (requestTypeBadge) {
+                    const badgeClass = requestTypeBadge.classList.contains('leave') ? 'leave' : 'overtime';
+                    if (badgeClass !== selectedType) {
+                        showRow = false;
+                    }
+                } else {
+                    showRow = false;
+                }
+                
+                row.style.display = showRow ? '' : 'none';
+            });
+        }
+
+        // Close modals when clicking overlay
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('show');
+                }
+            });
+        });
+
+        // Add CSS animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
