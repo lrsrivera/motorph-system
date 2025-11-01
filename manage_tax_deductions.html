@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Tax & Deductions - MotorPH</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="icon" href="data:,">
+</head>
+<body class="dashboard-body">
+    <!-- Header -->
+    <header class="dashboard-header">
+        <div class="header-left">
+            <img src="assets/images/motorph_logo_with _white_outline.png" alt="MotorPH" class="header-logo">
+        </div>
+        <div class="header-right">
+            <div class="employee-profile">
+                <div class="profile-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12Z" fill="white"/>
+                        <path d="M12 14C7.58172 14 4 17.5817 4 22H20C20 17.5817 16.4183 14 12 14Z" fill="white"/>
+                    </svg>
+                </div>
+                <div class="employee-info">
+                    <span class="employee-name">Anthony Salcedo</span>
+                    <div class="badges">
+                        <span class="badge badge-role">Payroll Manager</span>
+                        <span class="badge badge-empno">10011</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2 class="sidebar-title">Payroll Dashboard</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="payroll_dashboard.html" class="nav-item">
+                    <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M14 2V8H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M16 13H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M16 17H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M10 9H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Generate Payslips</span>
+                </a>
+                <a href="employee_payroll_history.html" class="nav-item">
+                    <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 12H15M9 16H15M17 21H7C5.89543 21 5 20.1046 5 19V5C5 3.89543 5.89543 3 7 3H12.5858C12.851 3 13.1054 3.10536 13.2929 3.29289L19.7071 9.70711C19.8946 9.89464 20 10.149 20 10.4142V19C20 20.1046 19.1046 21 18 21Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Employee Payroll History</span>
+                </a>
+                <a href="manage_tax_deductions.html" class="nav-item active">
+                    <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 7H6C4.89543 7 4 7.89543 4 9V18C4 19.1046 4.89543 20 6 20H15C16.1046 20 17 19.1046 17 18V15M9 15H12L20.5 6.5C21.3284 5.67157 21.3284 4.32843 20.5 3.5V3.5C19.6716 2.67157 18.3284 2.67157 17.5 3.5L9 12V15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M16 5L19 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Manage Tax & Deductions</span>
+                </a>
+            </nav>
+            <button class="logout-btn" onclick="window.location.href='index.html'">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H9M16 17L21 12L16 7M21 12H9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Log Out
+            </button>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="tax-deductions-container">
+                <!-- Left Side - Employee Deductions Table -->
+                <div class="deductions-table-section">
+                    <h1 class="section-title">Manage Tax & Deductions</h1>
+                    <div class="table-header">
+                        <div class="search-container">
+                            <div class="search-input-wrapper">
+                                <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M21 21L16.514 16.506L21 21ZM19 10.5C19 15.194 15.194 19 10.5 19C5.806 19 2 15.194 2 10.5C2 5.806 5.806 2 10.5 2C15.194 2 19 5.806 19 10.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <input type="text" class="search-input" id="employeeSearch" placeholder="Search Employee">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="table-container">
+                        <table class="deductions-table" id="deductionsTable">
+                            <thead>
+                                <tr>
+                                    <th>Employee #</th>
+                                    <th>Employee Name</th>
+                                    <th>Tax Deductions</th>
+                                    <th>Other Deductions</th>
+                                    <th>Total Deductions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="employee-row" data-employee-id="10001" onclick="selectEmployee('10001')">
+                                    <td>10001</td>
+                                    <td>Manuel Garcia III</td>
+                                    <td>₱9,000.00</td>
+                                    <td>₱2,600.00</td>
+                                    <td>₱11,600.00</td>
+                                </tr>
+                                <tr class="employee-row" data-employee-id="10006" onclick="selectEmployee('10006')">
+                                    <td>10006</td>
+                                    <td>Andrea Mae Villanueva</td>
+                                    <td>₱5,500.00</td>
+                                    <td>₱2,400.00</td>
+                                    <td>₱7,900.00</td>
+                                </tr>
+                                <tr class="employee-row" data-employee-id="10011" onclick="selectEmployee('10011')">
+                                    <td>10011</td>
+                                    <td>Anthony Salcedo</td>
+                                    <td>₱7,200.00</td>
+                                    <td>₱2,800.00</td>
+                                    <td>₱10,000.00</td>
+                                </tr>
+                                <tr class="employee-row" data-employee-id="10015" onclick="selectEmployee('10015')">
+                                    <td>10015</td>
+                                    <td>Maria Santos</td>
+                                    <td>₱4,800.00</td>
+                                    <td>₱2,200.00</td>
+                                    <td>₱7,000.00</td>
+                                </tr>
+                                <tr class="employee-row" data-employee-id="10020" onclick="selectEmployee('10020')">
+                                    <td>10020</td>
+                                    <td>John Dela Cruz</td>
+                                    <td>₱6,100.00</td>
+                                    <td>₱2,500.00</td>
+                                    <td>₱8,600.00</td>
+                                </tr>
+                                <tr class="employee-row" data-employee-id="10040" onclick="selectEmployee('10040')">
+                                    <td>10040</td>
+                                    <td>Jennifer Lopez</td>
+                                    <td>₱5,200.00</td>
+                                    <td>₱2,300.00</td>
+                                    <td>₱7,500.00</td>
+                                </tr>
+                                <tr class="employee-row" data-employee-id="10045" onclick="selectEmployee('10045')">
+                                    <td>10045</td>
+                                    <td>Robert Kim</td>
+                                    <td>₱6,800.00</td>
+                                    <td>₱2,700.00</td>
+                                    <td>₱9,500.00</td>
+                                </tr>
+                                <tr class="employee-row" data-employee-id="10050" onclick="selectEmployee('10050')">
+                                    <td>10050</td>
+                                    <td>Emily Davis</td>
+                                    <td>₱4,500.00</td>
+                                    <td>₱2,100.00</td>
+                                    <td>₱6,600.00</td>
+                                </tr>
+                                <tr class="employee-row" data-employee-id="10002" onclick="selectEmployee('10002')">
+                                    <td>10002</td>
+                                    <td>Antonio Lim</td>
+                                    <td>₱6,000.00</td>
+                                    <td>₱2,400.00</td>
+                                    <td>₱8,400.00</td>
+                                </tr>
+                                <tr class="employee-row" data-employee-id="10003" onclick="selectEmployee('10003')">
+                                    <td>10003</td>
+                                    <td>Bianca Sofia Aquino</td>
+                                    <td>₱6,000.00</td>
+                                    <td>₱2,400.00</td>
+                                    <td>₱8,400.00</td>
+                                </tr>
+                                <tr class="employee-row" data-employee-id="10004" onclick="selectEmployee('10004')">
+                                    <td>10004</td>
+                                    <td>Isabella Reyes</td>
+                                    <td>₱6,000.00</td>
+                                    <td>₱2,400.00</td>
+                                    <td>₱8,400.00</td>
+                                </tr>
+                                <tr class="employee-row" data-employee-id="10005" onclick="selectEmployee('10005')">
+                                    <td>10005</td>
+                                    <td>Eduard Hernandez</td>
+                                    <td>₱5,267.00</td>
+                                    <td>₱2,350.00</td>
+                                    <td>₱7,617.00</td>
+                                </tr>
+                                <tr class="employee-row" data-employee-id="10007" onclick="selectEmployee('10007')">
+                                    <td>10007</td>
+                                    <td>Brad San Jose</td>
+                                    <td>₱4,297.50</td>
+                                    <td>₱2,100.00</td>
+                                    <td>₱6,397.50</td>
+                                </tr>
+                                <tr class="employee-row" data-employee-id="10008" onclick="selectEmployee('10008')">
+                                    <td>10008</td>
+                                    <td>Alice Romualdez</td>
+                                    <td>₱2,250.00</td>
+                                    <td>₱1,500.00</td>
+                                    <td>₱3,750.00</td>
+                                </tr>
+                                <tr class="employee-row" data-employee-id="10009" onclick="selectEmployee('10009')">
+                                    <td>10009</td>
+                                    <td>Rosie Atienza</td>
+                                    <td>₱2,250.00</td>
+                                    <td>₱1,500.00</td>
+                                    <td>₱3,750.00</td>
+                                </tr>
+                                <tr class="employee-row" data-employee-id="10010" onclick="selectEmployee('10010')">
+                                    <td>10010</td>
+                                    <td>Roderick Alvaro</td>
+                                    <td>₱5,267.00</td>
+                                    <td>₱2,350.00</td>
+                                    <td>₱7,617.00</td>
+                                </tr>
+                                <tr class="employee-row" data-employee-id="10012" onclick="selectEmployee('10012')">
+                                    <td>10012</td>
+                                    <td>Josie Lopez</td>
+                                    <td>₱3,847.50</td>
+                                    <td>₱2,100.00</td>
+                                    <td>₱5,947.50</td>
+                                </tr>
+                                <tr class="employee-row" data-employee-id="10013" onclick="selectEmployee('10013')">
+                                    <td>10013</td>
+                                    <td>Martha Farala</td>
+                                    <td>₱2,400.00</td>
+                                    <td>₱1,500.00</td>
+                                    <td>₱3,900.00</td>
+                                </tr>
+                                <tr class="employee-row" data-employee-id="10014" onclick="selectEmployee('10014')">
+                                    <td>10014</td>
+                                    <td>Leila Martinez</td>
+                                    <td>₱2,400.00</td>
+                                    <td>₱1,500.00</td>
+                                    <td>₱3,900.00</td>
+                                </tr>
+                                <tr class="employee-row" data-employee-id="10016" onclick="selectEmployee('10016')">
+                                    <td>10016</td>
+                                    <td>Christian Mata</td>
+                                    <td>₱4,297.50</td>
+                                    <td>₱2,100.00</td>
+                                    <td>₱6,397.50</td>
+                                </tr>
+                                <tr class="employee-row" data-employee-id="10017" onclick="selectEmployee('10017')">
+                                    <td>10017</td>
+                                    <td>Selena De Leon</td>
+                                    <td>₱4,185.00</td>
+                                    <td>₱2,100.00</td>
+                                    <td>₱6,285.00</td>
+                                </tr>
+                                <tr class="employee-row" data-employee-id="10018" onclick="selectEmployee('10018')">
+                                    <td>10018</td>
+                                    <td>Allison San Jose</td>
+                                    <td>₱2,250.00</td>
+                                    <td>₱1,500.00</td>
+                                    <td>₱3,750.00</td>
+                                </tr>
+                                <tr class="employee-row" data-employee-id="10019" onclick="selectEmployee('10019')">
+                                    <td>10019</td>
+                                    <td>Cydney Rosario</td>
+                                    <td>₱2,250.00</td>
+                                    <td>₱1,500.00</td>
+                                    <td>₱3,750.00</td>
+                                </tr>
+                                <tr class="employee-row" data-employee-id="10021" onclick="selectEmployee('10021')">
+                                    <td>10021</td>
+                                    <td>Darlene Lazaro</td>
+                                    <td>₱2,325.00</td>
+                                    <td>₱1,500.00</td>
+                                    <td>₱3,825.00</td>
+                                </tr>
+                                <tr class="employee-row" data-employee-id="10022" onclick="selectEmployee('10022')">
+                                    <td>10022</td>
+                                    <td>Kolby Delos Santos</td>
+                                    <td>₱2,400.00</td>
+                                    <td>₱1,500.00</td>
+                                    <td>₱3,900.00</td>
+                                </tr>
+                                <tr class="employee-row" data-employee-id="10023" onclick="selectEmployee('10023')">
+                                    <td>10023</td>
+                                    <td>Vella Santos</td>
+                                    <td>₱2,250.00</td>
+                                    <td>₱1,500.00</td>
+                                    <td>₱3,750.00</td>
+                                </tr>
+                                <tr class="employee-row" data-employee-id="10024" onclick="selectEmployee('10024')">
+                                    <td>10024</td>
+                                    <td>Tomas Del Rosario</td>
+                                    <td>₱2,250.00</td>
+                                    <td>₱1,500.00</td>
+                                    <td>₱3,750.00</td>
+                                </tr>
+                                <tr class="employee-row" data-employee-id="10025" onclick="selectEmployee('10025')">
+                                    <td>10025</td>
+                                    <td>Jacklyn Tolentino</td>
+                                    <td>₱2,400.00</td>
+                                    <td>₱1,500.00</td>
+                                    <td>₱3,900.00</td>
+                                </tr>
+                                <tr class="employee-row" data-employee-id="10026" onclick="selectEmployee('10026')">
+                                    <td>10026</td>
+                                    <td>Percival Gutierrez</td>
+                                    <td>₱2,475.00</td>
+                                    <td>₱1,500.00</td>
+                                    <td>₱3,975.00</td>
+                                </tr>
+                                <tr class="employee-row" data-employee-id="10027" onclick="selectEmployee('10027')">
+                                    <td>10027</td>
+                                    <td>Garfield Manalaysay</td>
+                                    <td>₱2,475.00</td>
+                                    <td>₱1,500.00</td>
+                                    <td>₱3,975.00</td>
+                                </tr>
+                                <tr class="employee-row" data-employee-id="10028" onclick="selectEmployee('10028')">
+                                    <td>10028</td>
+                                    <td>Lizeth Villegas</td>
+                                    <td>₱2,400.00</td>
+                                    <td>₱1,500.00</td>
+                                    <td>₱3,900.00</td>
+                                </tr>
+                                <tr class="employee-row" data-employee-id="10029" onclick="selectEmployee('10029')">
+                                    <td>10029</td>
+                                    <td>Carol Ramos</td>
+                                    <td>₱2,250.00</td>
+                                    <td>₱1,500.00</td>
+                                    <td>₱3,750.00</td>
+                                </tr>
+                                <tr class="employee-row" data-employee-id="10030" onclick="selectEmployee('10030')">
+                                    <td>10030</td>
+                                    <td>Emelia Maceda</td>
+                                    <td>₱2,250.00</td>
+                                    <td>₱1,500.00</td>
+                                    <td>₱3,750.00</td>
+                                </tr>
+                                <tr class="employee-row" data-employee-id="10031" onclick="selectEmployee('10031')">
+                                    <td>10031</td>
+                                    <td>Delia Aguilar</td>
+                                    <td>₱2,250.00</td>
+                                    <td>₱1,500.00</td>
+                                    <td>₱3,750.00</td>
+                                </tr>
+                                <tr class="employee-row" data-employee-id="10032" onclick="selectEmployee('10032')">
+                                    <td>10032</td>
+                                    <td>John Rafael Castro</td>
+                                    <td>₱5,267.00</td>
+                                    <td>₱2,350.00</td>
+                                    <td>₱7,617.00</td>
+                                </tr>
+                                <tr class="employee-row" data-employee-id="10033" onclick="selectEmployee('10033')">
+                                    <td>10033</td>
+                                    <td>Carlos Ian Martinez</td>
+                                    <td>₱5,267.00</td>
+                                    <td>₱2,350.00</td>
+                                    <td>₱7,617.00</td>
+                                </tr>
+                                <tr class="employee-row" data-employee-id="10034" onclick="selectEmployee('10034')">
+                                    <td>10034</td>
+                                    <td>Beatriz Santos</td>
+                                    <td>₱5,267.00</td>
+                                    <td>₱2,350.00</td>
+                                    <td>₱7,617.00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Right Side - Employee Detail Panel -->
+                <div class="employee-detail-panel">
+                    <div class="panel-header">
+                        <h3 class="panel-title">Employee Data</h3>
+                        <button class="edit-btn" id="editBtn" onclick="toggleEdit()">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M11 4H4C3.46957 4 2.96086 4.21071 2.58579 4.58579C2.21071 4.96086 2 5.46957 2 6V20C2 20.5304 2.21071 21.0391 2.58579 21.4142C2.96086 21.7893 3.46957 22 4 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V13M18.5 2.5C18.8978 2.10218 19.4374 1.87868 20 1.87868C20.5626 1.87868 21.1022 2.10218 21.5 2.5C21.8978 2.89782 22.1213 3.43739 22.1213 4C22.1213 4.56261 21.8978 5.10218 21.5 5.5L12 15L8 16L9 12L18.5 2.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Edit
+                        </button>
+                    </div>
+
+                    <div class="panel-content">
+                        <!-- Name Field -->
+                        <div class="form-group">
+                            <label class="form-label">Name:</label>
+                            <div class="name-input-wrapper">
+                                <input type="text" class="form-input name-input" id="employeeName" value="Select an employee" readonly>
+                            </div>
+                        </div>
+
+                        <!-- Deductions Section -->
+                        <div class="form-section">
+                            <h4 class="section-label">Deductions</h4>
+                            <div class="form-group">
+                                <label class="form-label">Withholding Tax:</label>
+                                <input type="number" class="form-input" id="withholdingTax" placeholder="0.00" readonly>
+                            </div>
+                        </div>
+
+                        <!-- Monthly Contributions Section -->
+                        <div class="form-section">
+                            <h4 class="section-label">Monthly Contributions:</h4>
+                            <div class="form-group">
+                                <label class="form-label">SSS:</label>
+                                <input type="number" class="form-input" id="sssContribution" placeholder="0.00" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">PhilHealth:</label>
+                                <input type="number" class="form-input" id="philhealthContribution" placeholder="0.00" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Pag-IBIG:</label>
+                                <input type="number" class="form-input" id="pagibigContribution" placeholder="0.00" readonly>
+                            </div>
+                        </div>
+
+                        <!-- Loan Deductions Section -->
+                        <div class="form-section">
+                            <h4 class="section-label">Loan Deductions:</h4>
+                            <div class="form-group">
+                                <label class="form-label">SSS:</label>
+                                <input type="number" class="form-input" id="sssLoan" placeholder="0.00" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">PhilHealth:</label>
+                                <input type="number" class="form-input" id="philhealthLoan" placeholder="0.00" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Pag-IBIG:</label>
+                                <input type="number" class="form-input" id="pagibigLoan" placeholder="0.00" readonly>
+                            </div>
+                        </div>
+
+                        <!-- Save Button -->
+                        <button class="save-btn" id="saveBtn" onclick="saveChanges()" disabled>
+                            Save Changes
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmationModal" class="confirmation-modal" style="display: none;">
+        <div class="confirmation-modal-content">
+            <div class="confirmation-header">
+                <h3>Confirm Changes</h3>
+            </div>
+            <div class="confirmation-body">
+                <p id="confirmationMessage">Are you sure you want to save these changes?</p>
+            </div>
+            <div class="confirmation-footer">
+                <button class="confirmation-btn cancel-btn" onclick="closeConfirmationModal(false)">
+                    Cancel
+                </button>
+                <button class="confirmation-btn confirm-btn" onclick="closeConfirmationModal(true)">
+                    Save Changes
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="success-modal" style="display: none;">
+        <div class="success-modal-content">
+            <div class="success-modal-header">
+                <div class="success-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <h3>Success!</h3>
+            </div>
+            <div class="success-modal-body">
+                <p id="successMessage">Employee deductions have been updated successfully.</p>
+            </div>
+            <div class="success-modal-footer">
+                <button class="success-btn" onclick="closeSuccessModal()">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/app.js"></script>
+    <script>
+        // Employee data
+        const employeeData = {
+            '10001': { name: 'Manuel Garcia III', withholdingTax: 9000, sssContribution: 1200, philhealthContribution: 800, pagibigContribution: 600, sssLoan: 0, philhealthLoan: 0, pagibigLoan: 0 },
+            '10002': { name: 'Antonio Lim', withholdingTax: 6000, sssContribution: 1000, philhealthContribution: 800, pagibigContribution: 600, sssLoan: 0, philhealthLoan: 0, pagibigLoan: 0 },
+            '10003': { name: 'Bianca Sofia Aquino', withholdingTax: 6000, sssContribution: 1000, philhealthContribution: 800, pagibigContribution: 600, sssLoan: 0, philhealthLoan: 0, pagibigLoan: 0 },
+            '10004': { name: 'Isabella Reyes', withholdingTax: 6000, sssContribution: 1000, philhealthContribution: 800, pagibigContribution: 600, sssLoan: 0, philhealthLoan: 0, pagibigLoan: 0 },
+            '10005': { name: 'Eduard Hernandez', withholdingTax: 5267, sssContribution: 950, philhealthContribution: 800, pagibigContribution: 600, sssLoan: 0, philhealthLoan: 0, pagibigLoan: 0 },
+            '10006': { name: 'Andrea Mae Villanueva', withholdingTax: 5500, sssContribution: 800, philhealthContribution: 800, pagibigContribution: 800, sssLoan: 0, philhealthLoan: 0, pagibigLoan: 0 },
+            '10007': { name: 'Brad San Jose', withholdingTax: 4297, sssContribution: 800, philhealthContribution: 800, pagibigContribution: 500, sssLoan: 0, philhealthLoan: 0, pagibigLoan: 0 },
+            '10008': { name: 'Alice Romualdez', withholdingTax: 2250, sssContribution: 500, philhealthContribution: 500, pagibigContribution: 500, sssLoan: 0, philhealthLoan: 0, pagibigLoan: 0 },
+            '10009': { name: 'Rosie Atienza', withholdingTax: 2250, sssContribution: 500, philhealthContribution: 500, pagibigContribution: 500, sssLoan: 0, philhealthLoan: 0, pagibigLoan: 0 },
+            '10010': { name: 'Roderick Alvaro', withholdingTax: 5267, sssContribution: 950, philhealthContribution: 800, pagibigContribution: 600, sssLoan: 0, philhealthLoan: 0, pagibigLoan: 0 },
+            '10011': { name: 'Anthony Salcedo', withholdingTax: 7200, sssContribution: 1000, philhealthContribution: 900, pagibigContribution: 900, sssLoan: 0, philhealthLoan: 0, pagibigLoan: 0 },
+            '10012': { name: 'Josie Lopez', withholdingTax: 3847, sssContribution: 800, philhealthContribution: 800, pagibigContribution: 500, sssLoan: 0, philhealthLoan: 0, pagibigLoan: 0 },
+            '10013': { name: 'Martha Farala', withholdingTax: 2400, sssContribution: 500, philhealthContribution: 500, pagibigContribution: 500, sssLoan: 0, philhealthLoan: 0, pagibigLoan: 0 },
+            '10014': { name: 'Leila Martinez', withholdingTax: 2400, sssContribution: 500, philhealthContribution: 500, pagibigContribution: 500, sssLoan: 0, philhealthLoan: 0, pagibigLoan: 0 },
+            '10015': { name: 'Maria Santos', withholdingTax: 4800, sssContribution: 700, philhealthContribution: 750, pagibigContribution: 750, sssLoan: 0, philhealthLoan: 0, pagibigLoan: 0 },
+            '10016': { name: 'Christian Mata', withholdingTax: 4297, sssContribution: 800, philhealthContribution: 800, pagibigContribution: 500, sssLoan: 0, philhealthLoan: 0, pagibigLoan: 0 },
+            '10017': { name: 'Selena De Leon', withholdingTax: 4185, sssContribution: 800, philhealthContribution: 800, pagibigContribution: 500, sssLoan: 0, philhealthLoan: 0, pagibigLoan: 0 },
+            '10018': { name: 'Allison San Jose', withholdingTax: 2250, sssContribution: 500, philhealthContribution: 500, pagibigContribution: 500, sssLoan: 0, philhealthLoan: 0, pagibigLoan: 0 },
+            '10019': { name: 'Cydney Rosario', withholdingTax: 2250, sssContribution: 500, philhealthContribution: 500, pagibigContribution: 500, sssLoan: 0, philhealthLoan: 0, pagibigLoan: 0 },
+            '10020': { name: 'John Dela Cruz', withholdingTax: 6100, sssContribution: 850, philhealthContribution: 825, pagibigContribution: 825, sssLoan: 0, philhealthLoan: 0, pagibigLoan: 0 },
+            '10021': { name: 'Darlene Lazaro', withholdingTax: 2325, sssContribution: 500, philhealthContribution: 500, pagibigContribution: 500, sssLoan: 0, philhealthLoan: 0, pagibigLoan: 0 },
+            '10022': { name: 'Kolby Delos Santos', withholdingTax: 2400, sssContribution: 500, philhealthContribution: 500, pagibigContribution: 500, sssLoan: 0, philhealthLoan: 0, pagibigLoan: 0 },
+            '10023': { name: 'Vella Santos', withholdingTax: 2250, sssContribution: 500, philhealthContribution: 500, pagibigContribution: 500, sssLoan: 0, philhealthLoan: 0, pagibigLoan: 0 },
+            '10024': { name: 'Tomas Del Rosario', withholdingTax: 2250, sssContribution: 500, philhealthContribution: 500, pagibigContribution: 500, sssLoan: 0, philhealthLoan: 0, pagibigLoan: 0 },
+            '10025': { name: 'Jacklyn Tolentino', withholdingTax: 2400, sssContribution: 500, philhealthContribution: 500, pagibigContribution: 500, sssLoan: 0, philhealthLoan: 0, pagibigLoan: 0 },
+            '10026': { name: 'Percival Gutierrez', withholdingTax: 2475, sssContribution: 500, philhealthContribution: 500, pagibigContribution: 500, sssLoan: 0, philhealthLoan: 0, pagibigLoan: 0 },
+            '10027': { name: 'Garfield Manalaysay', withholdingTax: 2475, sssContribution: 500, philhealthContribution: 500, pagibigContribution: 500, sssLoan: 0, philhealthLoan: 0, pagibigLoan: 0 },
+            '10028': { name: 'Lizeth Villegas', withholdingTax: 2400, sssContribution: 500, philhealthContribution: 500, pagibigContribution: 500, sssLoan: 0, philhealthLoan: 0, pagibigLoan: 0 },
+            '10029': { name: 'Carol Ramos', withholdingTax: 2250, sssContribution: 500, philhealthContribution: 500, pagibigContribution: 500, sssLoan: 0, philhealthLoan: 0, pagibigLoan: 0 },
+            '10030': { name: 'Emelia Maceda', withholdingTax: 2250, sssContribution: 500, philhealthContribution: 500, pagibigContribution: 500, sssLoan: 0, philhealthLoan: 0, pagibigLoan: 0 },
+            '10031': { name: 'Delia Aguilar', withholdingTax: 2250, sssContribution: 500, philhealthContribution: 500, pagibigContribution: 500, sssLoan: 0, philhealthLoan: 0, pagibigLoan: 0 },
+            '10032': { name: 'John Rafael Castro', withholdingTax: 5267, sssContribution: 950, philhealthContribution: 800, pagibigContribution: 600, sssLoan: 0, philhealthLoan: 0, pagibigLoan: 0 },
+            '10033': { name: 'Carlos Ian Martinez', withholdingTax: 5267, sssContribution: 950, philhealthContribution: 800, pagibigContribution: 600, sssLoan: 0, philhealthLoan: 0, pagibigLoan: 0 },
+            '10034': { name: 'Beatriz Santos', withholdingTax: 5267, sssContribution: 950, philhealthContribution: 800, pagibigContribution: 600, sssLoan: 0, philhealthLoan: 0, pagibigLoan: 0 },
+            '10040': { name: 'Jennifer Lopez', withholdingTax: 5200, sssContribution: 750, philhealthContribution: 775, pagibigContribution: 775, sssLoan: 0, philhealthLoan: 0, pagibigLoan: 0 },
+            '10045': { name: 'Robert Kim', withholdingTax: 6800, sssContribution: 950, philhealthContribution: 850, pagibigContribution: 900, sssLoan: 0, philhealthLoan: 0, pagibigLoan: 0 },
+            '10050': { name: 'Emily Davis', withholdingTax: 4500, sssContribution: 650, philhealthContribution: 725, pagibigContribution: 725, sssLoan: 0, philhealthLoan: 0, pagibigLoan: 0 }
+        };
+
+        let selectedEmployeeId = null;
+        let isEditing = false;
+
+        // Initialize functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeSearch();
+        });
+
+        // Initialize search functionality
+        function initializeSearch() {
+            const searchInput = document.getElementById('employeeSearch');
+            searchInput.addEventListener('input', function() {
+                filterEmployees(this.value);
+            });
+        }
+
+        // Filter employees based on search input
+        function filterEmployees(searchTerm) {
+            const rows = document.querySelectorAll('.employee-row');
+            const term = searchTerm.toLowerCase();
+
+            rows.forEach(row => {
+                const employeeNumber = row.cells[0].textContent.toLowerCase();
+                const employeeName = row.cells[1].textContent.toLowerCase();
+                
+                if (employeeNumber.includes(term) || employeeName.includes(term)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        // Select employee from table
+        function selectEmployee(employeeId) {
+            // Remove previous selection
+            document.querySelectorAll('.employee-row').forEach(row => {
+                row.classList.remove('selected');
+            });
+
+            // Add selection to clicked row
+            const selectedRow = document.querySelector(`[data-employee-id="${employeeId}"]`);
+            if (selectedRow) {
+                selectedRow.classList.add('selected');
+            }
+
+            // Update selected employee
+            selectedEmployeeId = employeeId;
+            loadEmployeeData(employeeId);
+        }
+
+        // Load employee data into the detail panel
+        function loadEmployeeData(employeeId) {
+            const employee = employeeData[employeeId];
+            if (!employee) return;
+
+            // Update form fields
+            document.getElementById('employeeName').value = employee.name;
+            document.getElementById('withholdingTax').value = employee.withholdingTax;
+            document.getElementById('sssContribution').value = employee.sssContribution;
+            document.getElementById('philhealthContribution').value = employee.philhealthContribution;
+            document.getElementById('pagibigContribution').value = employee.pagibigContribution;
+            document.getElementById('sssLoan').value = employee.sssLoan;
+            document.getElementById('philhealthLoan').value = employee.philhealthLoan;
+            document.getElementById('pagibigLoan').value = employee.pagibigLoan;
+
+            // Enable save button
+            document.getElementById('saveBtn').disabled = false;
+        }
+
+        // Toggle edit mode
+        function toggleEdit() {
+            isEditing = !isEditing;
+            const editBtn = document.getElementById('editBtn');
+            const inputs = document.querySelectorAll('.form-input:not(.name-input)');
+            
+            if (isEditing) {
+                editBtn.innerHTML = `
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6 18L18 6M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Cancel
+                `;
+                editBtn.classList.add('cancel-mode');
+                
+                inputs.forEach(input => {
+                    input.removeAttribute('readonly');
+                    input.classList.add('editable');
+                });
+            } else {
+                editBtn.innerHTML = `
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11 4H4C3.46957 4 2.96086 4.21071 2.58579 4.58579C2.21071 4.96086 2 5.46957 2 6V20C2 20.5304 2.21071 21.0391 2.58579 21.4142C2.96086 21.7893 3.46957 22 4 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V13M18.5 2.5C18.8978 2.10218 19.4374 1.87868 20 1.87868C20.5626 1.87868 21.1022 2.10218 21.5 2.5C21.8978 2.89782 22.1213 3.43739 22.1213 4C22.1213 4.56261 21.8978 5.10218 21.5 5.5L12 15L8 16L9 12L18.5 2.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Edit
+                `;
+                editBtn.classList.remove('cancel-mode');
+                
+                inputs.forEach(input => {
+                    input.setAttribute('readonly', 'readonly');
+                    input.classList.remove('editable');
+                });
+
+                // Reload original data if canceling
+                if (selectedEmployeeId) {
+                    loadEmployeeData(selectedEmployeeId);
+                }
+            }
+        }
+
+        // Save changes
+        function saveChanges() {
+            if (!selectedEmployeeId || !isEditing) return;
+
+            // Show confirmation dialog
+            showConfirmationModal('Are you sure you want to save these changes?', function(confirmed) {
+                if (confirmed) {
+                    performSave();
+                }
+            });
+        }
+
+        // Perform the actual save operation
+        function performSave() {
+            const employee = employeeData[selectedEmployeeId];
+            if (!employee) return;
+
+            // Update employee data
+            employee.withholdingTax = parseFloat(document.getElementById('withholdingTax').value) || 0;
+            employee.sssContribution = parseFloat(document.getElementById('sssContribution').value) || 0;
+            employee.philhealthContribution = parseFloat(document.getElementById('philhealthContribution').value) || 0;
+            employee.pagibigContribution = parseFloat(document.getElementById('pagibigContribution').value) || 0;
+            employee.sssLoan = parseFloat(document.getElementById('sssLoan').value) || 0;
+            employee.philhealthLoan = parseFloat(document.getElementById('philhealthLoan').value) || 0;
+            employee.pagibigLoan = parseFloat(document.getElementById('pagibigLoan').value) || 0;
+
+            // Update table row
+            updateTableRow(selectedEmployeeId);
+
+            // Exit edit mode
+            toggleEdit();
+
+            // Show success modal
+            showSuccessModal('Employee deductions have been updated successfully.');
+        }
+
+        // Update table row with new data
+        function updateTableRow(employeeId) {
+            const employee = employeeData[employeeId];
+            const row = document.querySelector(`[data-employee-id="${employeeId}"]`);
+            
+            if (!row || !employee) return;
+
+            const taxDeductions = employee.withholdingTax;
+            const otherDeductions = employee.sssContribution + employee.philhealthContribution + 
+                                 employee.pagibigContribution + employee.sssLoan + 
+                                 employee.philhealthLoan + employee.pagibigLoan;
+            const totalDeductions = taxDeductions + otherDeductions;
+
+            row.cells[2].textContent = `₱${taxDeductions.toLocaleString('en-PH', {minimumFractionDigits: 2})}`;
+            row.cells[3].textContent = `₱${otherDeductions.toLocaleString('en-PH', {minimumFractionDigits: 2})}`;
+            row.cells[4].textContent = `₱${totalDeductions.toLocaleString('en-PH', {minimumFractionDigits: 2})}`;
+        }
+
+        // Show notification
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 100);
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+
+        // Confirmation Modal Functions
+        function showConfirmationModal(message, callback) {
+            const modal = document.getElementById('confirmationModal');
+            const messageElement = document.getElementById('confirmationMessage');
+            
+            messageElement.textContent = message;
+            modal.style.display = 'flex';
+            
+            // Store callback for later use
+            window.confirmationCallback = callback;
+        }
+
+        function closeConfirmationModal(confirmed) {
+            const modal = document.getElementById('confirmationModal');
+            modal.style.display = 'none';
+            
+            if (window.confirmationCallback) {
+                window.confirmationCallback(confirmed);
+                window.confirmationCallback = null;
+            }
+        }
+
+        // Success Modal Functions
+        function showSuccessModal(message) {
+            const modal = document.getElementById('successModal');
+            const messageElement = document.getElementById('successMessage');
+            
+            messageElement.textContent = message;
+            modal.style.display = 'flex';
+        }
+
+        function closeSuccessModal() {
+            const modal = document.getElementById('successModal');
+            modal.style.display = 'none';
+        }
+
+        // Make functions globally available
+        window.selectEmployee = selectEmployee;
+        window.toggleEdit = toggleEdit;
+        window.saveChanges = saveChanges;
+        window.closeConfirmationModal = closeConfirmationModal;
+        window.closeSuccessModal = closeSuccessModal;
+    </script>
+</body>
+</html>

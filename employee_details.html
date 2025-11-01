@@ -1,0 +1,1791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Details - MotorPH</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="icon" href="data:,">
+</head>
+<body class="dashboard-body">
+    <!-- Header -->
+    <header class="dashboard-header">
+        <div class="header-left">
+            <img src="assets/images/motorph_logo_with _white_outline.png" alt="MotorPH" class="header-logo">
+        </div>
+        <div class="header-right">
+            <div class="employee-profile">
+                <div class="profile-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12Z" fill="white"/>
+                        <path d="M12 14C7.58172 14 4 17.5817 4 22H20C20 17.5817 16.4183 14 12 14Z" fill="white"/>
+                    </svg>
+                </div>
+                <div class="employee-info">
+                    <span class="employee-name">Andrea Mae Villanueva</span>
+                    <div class="badges">
+                        <span class="badge badge-role">HR Manager</span>
+                        <span class="badge badge-empno">10006</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2 class="sidebar-title">Managerial Dashboard</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="manager_dashboard.html" class="nav-item">
+                    <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>My Attendance</span>
+                </a>
+                <a href="manager_requests.html" class="nav-item">
+                    <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 12H16M12 8V16M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>My Requests</span>
+                </a>
+                <a href="manager_payslip.html" class="nav-item">
+                    <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M9 9H15M9 13H15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>My Payslip</span>
+                </a>
+                <a href="team_attendance.html" class="nav-item">
+                    <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Team Attendance</span>
+                </a>
+                <a href="team_requests.html" class="nav-item">
+                    <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Team Requests</span>
+                </a>
+                <a href="employee_details.html" class="nav-item active">
+                    <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Employee Details</span>
+                </a>
+                <a href="manager_about.html" class="nav-item">
+                    <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>About Me</span>
+                </a>
+            </nav>
+            <button class="logout-btn" onclick="window.location.href='index.html'">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H9M16 17L21 12L16 7M21 12H9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Log Out
+            </button>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="employee-management-container">
+                <!-- Header Section -->
+                <div class="page-header">
+                    <div class="header-content">
+                        <h3 class="kpi-section-title">Employee Management</h3>
+                        <p class="page-subtitle">Manage employee information and track changes</p>
+                    </div>
+                    <div class="header-actions">
+                        <button class="btn btn-primary" id="addEmployeeBtn" onclick="showHrCredentialsDialog('add')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Add Employee
+                        </button>
+                        <button class="btn btn-secondary" id="viewActivityLogBtn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M14 2V8H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            View Activity Logs
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Search and Filter Section -->
+                <div class="search-filter-section">
+                    <div class="search-container">
+                        <input type="text" id="employeeSearch" class="search-input" placeholder="Search employees by name, position, or employee number...">
+                        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
+                            <path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="filter-controls">
+                        <select id="statusFilter" class="filter-select">
+                            <option value="">All Status</option>
+                            <option value="Regular">Regular</option>
+                            <option value="Probationary">Probationary</option>
+                        </select>
+                        <select id="positionFilter" class="filter-select">
+                            <option value="">All Positions</option>
+                        </select>
+                        <button class="btn btn-outline" id="clearFiltersBtn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3 6H5H21M8 6V4C8 3.46957 8.21071 2.96086 8.58579 2.58579C8.96086 2.21071 9.46957 2 10 2H14C14.5304 2 15.0391 2.21071 15.4142 2.58579C15.7893 2.96086 16 3.46957 16 4V6M19 6V6V20C19 20.5304 18.7893 21.0391 18.4142 21.4142C18.0391 21.7893 17.5304 22 17 22H7C6.46957 22 5.96086 21.7893 5.58579 21.4142C5.21071 21.0391 5 20.5304 5 20V6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Clear Filters
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Employee Table -->
+                <div class="table-container">
+                    <div class="table-header">
+                        <h3 class="table-title">Employee Directory</h3>
+                        <div class="table-info">
+                            <span id="employeeCount">0 employees</span>
+                        </div>
+                    </div>
+                    
+                    <div class="table-wrapper">
+                        <table class="employee-table" id="employeeTable">
+                            <thead>
+                                <tr>
+                                    <th class="sortable" data-sort="employeeNumber">
+                                        Employee # <svg class="sort-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M8 9L12 5L16 9M8 15L12 19L16 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </th>
+                                    <th class="sortable" data-sort="lastName">
+                                        Last Name <svg class="sort-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M8 9L12 5L16 9M8 15L12 19L16 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </th>
+                                    <th class="sortable" data-sort="firstName">
+                                        First Name <svg class="sort-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M8 9L12 5L16 9M8 15L12 19L16 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </th>
+                                    <th class="sortable" data-sort="position">
+                                        Position <svg class="sort-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M8 9L12 5L16 9M8 15L12 19L16 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </th>
+                                    <th class="sortable" data-sort="status">
+                                        Status <svg class="sort-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M8 9L12 5L16 9M8 15L12 19L16 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="employeeTableBody">
+                                <!-- Employee rows will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add Employee Slide -->
+    <div class="add-employee-slide" id="addEmployeeSlide" style="display: none;">
+        <div class="slide-header">
+            <button class="back-btn" onclick="closeAddEmployeeSlide()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19 12H5M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Back
+            </button>
+            <h2 class="slide-title">Add New Employee</h2>
+        </div>
+        <div class="slide-content">
+            <form class="add-employee-form" id="addEmployeeForm">
+                <div class="form-section">
+                    <h4 class="section-title">Personal Information</h4>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="addEmployeeNumber">Employee #</label>
+                            <input type="text" class="form-input" id="addEmployeeNumber" name="employeeNumber" placeholder="e.g., 10011" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="addLastName">Last Name</label>
+                            <input type="text" class="form-input" id="addLastName" name="lastName" placeholder="Enter last name" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="addFirstName">First Name</label>
+                            <input type="text" class="form-input" id="addFirstName" name="firstName" placeholder="Enter first name" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="addBirthday">Birthday</label>
+                            <input type="date" class="form-input" id="addBirthday" name="birthday" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="addAddress">Address</label>
+                        <textarea class="form-textarea" id="addAddress" name="address" placeholder="Enter complete address" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="addPhoneNumber">Phone Number</label>
+                        <input type="tel" class="form-input" id="addPhoneNumber" name="phoneNumber" placeholder="09XXXXXXXXX or +639XXXXXXXXX" required>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h4 class="section-title">Government Information</h4>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="addSssNumber">SSS #</label>
+                            <input type="text" class="form-input" id="addSssNumber" name="sssNumber" placeholder="Enter SSS number" pattern="[0-9]+" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="addPhilhealthNumber">PhilHealth #</label>
+                            <input type="text" class="form-input" id="addPhilhealthNumber" name="philhealthNumber" placeholder="Enter PhilHealth number" pattern="[0-9]+" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="addTinNumber">TIN #</label>
+                            <input type="text" class="form-input" id="addTinNumber" name="tinNumber" placeholder="Enter TIN number" pattern="[0-9]+" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="addPagibigNumber">Pag-IBIG #</label>
+                            <input type="text" class="form-input" id="addPagibigNumber" name="pagibigNumber" placeholder="Enter Pag-IBIG number" pattern="[0-9]+" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h4 class="section-title">Employment Information</h4>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="addStatus">Status</label>
+                            <select class="form-select" id="addStatus" name="status" required>
+                                <option value="">Select Status</option>
+                                <option value="Regular">Regular</option>
+                                <option value="Probationary">Probationary</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="addPosition">Position</label>
+                            <input type="text" class="form-input" id="addPosition" name="position" placeholder="Enter position" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="addImmediateSupervisor">Immediate Supervisor</label>
+                        <input type="text" class="form-input" id="addImmediateSupervisor" name="immediateSupervisor" placeholder="Enter supervisor name" required>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h4 class="section-title">Compensation Information</h4>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="addBasicSalary">Basic Salary</label>
+                            <input type="number" class="form-input" id="addBasicSalary" name="basicSalary" placeholder="0.00" step="0.01" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="addRiceSubsidy">Rice Subsidy</label>
+                            <input type="number" class="form-input" id="addRiceSubsidy" name="riceSubsidy" placeholder="0.00" step="0.01" min="0" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="addPhoneAllowance">Phone Allowance</label>
+                            <input type="number" class="form-input" id="addPhoneAllowance" name="phoneAllowance" placeholder="0.00" step="0.01" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="addClothingAllowance">Clothing Allowance</label>
+                            <input type="number" class="form-input" id="addClothingAllowance" name="clothingAllowance" placeholder="0.00" step="0.01" min="0" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="addGrossSemiMonthlyRate">Gross Semi-monthly Rate</label>
+                            <input type="number" class="form-input" id="addGrossSemiMonthlyRate" name="grossSemiMonthlyRate" placeholder="0.00" step="0.01" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="addHourlyRate">Hourly Rate</label>
+                            <input type="number" class="form-input" id="addHourlyRate" name="hourlyRate" placeholder="0.00" step="0.01" min="0" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-error" id="addFormError" style="display: none;"></div>
+            </form>
+        </div>
+        <div class="slide-footer">
+            <button class="btn btn-secondary" onclick="closeAddEmployeeSlide()">Cancel</button>
+            <button class="btn btn-success" onclick="saveNewEmployee()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Add Employee
+            </button>
+        </div>
+    </div>
+
+    <!-- Employee Details Modal -->
+    <div class="modal-overlay" id="employeeModal" style="display: none;">
+        <div class="modal-content large-modal">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeEmployeeModal()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-actions-sticky">
+                <div class="modal-actions-right">
+                    <button class="btn btn-primary" id="modalUpdateBtn" onclick="showHrCredentialsDialog('update')">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11 4H4C3.46957 4 2.96086 4.21071 2.58579 4.58579C2.96086 4.96086 2 5.46957 2 6V20C2 20.5304 2.21071 21.0391 2.58579 21.4142C2.96086 21.7893 3.46957 22 4 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V13M18.5 2.5C18.8978 2.10218 19.4374 1.87868 20 1.87868C20.5626 1.87868 21.1022 2.10218 21.5 2.5C21.8978 2.89782 22.1213 3.43739 22.1213 4C22.1213 4.56261 21.8978 5.10218 21.5 5.5L12 15L8 16L9 12L18.5 2.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Update
+                    </button>
+                    <button class="btn btn-warning" id="modalArchiveBtn" onclick="showHrCredentialsDialog('archive')" title="Archive this employee (keeps record, hides from active lists in the real system)">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 8H19M8 8V6C8 5.46957 8.21071 4.96086 8.58579 4.58579C8.96086 4.21071 9.46957 4 10 4H14C14.5304 4 15.0391 4.21071 15.4142 4.58579C15.7893 4.96086 16 5.46957 16 6V8M10 12V16M14 12V16M5 8V20C5 20.5304 5.21071 21.0391 5.58579 21.4142C5.96086 21.7893 6.46957 22 7 22H17C17.5304 22 18.0391 21.7893 18.4142 21.4142C18.7893 21.0391 19 20.5304 19 20V8H5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Archive
+                    </button>
+                    <button class="btn btn-success" id="modalSaveBtn" onclick="saveEmployeeUpdate()" style="display: none;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H16L21 8V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M17 21V13H7V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M7 3V8H15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Save
+                    </button>
+                    <button class="btn btn-secondary" id="modalCancelBtn" onclick="cancelEdit()" style="display: none;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Cancel
+                    </button>
+                </div>
+            </div>
+                <div class="modal-body">
+                    <form class="employee-form" id="employeeForm">
+                        <div class="form-section collapsible-section" data-section="personal">
+                            <div class="section-header" onclick="toggleSection('personal')">
+                                <h4 class="section-title">Personal Information</h4>
+                                <svg class="section-toggle" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div class="section-content">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="modalEmployeeNumber">Employee #</label>
+                                <input type="text" class="form-input" id="modalEmployeeNumber" name="employeeNumber" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="modalLastName">Last Name</label>
+                                <input type="text" class="form-input" id="modalLastName" name="lastName" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="modalFirstName">First Name</label>
+                                <input type="text" class="form-input" id="modalFirstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="modalBirthday">Birthday</label>
+                                <input type="date" class="form-input" id="modalBirthday" name="birthday" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="modalAddress">Address</label>
+                            <textarea class="form-textarea" id="modalAddress" name="address" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="modalPhoneNumber">Phone Number</label>
+                            <input type="tel" class="form-input" id="modalPhoneNumber" name="phoneNumber" placeholder="09XXXXXXXXX or +639XXXXXXXXX" required>
+                        </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section collapsible-section" data-section="government">
+                            <div class="section-header" onclick="toggleSection('government')">
+                                <h4 class="section-title">Government Information</h4>
+                                <svg class="section-toggle" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div class="section-content">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="modalSssNumber">SSS #</label>
+                                <input type="text" class="form-input numeric-only" id="modalSssNumber" name="sssNumber" pattern="[0-9]+" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="modalPhilhealthNumber">PhilHealth #</label>
+                                <input type="text" class="form-input numeric-only" id="modalPhilhealthNumber" name="philhealthNumber" pattern="[0-9]+" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="modalTinNumber">TIN #</label>
+                                <input type="text" class="form-input numeric-only" id="modalTinNumber" name="tinNumber" pattern="[0-9]+" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="modalPagibigNumber">Pag-IBIG #</label>
+                                <input type="text" class="form-input numeric-only" id="modalPagibigNumber" name="pagibigNumber" pattern="[0-9]+" required>
+                            </div>
+                        </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section collapsible-section" data-section="employment">
+                            <div class="section-header" onclick="toggleSection('employment')">
+                                <h4 class="section-title">Employment Information</h4>
+                                <svg class="section-toggle" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div class="section-content">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="modalStatus">Status</label>
+                                <select class="form-select" id="modalStatus" name="status" required>
+                                    <option value="">Select Status</option>
+                                    <option value="Regular">Regular</option>
+                                    <option value="Probationary">Probationary</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="modalPosition">Position</label>
+                                <input type="text" class="form-input" id="modalPosition" name="position" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="modalImmediateSupervisor">Immediate Supervisor</label>
+                            <input type="text" class="form-input" id="modalImmediateSupervisor" name="immediateSupervisor" required>
+                        </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section collapsible-section" data-section="compensation">
+                            <div class="section-header" onclick="toggleSection('compensation')">
+                                <h4 class="section-title">Compensation Information</h4>
+                                <svg class="section-toggle" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div class="section-content">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="modalBasicSalary">Basic Salary</label>
+                                <input type="number" class="form-input" id="modalBasicSalary" name="basicSalary" min="0" step="0.01" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="modalRiceSubsidy">Rice Subsidy</label>
+                                <input type="number" class="form-input" id="modalRiceSubsidy" name="riceSubsidy" min="0" step="0.01" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="modalPhoneAllowance">Phone Allowance</label>
+                                <input type="number" class="form-input" id="modalPhoneAllowance" name="phoneAllowance" min="0" step="0.01" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="modalClothingAllowance">Clothing Allowance</label>
+                                <input type="number" class="form-input" id="modalClothingAllowance" name="clothingAllowance" min="0" step="0.01" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="modalGrossSemiMonthlyRate">Gross Semi-monthly Rate</label>
+                                <input type="number" class="form-input" id="modalGrossSemiMonthlyRate" name="grossSemiMonthlyRate" min="0" step="0.01" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="modalHourlyRate">Hourly Rate</label>
+                                <input type="number" class="form-input" id="modalHourlyRate" name="hourlyRate" min="0" step="0.01" readonly>
+                            </div>
+                        </div>
+                            </div>
+                        </div>
+
+                    <div class="form-error" id="modalFormError" style="display: none;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 9V13M12 17H12.01M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span id="modalErrorMessage">Please complete all required fields before updating.</span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Archive Confirmation Modal -->
+    <div class="modal-overlay" id="archiveConfirmModal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Confirm Archive</h3>
+                <button class="modal-close" onclick="closeArchiveModal()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="archive-warning">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 9V13M12 17H12.01M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <h4>Are you sure you want to archive this employee?</h4>
+                    <p>This action will not delete any data. In the full system, the employee would be moved to Archive and hidden from active views. You can review archived employees in Activity Logs.</p>
+                    <div class="employee-info-preview" id="archiveEmployeeInfo">
+                        <!-- Employee info will be populated here -->
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn btn-secondary" onclick="closeArchiveModal()">Cancel</button>
+                    <button class="btn btn-warning" id="confirmArchiveBtn">Archive Employee</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/app.js"></script>
+    <script>
+        // Employee data from CSV
+        let employees = [
+            {
+                id: 1,
+                employeeNumber: "10001",
+                lastName: "Garcia",
+                firstName: "Manuel III",
+                birthday: "1983-10-11",
+                address: "Valero Carpark Building Valero Street 1227, Makati City",
+                phoneNumber: "966-860-270",
+                sssNumber: "4445060573",
+                philhealthNumber: "820126853951",
+                tinNumber: "442605657000",
+                pagibigNumber: "691295330870",
+                status: "Regular",
+                position: "Chief Executive Officer",
+                immediateSupervisor: "",
+                basicSalary: 90000,
+                riceSubsidy: 1500,
+                phoneAllowance: 2000,
+                clothingAllowance: 1000,
+                grossSemiMonthlyRate: 45000,
+                hourlyRate: 536
+            },
+            {
+                id: 2,
+                employeeNumber: "10002",
+                lastName: "Lim",
+                firstName: "Antonio",
+                birthday: "1988-06-19",
+                address: "San Antonio De Padua 2, Block 1 Lot 8 and 2, Dasmarinas, Cavite",
+                phoneNumber: "171-867-411",
+                sssNumber: "5220612749",
+                philhealthNumber: "331735646338",
+                tinNumber: "683102776000",
+                pagibigNumber: "663904995411",
+                status: "Regular",
+                position: "Chief Operating Officer",
+                immediateSupervisor: "Manuel III Garcia",
+                basicSalary: 60000,
+                riceSubsidy: 1500,
+                phoneAllowance: 2000,
+                clothingAllowance: 1000,
+                grossSemiMonthlyRate: 30000,
+                hourlyRate: 357
+            },
+            {
+                id: 3,
+                employeeNumber: "10003",
+                lastName: "Aquino",
+                firstName: "Bianca Sofia",
+                birthday: "1989-08-04",
+                address: "Rm. 402 4/F Jiao Building Timog Avenue Cor. Quezon Avenue 1100, Quezon City",
+                phoneNumber: "966-889-370",
+                sssNumber: "3088704062",
+                philhealthNumber: "177451189665",
+                tinNumber: "971711280000",
+                pagibigNumber: "171519773969",
+                status: "Regular",
+                position: "Chief Finance Officer",
+                immediateSupervisor: "Manuel III Garcia",
+                basicSalary: 60000,
+                riceSubsidy: 1500,
+                phoneAllowance: 2000,
+                clothingAllowance: 1000,
+                grossSemiMonthlyRate: 30000,
+                hourlyRate: 357
+            },
+            {
+                id: 4,
+                employeeNumber: "10004",
+                lastName: "Reyes",
+                firstName: "Isabella",
+                birthday: "1994-06-16",
+                address: "460 Solanda Street Intramuros 1000, Manila",
+                phoneNumber: "786-868-477",
+                sssNumber: "4025118150",
+                philhealthNumber: "341911411254",
+                tinNumber: "876809437000",
+                pagibigNumber: "416946776041",
+                status: "Regular",
+                position: "Chief Marketing Officer",
+                immediateSupervisor: "Manuel III Garcia",
+                basicSalary: 60000,
+                riceSubsidy: 1500,
+                phoneAllowance: 2000,
+                clothingAllowance: 1000,
+                grossSemiMonthlyRate: 30000,
+                hourlyRate: 357
+            },
+            {
+                id: 5,
+                employeeNumber: "10005",
+                lastName: "Hernandez",
+                firstName: "Eduard",
+                birthday: "1989-09-23",
+                address: "National Highway, Gingoog, Misamis Occidental",
+                phoneNumber: "088-861-012",
+                sssNumber: "5055776381",
+                philhealthNumber: "957436191812",
+                tinNumber: "031702374000",
+                pagibigNumber: "952347222457",
+                status: "Regular",
+                position: "IT Operations and Systems",
+                immediateSupervisor: "Antonio Lim",
+                basicSalary: 52670,
+                riceSubsidy: 1500,
+                phoneAllowance: 1000,
+                clothingAllowance: 1000,
+                grossSemiMonthlyRate: 26335,
+                hourlyRate: 314
+            },
+            {
+                id: 6,
+                employeeNumber: "10006",
+                lastName: "Villanueva",
+                firstName: "Andrea Mae",
+                birthday: "1988-02-14",
+                address: "17/85 Stracke Via Suite 042, Poblacion, Las Piñas 4783 Dinagat Islands",
+                phoneNumber: "918-621-603",
+                sssNumber: "4916320208",
+                philhealthNumber: "382189453145",
+                tinNumber: "317674022000",
+                pagibigNumber: "441093369646",
+                status: "Regular",
+                position: "HR Manager",
+                immediateSupervisor: "Antonio Lim",
+                basicSalary: 52670,
+                riceSubsidy: 1500,
+                phoneAllowance: 1000,
+                clothingAllowance: 1000,
+                grossSemiMonthlyRate: 26335,
+                hourlyRate: 314
+            },
+            {
+                id: 7,
+                employeeNumber: "10007",
+                lastName: "San Jose",
+                firstName: "Brad",
+                birthday: "1996-03-15",
+                address: "99 Strosin Hills, Poblacion, Bislig 5340 Tawi-Tawi",
+                phoneNumber: "797-009-261",
+                sssNumber: "4024007141",
+                philhealthNumber: "239192926939",
+                tinNumber: "672474690000",
+                pagibigNumber: "210850209964",
+                status: "Regular",
+                position: "HR Team Leader",
+                immediateSupervisor: "Andrea Mae Villanueva",
+                basicSalary: 42975,
+                riceSubsidy: 1500,
+                phoneAllowance: 800,
+                clothingAllowance: 800,
+                grossSemiMonthlyRate: 21488,
+                hourlyRate: 256
+            },
+            {
+                id: 8,
+                employeeNumber: "10008",
+                lastName: "Romualdez",
+                firstName: "Alice",
+                birthday: "1992-05-14",
+                address: "12A/33 Upton Isle Apt. 420, Roxas City 1814 Surigao del Norte",
+                phoneNumber: "983-606-799",
+                sssNumber: "5544765272",
+                philhealthNumber: "545652640232",
+                tinNumber: "888572294000",
+                pagibigNumber: "211385556888",
+                status: "Regular",
+                position: "HR Rank and File",
+                immediateSupervisor: "Brad San Jose",
+                basicSalary: 22500,
+                riceSubsidy: 1500,
+                phoneAllowance: 500,
+                clothingAllowance: 500,
+                grossSemiMonthlyRate: 11250,
+                hourlyRate: 134
+            },
+            {
+                id: 9,
+                employeeNumber: "10009",
+                lastName: "Atienza",
+                firstName: "Rosie",
+                birthday: "1948-09-24",
+                address: "90A Dibbert Terrace Apt. 190, San Lorenzo 6056 Davao del Norte",
+                phoneNumber: "266-036-427",
+                sssNumber: "4106446923",
+                philhealthNumber: "708988234853",
+                tinNumber: "604997793000",
+                pagibigNumber: "260107732354",
+                status: "Regular",
+                position: "HR Rank and File",
+                immediateSupervisor: "Brad San Jose",
+                basicSalary: 22500,
+                riceSubsidy: 1500,
+                phoneAllowance: 500,
+                clothingAllowance: 500,
+                grossSemiMonthlyRate: 11250,
+                hourlyRate: 134
+            },
+            {
+                id: 10,
+                employeeNumber: "10010",
+                lastName: "Alvaro",
+                firstName: "Roderick",
+                birthday: "1988-03-30",
+                address: "#284 T. Morato corner, Scout Rallos Street, Quezon City",
+                phoneNumber: "053-381-386",
+                sssNumber: "6476050544",
+                philhealthNumber: "578114853194",
+                tinNumber: "525420419000",
+                pagibigNumber: "799254095212",
+                status: "Regular",
+                position: "Accounting Head",
+                immediateSupervisor: "Bianca Sofia Aquino",
+                basicSalary: 52670,
+                riceSubsidy: 1500,
+                phoneAllowance: 1000,
+                clothingAllowance: 1000,
+                grossSemiMonthlyRate: 26335,
+                hourlyRate: 314
+            }
+        ];
+
+        // Activity log data
+        let activityLogs = [
+            {
+                id: 1,
+                timestamp: "2024-04-25 10:30:00",
+                managerName: "Andrea Mae Villanueva",
+                action: "Update",
+                employeeName: "Manuel Garcia",
+                employeeNumber: "10001",
+                fieldChanged: "Basic Salary",
+                oldValue: "85000",
+                newValue: "90000",
+                reason: "Annual salary increase"
+            },
+            {
+                id: 2,
+                timestamp: "2024-04-24 14:15:00",
+                managerName: "Andrea Mae Villanueva",
+                action: "Update",
+                employeeName: "Antonio Lim",
+                employeeNumber: "10002",
+                fieldChanged: "Status",
+                oldValue: "Probationary",
+                newValue: "Regular",
+                reason: "Probation period completed successfully"
+            }
+        ];
+
+        let filteredEmployees = [...employees];
+        let selectedEmployeeId = null;
+        let currentSort = { column: null, direction: 'asc' };
+        let isEditMode = false;
+        let originalEmployeeData = null;
+        let scrollPosition = 0;
+        let nextEmployeeId = 11; // Next available ID
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            populateEmployeeTable();
+            populatePositionFilter();
+            setupEventListeners();
+            updateEmployeeCount();
+        });
+
+        function populateEmployeeTable() {
+            const tbody = document.getElementById('employeeTableBody');
+            tbody.innerHTML = '';
+
+            filteredEmployees.forEach(employee => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${employee.employeeNumber}</td>
+                    <td>${employee.lastName}</td>
+                    <td>${employee.firstName}</td>
+                    <td>${employee.position}</td>
+                    <td><span class="status-badge status-${employee.status.toLowerCase()}">${employee.status}</span></td>
+                    <td>
+                        <button class="btn btn-sm btn-primary" onclick="viewEmployee(${employee.id})">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 12S5 4 12 4S23 12 23 12S19 20 12 20S1 12 1 12Z" stroke="currentColor" stroke-width="2"/>
+                                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            View
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        function populatePositionFilter() {
+            const positionFilter = document.getElementById('positionFilter');
+            const positions = [...new Set(employees.map(emp => emp.position))].sort();
+            
+            positions.forEach(position => {
+                const option = document.createElement('option');
+                option.value = position;
+                option.textContent = position;
+                positionFilter.appendChild(option);
+            });
+        }
+
+        function setupEventListeners() {
+            // Search functionality
+            document.getElementById('employeeSearch').addEventListener('input', applyFilters);
+            document.getElementById('statusFilter').addEventListener('change', applyFilters);
+            document.getElementById('positionFilter').addEventListener('change', applyFilters);
+            document.getElementById('clearFiltersBtn').addEventListener('click', clearFilters);
+            document.getElementById('viewActivityLogBtn').addEventListener('click', function() {
+                window.location.href = 'activity_logs.html';
+            });
+
+            // Table sorting
+            document.querySelectorAll('.sortable').forEach(header => {
+                header.addEventListener('click', function() {
+                    const column = this.getAttribute('data-sort');
+                    sortTable(column);
+                });
+            });
+
+            // Form validation
+            document.getElementById('employeeForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                updateEmployee();
+            });
+
+            // Numeric-only inputs
+            document.querySelectorAll('.numeric-only').forEach(input => {
+                input.addEventListener('input', function() {
+                    this.value = this.value.replace(/[^0-9]/g, '');
+                });
+            });
+
+            // Auto-calculate rates when salary changes
+            document.getElementById('modalBasicSalary').addEventListener('input', calculateRates);
+            document.getElementById('modalRiceSubsidy').addEventListener('input', calculateRates);
+            document.getElementById('modalPhoneAllowance').addEventListener('input', calculateRates);
+            document.getElementById('modalClothingAllowance').addEventListener('input', calculateRates);
+
+            // Archive confirmation
+            document.getElementById('confirmArchiveBtn').addEventListener('click', confirmArchiveEmployee);
+        }
+
+        function applyFilters() {
+            const searchTerm = document.getElementById('employeeSearch').value.toLowerCase();
+            const statusFilter = document.getElementById('statusFilter').value;
+            const positionFilter = document.getElementById('positionFilter').value;
+
+            filteredEmployees = employees.filter(employee => {
+                const matchesSearch = !searchTerm || 
+                    employee.firstName.toLowerCase().includes(searchTerm) ||
+                    employee.lastName.toLowerCase().includes(searchTerm) ||
+                    employee.position.toLowerCase().includes(searchTerm) ||
+                    employee.employeeNumber.includes(searchTerm);
+
+                const matchesStatus = !statusFilter || employee.status === statusFilter;
+                const matchesPosition = !positionFilter || employee.position === positionFilter;
+
+                return matchesSearch && matchesStatus && matchesPosition;
+            });
+
+            populateEmployeeTable();
+            updateEmployeeCount();
+        }
+
+        function clearFilters() {
+            document.getElementById('employeeSearch').value = '';
+            document.getElementById('statusFilter').value = '';
+            document.getElementById('positionFilter').value = '';
+
+            filteredEmployees = [...employees];
+            populateEmployeeTable();
+            updateEmployeeCount();
+        }
+
+        function sortTable(column) {
+            const direction = currentSort.column === column && currentSort.direction === 'asc' ? 'desc' : 'asc';
+            currentSort = { column, direction };
+
+            filteredEmployees.sort((a, b) => {
+                let aVal = a[column];
+                let bVal = b[column];
+
+                if (typeof aVal === 'string') {
+                    aVal = aVal.toLowerCase();
+                    bVal = bVal.toLowerCase();
+                }
+
+                if (direction === 'asc') {
+                    return aVal > bVal ? 1 : -1;
+                } else {
+                    return aVal < bVal ? 1 : -1;
+                }
+            });
+
+            populateEmployeeTable();
+        }
+
+        function viewEmployee(employeeId) {
+            const employee = employees.find(emp => emp.id === employeeId);
+            if (!employee) return;
+
+            // Store current scroll position
+            scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+            
+            selectedEmployeeId = employeeId;
+            originalEmployeeData = { ...employee };
+            isEditMode = false;
+            populateEmployeeForm(employee);
+            setFormEditability(false);
+            updateModalButtons();
+            
+            // Prevent all scrolling
+            document.body.classList.add('modal-open');
+            document.body.style.position = 'fixed';
+            document.body.style.top = `-${scrollPosition}px`;
+            document.body.style.width = '100%';
+            document.body.style.height = '100%';
+            document.body.style.overflow = 'hidden';
+            
+            // Prevent scrolling on all elements
+            const allElements = document.querySelectorAll('*');
+            allElements.forEach(el => {
+                if (!el.classList.contains('modal-body')) {
+                    el.style.overflow = 'hidden';
+                }
+            });
+            
+            document.getElementById('employeeModal').style.display = 'flex';
+        }
+
+        function enableEditMode() {
+            console.log('enableEditMode called');
+            isEditMode = true;
+            console.log('isEditMode set to true');
+            setFormEditability(true);
+            console.log('Form editability set to true');
+            updateModalButtons();
+            console.log('Modal buttons updated');
+        }
+
+        function cancelEdit() {
+            isEditMode = false;
+            if (originalEmployeeData) {
+                populateEmployeeForm(originalEmployeeData);
+            }
+            setFormEditability(false);
+            updateModalButtons();
+            document.getElementById('modalFormError').style.display = 'none';
+        }
+
+        function setFormEditability(editable) {
+            console.log('setFormEditability called with:', editable);
+            const formInputs = document.querySelectorAll('#employeeForm input, #employeeForm select, #employeeForm textarea');
+            console.log('Found form inputs:', formInputs.length);
+            formInputs.forEach(input => {
+                if (input.id === 'modalEmployeeNumber') {
+                    input.disabled = true; // Always disabled
+                } else {
+                    input.disabled = !editable;
+                }
+            });
+            console.log('Form editability set');
+        }
+
+        function updateModalButtons() {
+            console.log('updateModalButtons called, isEditMode:', isEditMode);
+            const updateBtn = document.getElementById('modalUpdateBtn');
+            const saveBtn = document.getElementById('modalSaveBtn');
+            const cancelBtn = document.getElementById('modalCancelBtn');
+            const archiveBtn = document.getElementById('modalArchiveBtn');
+
+            console.log('Found buttons:', { updateBtn, saveBtn, cancelBtn, archiveBtn });
+
+            if (isEditMode) {
+                console.log('Setting edit mode button visibility');
+                updateBtn.style.display = 'none';
+                saveBtn.style.display = 'inline-flex';
+                cancelBtn.style.display = 'inline-flex';
+                archiveBtn.style.display = 'none';
+            } else {
+                console.log('Setting view mode button visibility');
+                updateBtn.style.display = 'inline-flex';
+                saveBtn.style.display = 'none';
+                cancelBtn.style.display = 'none';
+                archiveBtn.style.display = 'inline-flex';
+            }
+            console.log('Modal buttons updated');
+        }
+
+        function populateEmployeeForm(employee) {
+            document.getElementById('modalEmployeeNumber').value = employee.employeeNumber;
+            document.getElementById('modalLastName').value = employee.lastName;
+            document.getElementById('modalFirstName').value = employee.firstName;
+            document.getElementById('modalBirthday').value = employee.birthday;
+            document.getElementById('modalAddress').value = employee.address;
+            document.getElementById('modalPhoneNumber').value = employee.phoneNumber;
+            document.getElementById('modalSssNumber').value = employee.sssNumber;
+            document.getElementById('modalPhilhealthNumber').value = employee.philhealthNumber;
+            document.getElementById('modalTinNumber').value = employee.tinNumber;
+            document.getElementById('modalPagibigNumber').value = employee.pagibigNumber;
+            document.getElementById('modalStatus').value = employee.status;
+            document.getElementById('modalPosition').value = employee.position;
+            document.getElementById('modalImmediateSupervisor').value = employee.immediateSupervisor;
+            document.getElementById('modalBasicSalary').value = employee.basicSalary;
+            document.getElementById('modalRiceSubsidy').value = employee.riceSubsidy;
+            document.getElementById('modalPhoneAllowance').value = employee.phoneAllowance;
+            document.getElementById('modalClothingAllowance').value = employee.clothingAllowance;
+            document.getElementById('modalGrossSemiMonthlyRate').value = employee.grossSemiMonthlyRate;
+            document.getElementById('modalHourlyRate').value = employee.hourlyRate;
+        }
+
+        function updateEmployee() {
+            console.log('updateEmployee called');
+            // Show HR credentials dialog first
+            showHrCredentialsDialog('update');
+        }
+
+        function validateModalForm() {
+            const requiredFields = [
+                'modalLastName', 'modalFirstName', 'modalBirthday', 'modalAddress', 'modalPhoneNumber',
+                'modalSssNumber', 'modalPhilhealthNumber', 'modalTinNumber', 'modalPagibigNumber',
+                'modalStatus', 'modalPosition', 'modalImmediateSupervisor', 'modalBasicSalary',
+                'modalRiceSubsidy', 'modalPhoneAllowance', 'modalClothingAllowance'
+            ];
+
+            for (let field of requiredFields) {
+                const input = document.getElementById(field);
+                if (!input.value.trim()) {
+                    showModalError(`Please complete all required fields before updating.`);
+                    return false;
+                }
+            }
+
+            // Validate phone number format (flexible)
+            const phoneNumber = document.getElementById('modalPhoneNumber').value;
+            if (!/^(\+?63|0)9[0-9]{9}$/.test(phoneNumber)) {
+                showModalError('Phone number must be in format 09XXXXXXXXX, +639XXXXXXXXX, or 639XXXXXXXXX');
+                return false;
+            }
+
+            // Validate numeric fields
+            const numericFields = ['modalSssNumber', 'modalPhilhealthNumber', 'modalTinNumber', 'modalPagibigNumber'];
+            for (let field of numericFields) {
+                const input = document.getElementById(field);
+                if (!/^[0-9]+$/.test(input.value)) {
+                    showModalError(`${field.replace('modal', '').replace(/([A-Z])/g, ' $1').trim()} must contain only numbers`);
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        function getModalFormData() {
+            return {
+                lastName: document.getElementById('modalLastName').value,
+                firstName: document.getElementById('modalFirstName').value,
+                birthday: document.getElementById('modalBirthday').value,
+                address: document.getElementById('modalAddress').value,
+                phoneNumber: document.getElementById('modalPhoneNumber').value,
+                sssNumber: document.getElementById('modalSssNumber').value,
+                philhealthNumber: document.getElementById('modalPhilhealthNumber').value,
+                tinNumber: document.getElementById('modalTinNumber').value,
+                pagibigNumber: document.getElementById('modalPagibigNumber').value,
+                status: document.getElementById('modalStatus').value,
+                position: document.getElementById('modalPosition').value,
+                immediateSupervisor: document.getElementById('modalImmediateSupervisor').value,
+                basicSalary: parseFloat(document.getElementById('modalBasicSalary').value),
+                riceSubsidy: parseFloat(document.getElementById('modalRiceSubsidy').value),
+                phoneAllowance: parseFloat(document.getElementById('modalPhoneAllowance').value),
+                clothingAllowance: parseFloat(document.getElementById('modalClothingAllowance').value),
+                grossSemiMonthlyRate: parseFloat(document.getElementById('modalGrossSemiMonthlyRate').value),
+                hourlyRate: parseFloat(document.getElementById('modalHourlyRate').value)
+            };
+        }
+
+        function calculateRates() {
+            const basicSalary = parseFloat(document.getElementById('modalBasicSalary').value) || 0;
+            const riceSubsidy = parseFloat(document.getElementById('modalRiceSubsidy').value) || 0;
+            const phoneAllowance = parseFloat(document.getElementById('modalPhoneAllowance').value) || 0;
+            const clothingAllowance = parseFloat(document.getElementById('modalClothingAllowance').value) || 0;
+
+            const totalMonthly = basicSalary + riceSubsidy + phoneAllowance + clothingAllowance;
+            const grossSemiMonthly = totalMonthly / 2;
+            const hourlyRate = basicSalary / (22 * 8); // Assuming 22 working days, 8 hours per day
+
+            document.getElementById('modalGrossSemiMonthlyRate').value = grossSemiMonthly.toFixed(2);
+            document.getElementById('modalHourlyRate').value = hourlyRate.toFixed(2);
+        }
+
+        function showArchiveConfirmation() {
+            console.log('showArchiveConfirmation called, selectedEmployeeId:', selectedEmployeeId);
+            if (!selectedEmployeeId) {
+                console.log('No selectedEmployeeId, returning');
+                return;
+            }
+
+            const employee = employees.find(emp => emp.id === selectedEmployeeId);
+            console.log('Found employee:', employee);
+            if (!employee) {
+                console.log('Employee not found, returning');
+                return;
+            }
+
+            const content = `
+                <div class="employee-preview">
+                    <strong>${employee.firstName} ${employee.lastName}</strong><br>
+                    Employee #${employee.employeeNumber}<br>
+                    Position: ${employee.position}
+                </div>
+            `;
+
+            console.log('Setting archive confirmation content');
+            document.getElementById('archiveEmployeeInfo').innerHTML = content;
+            document.getElementById('archiveConfirmModal').style.display = 'flex';
+            console.log('Archive confirmation modal displayed');
+        }
+
+        function archiveEmployee() {
+            console.log('archiveEmployee called');
+            showHrCredentialsDialog('archive');
+        }
+
+        function confirmArchiveEmployee() {
+            console.log('confirmArchiveEmployee called - stub archive (prototype only)');
+            if (!selectedEmployeeId) {
+                console.log('No employee selected for archiving');
+                return;
+            }
+
+            // Stub behavior: Only close modal and show toast (no data changes)
+            closeArchiveModal();
+            closeEmployeeModal();
+            
+            // Show prototype-only toast message
+            showSuccessMessage('Employee archived! Moved to archived list on activity logs');
+            
+            console.log('Archive action completed (prototype stub)');
+        }
+
+        function logActivity(action, oldEmployee, newEmployee) {
+            const timestamp = new Date().toLocaleString();
+            const managerName = "Andrea Mae Villanueva";
+            
+            let logEntry;
+            
+            if (action === 'Add') {
+                logEntry = {
+                    id: activityLogs.length + 1,
+                    timestamp: timestamp,
+                    managerName: managerName,
+                    action: action,
+                    employeeName: newEmployee.firstName + " " + newEmployee.lastName,
+                    employeeNumber: newEmployee.employeeNumber,
+                    fieldChanged: 'All Fields',
+                    oldValue: 'N/A',
+                    newValue: 'New Employee',
+                    reason: 'New employee added to system'
+                };
+            } else if (action === 'Delete') {
+                logEntry = {
+                    id: activityLogs.length + 1,
+                    timestamp: timestamp,
+                    managerName: managerName,
+                    action: action,
+                    employeeName: oldEmployee.firstName + " " + oldEmployee.lastName,
+                    employeeNumber: oldEmployee.employeeNumber,
+                    fieldChanged: 'All Fields',
+                    oldValue: 'Employee Record',
+                    newValue: 'Deleted',
+                    reason: 'Employee record deleted'
+                };
+            } else {
+                logEntry = {
+                    id: activityLogs.length + 1,
+                    timestamp: timestamp,
+                    managerName: managerName,
+                    action: action,
+                    employeeName: oldEmployee.firstName + " " + oldEmployee.lastName,
+                    employeeNumber: oldEmployee.employeeNumber,
+                    fieldChanged: 'Multiple Fields',
+                    oldValue: 'See Details',
+                    newValue: 'Updated',
+                    reason: 'Employee information updated'
+                };
+            }
+
+            activityLogs.unshift(logEntry); // Add to beginning of array
+        }
+
+        function updateEmployeeCount() {
+            const count = filteredEmployees.length;
+            document.getElementById('employeeCount').textContent = `${count} employee${count === 1 ? '' : 's'}`;
+        }
+
+        function showModalError(message) {
+            document.getElementById('modalErrorMessage').textContent = message;
+            document.getElementById('modalFormError').style.display = 'flex';
+        }
+
+        function showSuccessMessage(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #10b981;
+                color: white;
+                padding: 16px 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+                z-index: 1000;
+                font-size: 14px;
+                font-weight: 500;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                animation: slideIn 0.3s ease-out;
+            `;
+
+            notification.innerHTML = `
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                ${message}
+            `;
+
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideIn {
+                    from {
+                        transform: translateX(100%);
+                        opacity: 0;
+                    }
+                    to {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.animation = 'slideIn 0.3s ease-out reverse';
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 3000);
+        }
+
+        function closeEmployeeModal() {
+            document.getElementById('employeeModal').style.display = 'none';
+            document.getElementById('modalFormError').style.display = 'none';
+            isEditMode = false;
+            originalEmployeeData = null;
+            setFormEditability(false);
+            updateModalButtons();
+            
+            // Restore scrolling
+            document.body.classList.remove('modal-open');
+            document.body.style.position = '';
+            document.body.style.top = '';
+            document.body.style.width = '';
+            document.body.style.height = '';
+            document.body.style.overflow = '';
+            
+            // Restore scrolling on all elements
+            const allElements = document.querySelectorAll('*');
+            allElements.forEach(el => {
+                el.style.overflow = '';
+            });
+            
+            window.scrollTo(0, scrollPosition);
+        }
+
+        function closeArchiveModal() {
+            document.getElementById('archiveConfirmModal').style.display = 'none';
+        }
+
+        function addNewEmployee() {
+            console.log('addNewEmployee called');
+            // Show the add employee slide
+            const slide = document.getElementById('addEmployeeSlide');
+            console.log('Slide element:', slide);
+            
+            if (slide) {
+                // Force display and remove any conflicting styles
+                slide.style.display = 'flex';
+                slide.style.visibility = 'visible';
+                slide.style.opacity = '1';
+                console.log('Slide display set to flex');
+                
+                // Add show class for animation with longer delay
+                setTimeout(() => {
+                    slide.classList.add('show');
+                    console.log('Show class added to slide');
+                    console.log('Slide classes:', slide.className);
+                    console.log('Slide computed style:', window.getComputedStyle(slide).transform);
+                }, 100);
+                
+                // Clear the form
+                clearAddEmployeeForm();
+            } else {
+                console.error('addEmployeeSlide element not found!');
+            }
+        }
+
+        function closeAddEmployeeSlide() {
+            const slide = document.getElementById('addEmployeeSlide');
+            slide.classList.remove('show');
+            
+            // Hide slide after animation
+            setTimeout(() => {
+                slide.style.display = 'none';
+            }, 300);
+        }
+
+        function clearAddEmployeeForm() {
+            const form = document.getElementById('addEmployeeForm');
+            const inputs = form.querySelectorAll('input, select, textarea');
+            inputs.forEach(input => {
+                if (input.type === 'number') {
+                    input.value = '';
+                } else if (input.type === 'date') {
+                    input.value = '';
+                } else if (input.tagName === 'SELECT') {
+                    input.selectedIndex = 0;
+                } else {
+                    input.value = '';
+                }
+            });
+            
+            // Hide any error messages
+            document.getElementById('addFormError').style.display = 'none';
+        }
+
+        function saveNewEmployee() {
+            // Hide previous error
+            document.getElementById('addFormError').style.display = 'none';
+
+            // Validate form
+            if (!validateAddEmployeeForm()) {
+                return;
+            }
+
+            // Get form data
+            const formData = getAddEmployeeFormData();
+            
+            // Check if employee number already exists
+            const employeeNumber = formData.employeeNumber;
+            const existingEmployee = employees.find(emp => emp.employeeNumber === employeeNumber);
+            if (existingEmployee) {
+                showAddEmployeeError('Employee number already exists. Please use a different number.');
+                return;
+            }
+            
+            // Create new employee with user-provided ID
+            const newEmployee = {
+                id: nextEmployeeId,
+                employeeNumber: employeeNumber,
+                ...formData
+            };
+            
+            // Add to employees array
+            employees.push(newEmployee);
+            
+            // Log the activity
+            logActivity('Add', null, newEmployee);
+            
+            // Update the table
+            applyFilters();
+            
+            // Increment next employee ID
+            nextEmployeeId++;
+            
+            // Close slide
+            closeAddEmployeeSlide();
+            
+            // Show success message
+            showSuccessMessage('Employee added successfully!');
+        }
+
+        function validateAddEmployeeForm() {
+            const requiredFields = [
+                'addEmployeeNumber', 'addLastName', 'addFirstName', 'addBirthday', 'addAddress', 'addPhoneNumber',
+                'addSssNumber', 'addPhilhealthNumber', 'addTinNumber', 'addPagibigNumber',
+                'addStatus', 'addPosition', 'addImmediateSupervisor', 'addBasicSalary',
+                'addRiceSubsidy', 'addPhoneAllowance', 'addClothingAllowance', 'addGrossSemiMonthlyRate', 'addHourlyRate'
+            ];
+
+            let isValid = true;
+            let errorMessage = '';
+
+            // Check required fields
+            for (const fieldId of requiredFields) {
+                const field = document.getElementById(fieldId);
+                if (!field || !field.value.trim()) {
+                    isValid = false;
+                    errorMessage = 'All fields are required.';
+                    break;
+                }
+            }
+
+            // Validate phone number format (flexible)
+            if (isValid) {
+                const phoneNumber = document.getElementById('addPhoneNumber').value;
+                // Allow various formats: 09XXXXXXXXX, +639XXXXXXXXX, 639XXXXXXXXX
+                const phonePattern = /^(\+?63|0)9[0-9]{9}$/;
+                if (!phonePattern.test(phoneNumber)) {
+                    isValid = false;
+                    errorMessage = 'Phone number must be in format 09XXXXXXXXX, +639XXXXXXXXX, or 639XXXXXXXXX.';
+                }
+            }
+
+            // Validate numeric fields
+            if (isValid) {
+                const numericFields = ['addSssNumber', 'addPhilhealthNumber', 'addTinNumber', 'addPagibigNumber'];
+                for (const fieldId of numericFields) {
+                    const field = document.getElementById(fieldId);
+                    if (!/^[0-9]+$/.test(field.value)) {
+                        isValid = false;
+                        errorMessage = 'SSS, PhilHealth, TIN, and Pag-IBIG numbers must contain only digits.';
+                        break;
+                    }
+                }
+            }
+
+            if (!isValid) {
+                showAddEmployeeError(errorMessage);
+            }
+
+            return isValid;
+        }
+
+        function getAddEmployeeFormData() {
+            return {
+                employeeNumber: document.getElementById('addEmployeeNumber').value.trim(),
+                lastName: document.getElementById('addLastName').value.trim(),
+                firstName: document.getElementById('addFirstName').value.trim(),
+                birthday: document.getElementById('addBirthday').value,
+                address: document.getElementById('addAddress').value.trim(),
+                phoneNumber: document.getElementById('addPhoneNumber').value.trim(),
+                sssNumber: document.getElementById('addSssNumber').value.trim(),
+                philhealthNumber: document.getElementById('addPhilhealthNumber').value.trim(),
+                tinNumber: document.getElementById('addTinNumber').value.trim(),
+                pagibigNumber: document.getElementById('addPagibigNumber').value.trim(),
+                status: document.getElementById('addStatus').value,
+                position: document.getElementById('addPosition').value.trim(),
+                immediateSupervisor: document.getElementById('addImmediateSupervisor').value.trim(),
+                basicSalary: parseFloat(document.getElementById('addBasicSalary').value) || 0,
+                riceSubsidy: parseFloat(document.getElementById('addRiceSubsidy').value) || 0,
+                phoneAllowance: parseFloat(document.getElementById('addPhoneAllowance').value) || 0,
+                clothingAllowance: parseFloat(document.getElementById('addClothingAllowance').value) || 0,
+                grossSemiMonthlyRate: parseFloat(document.getElementById('addGrossSemiMonthlyRate').value) || 0,
+                hourlyRate: parseFloat(document.getElementById('addHourlyRate').value) || 0
+            };
+        }
+
+        function showAddEmployeeError(message) {
+            const errorDiv = document.getElementById('addFormError');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+        }
+
+        function toggleSection(sectionName) {
+            const section = document.querySelector(`[data-section="${sectionName}"]`);
+            if (section) {
+                section.classList.toggle('expanded');
+            }
+        }
+
+        // Close modals when clicking overlay
+        document.getElementById('employeeModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeEmployeeModal();
+            }
+        });
+
+        document.getElementById('archiveConfirmModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeArchiveModal();
+            }
+        });
+
+        // Store data globally for activity logs page
+        window.employeesData = employees;
+        window.activityLogsData = activityLogs;
+
+        // Toggle credentials display
+        function toggleCredentials() {
+            const display = document.getElementById('credentialsDisplay');
+            const btn = document.querySelector('.credentials-toggle-btn .btn-text');
+            
+            if (display.style.display === 'none') {
+                display.style.display = 'block';
+                btn.textContent = 'Hide Test Credentials';
+            } else {
+                display.style.display = 'none';
+                btn.textContent = 'Show Test Credentials';
+            }
+        }
+
+        // Make HR credentials functions globally available
+        window.showHrCredentialsDialog = showHrCredentialsDialog;
+        window.closeHrCredentialsModal = closeHrCredentialsModal;
+        window.verifyHrCredentials = verifyHrCredentials;
+        window.saveEmployeeUpdate = saveEmployeeUpdate;
+        window.toggleCredentials = toggleCredentials;
+        window.performUpdateEmployee = performUpdateEmployee;
+        window.performArchiveEmployee = performArchiveEmployee;
+        window.addNewEmployee = addNewEmployee;
+        window.showSuccessMessage = showSuccessMessage;
+        window.showModalError = showModalError;
+        window.confirmArchiveEmployee = confirmArchiveEmployee;
+
+        // Initialize HR credentials modal
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, checking HR credentials modal...');
+            const modal = document.getElementById('hrCredentialsModal');
+            if (modal) {
+                console.log('HR credentials modal found and ready');
+                
+                // Add click outside to close functionality
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) {
+                        closeHrCredentialsModal();
+                    }
+                });
+            } else {
+                console.error('HR credentials modal not found in DOM!');
+            }
+        });
+
+        // HR Credentials Dialog Functions
+        let pendingAction = null; // Store the action to perform after verification
+
+        function showHrCredentialsDialog(action) {
+            console.log('showHrCredentialsDialog called with action:', action);
+            pendingAction = action;
+            const modal = document.getElementById('hrCredentialsModal');
+            console.log('Modal element:', modal);
+            if (modal) {
+                modal.style.display = 'flex';
+                document.getElementById('hrCredentialsError').style.display = 'none';
+                document.getElementById('hrUsername').value = '';
+                document.getElementById('hrPassword').value = '';
+            } else {
+                console.error('HR credentials modal not found!');
+            }
+        }
+
+        function closeHrCredentialsModal() {
+            document.getElementById('hrCredentialsModal').style.display = 'none';
+            pendingAction = null;
+        }
+
+        function verifyHrCredentials() {
+            const username = document.getElementById('hrUsername').value;
+            const password = document.getElementById('hrPassword').value;
+            const errorDiv = document.getElementById('hrCredentialsError');
+
+            console.log('verifyHrCredentials called with:', { username, password, pendingAction });
+
+            // Check credentials
+            if (username === 'hr_admin' && password === 'password') {
+                console.log('Credentials verified successfully, proceeding with action:', pendingAction);
+                
+                // Store the action before closing the modal (which resets pendingAction)
+                const actionToPerform = pendingAction;
+                
+                // Credentials are correct, show success message and proceed
+                showSuccessMessage('HR credentials verified successfully!');
+                closeHrCredentialsModal();
+                
+                // Small delay to let user see the success message
+                setTimeout(() => {
+                    console.log('Executing pending action:', actionToPerform);
+                    if (actionToPerform === 'update') {
+                        console.log('Calling performUpdateEmployee');
+                        performUpdateEmployee();
+                    } else if (actionToPerform === 'archive') {
+                        console.log('Calling performArchiveEmployee');
+                        performArchiveEmployee();
+                    } else if (actionToPerform === 'add') {
+                        console.log('Calling addNewEmployee');
+                        addNewEmployee();
+                    }
+                }, 500);
+            } else {
+                console.log('Invalid credentials provided');
+                // Show error message
+                errorDiv.style.display = 'block';
+            }
+        }
+
+        function performUpdateEmployee() {
+            console.log('performUpdateEmployee called, selectedEmployeeId:', selectedEmployeeId);
+            // Check if an employee is selected
+            if (!selectedEmployeeId) {
+                console.log('No employee selected, showing error message');
+                showModalError('Please select an employee first by clicking on their row.');
+                return;
+            }
+            
+            console.log('Employee selected, enabling edit mode');
+            // Enable edit mode after HR verification
+            enableEditMode();
+        }
+
+        function performArchiveEmployee() {
+            console.log('performArchiveEmployee called, selectedEmployeeId:', selectedEmployeeId);
+            // Check if an employee is selected
+            if (!selectedEmployeeId) {
+                console.log('No employee selected, showing error message');
+                showModalError('Please select an employee first by clicking on their row.');
+                return;
+            }
+            
+            console.log('Employee selected, showing archive confirmation');
+            // Show archive confirmation dialog after HR verification
+            showArchiveConfirmation();
+        }
+
+        function saveEmployeeUpdate() {
+            // Hide previous error
+            document.getElementById('modalFormError').style.display = 'none';
+
+            // Validate form
+            if (!validateModalForm()) {
+                return;
+            }
+
+            // Get form data
+            const formData = getModalFormData();
+            
+            // Find employee index
+            const employeeIndex = employees.findIndex(emp => emp.id === selectedEmployeeId);
+            
+            if (employeeIndex !== -1) {
+                // Store old values for activity log
+                const oldEmployee = { ...employees[employeeIndex] };
+                
+                // Update employee data
+                employees[employeeIndex] = { ...employees[employeeIndex], ...formData };
+                
+                // Log the activity
+                logActivity('Update', oldEmployee, employees[employeeIndex]);
+                
+                // Update the table
+                applyFilters();
+                
+                // Exit edit mode
+                isEditMode = false;
+                setFormEditability(false);
+                updateModalButtons();
+                
+                // Close modal
+                closeEmployeeModal();
+                
+                // Show success message
+                showSuccessMessage('Employee updated successfully!');
+            }
+        }
+    </script>
+
+    <!-- HR Credentials Dialog -->
+    <div id="hrCredentialsModal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">HR Authorization Required</h3>
+                <button class="modal-close" onclick="closeHrCredentialsModal()">&times;</button>
+            </div>
+            <div class="credentials-info">
+                <button class="credentials-toggle-btn" onclick="toggleCredentials()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 16V12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 8H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="btn-text">Show Test Credentials</span>
+                </button>
+                <div class="credentials-display" id="credentialsDisplay" style="display: none;">
+                    <div class="credentials-content">
+                        <strong>Test Credentials:</strong>
+                        <div class="credential-item">
+                            <span class="credential-label">Username:</span>
+                            <code class="credential-value">hr_admin</code>
+                        </div>
+                        <div class="credential-item">
+                            <span class="credential-label">Password:</span>
+                            <code class="credential-value">password</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <p>Please enter your HR credentials to proceed with this action:</p>
+                <div class="form-group">
+                    <label class="form-label" for="hrUsername">Username:</label>
+                    <input type="text" class="form-input" id="hrUsername" placeholder="Enter HR username">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="hrPassword">Password:</label>
+                    <input type="password" class="form-input" id="hrPassword" placeholder="Enter HR password">
+                </div>
+                <div id="hrCredentialsError" class="error-message" style="display: none;">
+                    Invalid HR credentials. Only HR can update/archive employee info.
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeHrCredentialsModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="verifyHrCredentials()">Verify</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
