@@ -159,19 +159,6 @@ A comprehensive web-based system for HR, Payroll, and all employees to manage pa
 - **Deduction Management**: Manage various tax deductions
 - **Tax Calculations**: Automated tax calculation system
 
-### Activity Logs
-- **System Activity Tracking**: Complete audit trail of all system activities
-- **Activity Filtering**: Filter activities by date range, action type, and manager
-- **Activity Search**: Search through activity logs
-- **Export Functionality**: Export activity logs for reporting
-- **Archived Employees Management**: Access archives modal to view and manage archived employee records
-  - **Archives Modal**: Comprehensive interface for viewing archived employees
-  - **Search & Filter**: Search by name, ID, position, department with status filtering
-  - **Status Badges**: Color-coded badges (Orange for Resigned, Red for Terminated, Gray for End of Contract)
-  - **Employee Reactivation**: Reactivate archived employees with HR authorization (demo functionality)
-  - **Sortable Table**: Sort by Employee #, Name, Position, Department, Archive Date
-  - **Empty State**: Clear messaging when no results match filters
-
 ---
 
 ## 🔐 Test Credentials
