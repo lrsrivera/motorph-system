@@ -25,7 +25,6 @@ A comprehensive web-based system for HR, Payroll, and all employees to manage pa
 - **Team Analytics**: Monitor team statistics and KPIs
 - **Searchable Employee Selection**: Enhanced dropdown with search functionality for better UX
 - **Team Calendar**: View approved team leaves and overtime for the month with filtering capabilities
-- **Team Calendar Integration**: Access calendar from approval/rejection dialogs to check schedule conflicts
 - **Advanced Filtering**: Filter calendar by request type (All, Leave, Overtime) and employee
 
 ### Payroll Dashboard
