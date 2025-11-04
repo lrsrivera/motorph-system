@@ -254,7 +254,7 @@
             <div class="modal-header">
                 <h3 class="modal-title">HR Authorization Required</h3>
                 <button class="modal-close" onclick="closeArchivesHrModal()" aria-label="Close">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="overflow: hidden;">
                         <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </button>
@@ -315,17 +315,18 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>This will return the employee to the active directory. This is a front-end preview only.</p>
-                <div class="employee-info-preview" id="reactivateEmployeeInfo">
+                <p style="margin: 0 0 16px 0; color: #374151; line-height: 1.5;">This will return the employee to the active directory. This is a front-end preview only.</p>
+                <div class="employee-info-preview" id="reactivateEmployeeInfo" style="background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; margin: 0 0 24px 0;">
                     <!-- Employee info will be populated here -->
                 </div>
             </div>
-            <div class="modal-actions">
+            <div class="modal-actions" style="margin-top: 0; padding: 20px 24px;">
                 <button class="btn btn-secondary" onclick="closeReactivateModal()">Close</button>
                 <button class="btn btn-primary" id="confirmReactivateBtn">Reactivate</button>
             </div>
         </div>
     </div>
+
 
     <script src="assets/app.js"></script>
     <script>
@@ -821,27 +822,74 @@
             const errorDiv = document.getElementById('archivesHrCredentialsError');
 
             if (username === 'hr_admin' && password === 'password') {
-                closeArchivesHrModal();
-                showReactivateConfirmation();
+                // Store employee ID before closing modal
+                const employeeIdToReactivate = pendingReactivateEmployeeId;
+                
+                // Close HR credentials modal
+                const hrModal = document.getElementById('archivesHrCredentialsModal');
+                if (hrModal) {
+                    hrModal.style.display = 'none';
+                }
+                if (errorDiv) {
+                    errorDiv.style.display = 'none';
+                }
+                const usernameInput = document.getElementById('archivesHrUsername');
+                const passwordInput = document.getElementById('archivesHrPassword');
+                if (usernameInput) usernameInput.value = '';
+                if (passwordInput) passwordInput.value = '';
+                
+                // Small delay to ensure HR modal is fully closed before showing confirmation
+                setTimeout(() => {
+                    showReactivateConfirmation(employeeIdToReactivate);
+                }, 100);
             } else {
-                errorDiv.style.display = 'block';
+                if (errorDiv) {
+                    errorDiv.style.display = 'block';
+                }
             }
         }
 
-        function showReactivateConfirmation() {
-            const employee = archivedEmployees.find(emp => emp.id === pendingReactivateEmployeeId);
-            if (!employee) return;
+        function showReactivateConfirmation(employeeId) {
+            // Use provided employeeId or fall back to pendingReactivateEmployeeId
+            const empId = employeeId || pendingReactivateEmployeeId;
+            if (!empId) {
+                console.error('No employee ID provided for reactivation confirmation');
+                alert('Error: No employee ID found. Please try again.');
+                return;
+            }
+            
+            const employee = archivedEmployees.find(emp => emp.id === empId);
+            if (!employee) {
+                console.error('Employee not found:', empId);
+                alert('Error: Employee not found. Please try again.');
+                return;
+            }
+
+            // Ensure pendingReactivateEmployeeId is set for the confirm action
+            pendingReactivateEmployeeId = empId;
 
             const content = `
-                <div class="employee-preview">
-                    <strong>${employee.name}</strong><br>
-                    Employee #${employee.employeeNumber}<br>
-                    Position: ${employee.position}
+                <div style="padding: 12px 16px; line-height: 1.6;">
+                    <div style="font-weight: 600; font-size: 15px; color: #111827; margin-bottom: 8px;">${employee.name}</div>
+                    <div style="color: #6b7280; font-size: 13px; margin-bottom: 4px;">Employee #${employee.employeeNumber}</div>
+                    <div style="color: #6b7280; font-size: 13px;">Position: ${employee.position}</div>
                 </div>
             `;
 
-            document.getElementById('reactivateEmployeeInfo').innerHTML = content;
-            document.getElementById('reactivateConfirmModal').style.display = 'flex';
+            const reactivateInfo = document.getElementById('reactivateEmployeeInfo');
+            const reactivateModal = document.getElementById('reactivateConfirmModal');
+            
+            if (!reactivateInfo || !reactivateModal) {
+                console.error('Modal elements not found');
+                alert('Error: Modal elements not found. Please refresh the page.');
+                return;
+            }
+
+            reactivateInfo.innerHTML = content;
+            reactivateModal.style.display = 'flex';
+            
+            // Ensure modal is visible
+            console.log('Reactivate confirmation modal should now be visible');
         }
 
         function closeReactivateModal() {
@@ -850,16 +898,103 @@
         }
 
         function confirmReactivateEmployee() {
-            if (!pendingReactivateEmployeeId) return;
+            if (!pendingReactivateEmployeeId) {
+                console.error('No pending employee ID for reactivation');
+                return;
+            }
 
+            // Get employee info before removal
+            const employee = archivedEmployees.find(emp => emp.id === pendingReactivateEmployeeId);
+            
             // Remove from archived list for this session (UI-only, no persistence)
             const index = archivedEmployees.findIndex(emp => emp.id === pendingReactivateEmployeeId);
             if (index !== -1) {
                 archivedEmployees.splice(index, 1);
                 applyArchivesFilters();
-                closeReactivateModal();
-                showSuccessMessage('Employee reactivated (demo)');
+                
+                // Close confirmation modal
+                const confirmModal = document.getElementById('reactivateConfirmModal');
+                if (confirmModal) {
+                    confirmModal.style.display = 'none';
+                }
+                
+                // Small delay to ensure confirmation modal is closed before showing success
+                setTimeout(() => {
+                    // Show success confirmation dialog
+                    if (employee) {
+                        showReactivateSuccessModal(employee);
+                    } else {
+                        showSuccessMessage('Employee reactivated (demo)');
+                    }
+                }, 100);
+            } else {
+                console.error('Employee not found in archived list');
+                alert('Error: Employee not found. Please try again.');
             }
+        }
+
+        function showReactivateSuccessModal(employee) {
+            if (!employee) {
+                showSuccessMessage('Employee reactivated successfully!');
+                return;
+            }
+            
+            // Create toast notification
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: rgb(16, 185, 129);
+                color: white;
+                padding: 16px 20px;
+                border-radius: 8px;
+                box-shadow: rgba(16, 185, 129, 0.3) 0px 4px 12px;
+                z-index: 10000;
+                font-size: 14px;
+                font-weight: 500;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                animation: slideIn 0.3s ease-out;
+                max-width: 400px;
+            `;
+
+            toast.innerHTML = `
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>${employee.name} (Employee #${employee.employeeNumber}) has been successfully reactivated!</span>
+            `;
+
+            // Add slideIn animation if not already defined
+            if (!document.getElementById('toastSlideInAnimation')) {
+                const style = document.createElement('style');
+                style.id = 'toastSlideInAnimation';
+                style.textContent = `
+                    @keyframes slideIn {
+                        from {
+                            transform: translateX(100%);
+                            opacity: 0;
+                        }
+                        to {
+                            transform: translateX(0);
+                            opacity: 1;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+
+            document.body.appendChild(toast);
+
+            // Auto-remove after 4 seconds
+            setTimeout(() => {
+                toast.style.animation = 'slideIn 0.3s ease-out reverse';
+                setTimeout(() => {
+                    toast.remove();
+                }, 300);
+            }, 4000);
         }
 
         // Make functions globally available
