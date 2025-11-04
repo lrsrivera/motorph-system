@@ -1742,7 +1742,11 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h3 class="modal-title">HR Authorization Required</h3>
-                <button class="modal-close" onclick="closeHrCredentialsModal()">&times;</button>
+                <button class="modal-close" onclick="closeHrCredentialsModal()" aria-label="Close">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="overflow: hidden;">
+                        <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
             </div>
             <div class="credentials-info">
                 <button class="credentials-toggle-btn" onclick="toggleCredentials()">
